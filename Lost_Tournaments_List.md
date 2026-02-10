@@ -22,8 +22,8 @@ Since API data is often missing or corrupted for early tournaments (2011-2012), 
 
 ### 1. Dota 2 Star Championship
 - **Date**: Dec 8-11, 2011
-- **Status**: 🟡 **Manual Recovery**.
-- **Notes**: 3 matches found manually via VeRsuta/Na'Vi history (1186004, 1194490, 1199424).
+- **Status**: 🟢 **Recovered**.
+- **Notes**: Full Playoffs (Grand Final, Semifinals, 3rd Place) + Quarterfinals recovered via Goblak/Dendi/NS history. 16+ matches found.
 - **Liquipedia**: [Link](https://liquipedia.net/dota2/Dota2_Star_Championship)
 
 ### 2. The Defense Season 1
