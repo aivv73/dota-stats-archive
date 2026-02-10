@@ -1,6 +1,6 @@
 # Dota 2 Star Championship (2011) - Ultimate Recovery Report
 
-**Status**: Partially Recovered (8/30+ matches found)
+**Status**: Significantly Recovered (14/30+ matches found)
 **Dates**: Dec 8-11, 2011
 **Location**: Kiev Cyber Sports Arena, Ukraine
 **Prize Pool**: $20,000 USD
@@ -24,7 +24,25 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 ## 📂 Recovered Match Data
 
-We have successfully recovered **8 matches** from the tournament, primarily involving **Team Shakira** (France). These matches were found by scanning the player history of `rek0ne` (ID: 47743) and `BanZ` (ID: 8969983).
+### 🏆 Grand Final: The Retry vs Na'Vi (2-1)
+*Recovered on Feb 10, 2026 via Goblak's history*
+
+| Match ID | Date (UTC) | Game | Winner | Duration | Note |
+|---|---|---|---|---|---|
+| **[1446677](https://www.dotabuff.com/matches/1446677)** | Dec 11, 2011 | Game 1 | **The Retry** | 53:27 | PGG Enigma, Dendi Pudge |
+| **[1450273](https://www.dotabuff.com/matches/1450273)** | Dec 11, 2011 | Game 2 | **Na'Vi** | 34:30 | XBOCT AM, Goblak Brood |
+| **[1454446](https://www.dotabuff.com/matches/1454446)** | Dec 11, 2011 | Game 3 | **The Retry** | 37:13 | TR Wins Tournament! |
+
+### 🔥 Semifinals: The Retry vs Moscow Five (2-1)
+*Recovered on Feb 10, 2026*
+
+| Match ID | Date (UTC) | Game | Winner | Duration | Note |
+|---|---|---|---|---|---|
+| **[1384367](https://www.dotabuff.com/matches/1384367)** | Dec 10, 2011 | Game 1 | **Moscow Five** | 38:52 | NS Witch Doctor, God Brood |
+| **[1388217](https://www.dotabuff.com/matches/1388217)** | Dec 10, 2011 | Game 2 | **The Retry** | 37:09 | Goblak Carry Chen (12/4/15) |
+| **[1392301](https://www.dotabuff.com/matches/1392301)** | Dec 10, 2011 | Game 3 | **The Retry** | 51:25 | Bl00DAnGeL Mirana (16/3/8) |
+
+### Other Recovered Matches (Team Shakira & Group Stage)
 
 | Match ID | Date (UTC) | Stage | Teams | Winner | Duration |
 |---|---|---|---|---|---|
@@ -43,24 +61,34 @@ We have successfully recovered **8 matches** from the tournament, primarily invo
 
 ## 🕵️ Missing Matches (Priorities)
 
-We are still looking for the Match IDs for the **Grand Finals** and **Semifinals**.
+We are still looking for:
+1.  **Semifinal: Na'Vi vs Mousesports** (2-0)
+2.  **3rd Place Match: Moscow Five vs Mousesports** (M5 won)
 
-### Grand Final: The Retry vs Na'Vi (2-1)
-*Held on Dec 11, 2011*
+---
 
-| Game | VOD Link | Status | Notes |
-|---|---|---|---|
-| Game 1 | [YouTube](https://www.youtube.com/watch?v=AVGKqabIg1I) | ❌ Missing ID | TR (Radiant) vs Na'Vi (Dire). Duration ~58m. |
-| Game 2 | [YouTube](https://www.youtube.com/watch?v=ZeFGW7UbagI) | ❌ Missing ID | |
-| Game 3 | [YouTube](https://www.youtube.com/watch?v=SfLNm9HVlks) | ❌ Missing ID | TR wins the tournament. |
+## 👥 Verified Player IDs (2011 Era)
 
-### Semifinals
-*Held on Dec 11, 2011*
+**The Retry**
+- **Goblak**: `89137399`
+- **PGG** (pleased): `87565571`
+- **blowyourbrain** (TheResistance): `87201671`
+- **Bl00DAnGeL** (lol 123): `86924586`
+- **ALWAYSWANNAFLY**: `91064780`
 
-| Matchup | Score | VOD Link | Status |
-|---|---|---|---|
-| Na'Vi vs Mouz | 2-0 | [Game 2](https://www.youtube.com/watch?v=Zubvblkyk-U) | ❌ Missing IDs |
-| M5 vs The Retry | 1-2 | - | ❌ Missing IDs |
+**Natus Vincere**
+- **Dendi**: `70388657`
+- **XBOCT**: `89625472`
+- **Puppey** (Secret.Puppey): `87278757`
+- **LighTofHeaveN** (L): `89326318`
+- **ARS-ART** (©): `89713365`
+
+**Moscow Five**
+- **NS**: `93712171`
+- **God (G)** (13): `87586992`
+- **Santa** (poshel naxuy): `38877891`
+- **Klif** (skillb0mja): `92259345`
+- **KyKy** (amber4ek): `92926005`
 
 ---
 
@@ -68,22 +96,10 @@ We are still looking for the Match IDs for the **Grand Finals** and **Semifinals
 
 | Match | URL | Description |
 |---|---|---|
+| **Grand Final G1** | [YouTube](https://www.youtube.com/watch?v=AVGKqabIg1I) | TR vs Na'Vi (Match 1446677) |
+| **Grand Final G2** | [YouTube](https://www.youtube.com/watch?v=ZeFGW7UbagI) | Na'Vi vs TR (Match 1450273) |
+| **Grand Final G3** | [YouTube](https://www.youtube.com/watch?v=SfLNm9HVlks) | TR vs Na'Vi (Match 1454446) |
 | **TR vs Shakira** | [Link](https://www.youtube.com/watch?v=nawIP_HhmUg) | Group Stage Match |
 | **eSahara vs GameZone** | [Link](https://www.youtube.com/watch?v=s9BQzVm2e6A) | Group Stage Match |
 | **Na'Vi vs eSahara** | [Link](https://www.youtube.com/watch?v=CHuBWwTEWDo) | Group Stage Match |
 | **Na'Vi vs Shakira** | [Link](https://www.youtube.com/watch?v=KetfllyoKQk) | Quarterfinal Game 2 |
-| **Highlights** | [Link](https://www.youtube.com/watch?v=w079S_tB4s4) | XBOCT vs Team Shakira |
-| **Highlights** | [Link](https://www.youtube.com/watch?v=cGNMsIqp4V4) | Dendi vs Team Shakira |
-| **Award Ceremony** | [Link](https://www.youtube.com/watch?v=DEbowklJb7I) | Closing Ceremony |
-
----
-
-## 👥 Rosters (Key Teams)
-
-**🇺🇦 Natus Vincere**: XBOCT, Dendi, LighTofHeaveN, Puppey, ARS-ART
-**🇷🇺 The Retry**: PGG, blowyourbrain, Bl00DAnGeL, ALWAYSWANNAFLY, Goblak
-**🇷🇺 Moscow Five**: NS, KyKy, Santa, G, klif
-**🇪🇺 Mousesports**: twiSta, SingSing, Rexi, Fire, Trixi
-**🇫🇷 Team Shakira**: Sockshka, Dhany, Funzii, 7ckngMad, Ph0eNiiX
-
-*Report compiled by OpenClaw Agent Pi (2026)*
