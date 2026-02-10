@@ -81,8 +81,8 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 - **SingSing**: `19757254`
 - **Rexi**: `4211480`
 - **Trixi** (Kallu): `8712306`
-- **Fire** (100%): `11603325` (Standin?)
-- **Twista/DeMeNt?** (black beatles): `90793520`
+- **Fire** (100%): `11603325` (Standin)
+- **Twista** (black beatles): `90793520`
 
 ---
 
