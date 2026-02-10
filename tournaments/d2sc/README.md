@@ -1,6 +1,6 @@
 # Dota 2 Star Championship (2011) - Ultimate Recovery Report
 
-**Status**: Significantly Recovered (14/30+ matches found)
+**Status**: Almost Fully Recovered (16/30+ matches found)
 **Dates**: Dec 8-11, 2011
 **Location**: Kiev Cyber Sports Arena, Ukraine
 **Prize Pool**: $20,000 USD
@@ -33,7 +33,9 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 | **[1450273](https://www.dotabuff.com/matches/1450273)** | Dec 11, 2011 | Game 2 | **Na'Vi** | 34:30 | XBOCT AM, Goblak Brood |
 | **[1454446](https://www.dotabuff.com/matches/1454446)** | Dec 11, 2011 | Game 3 | **The Retry** | 37:13 | TR Wins Tournament! |
 
-### 🔥 Semifinals: The Retry vs Moscow Five (2-1)
+### 🔥 Semifinals
+
+#### The Retry vs Moscow Five (2-1)
 *Recovered on Feb 10, 2026*
 
 | Match ID | Date (UTC) | Game | Winner | Duration | Note |
@@ -42,28 +44,13 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 | **[1388217](https://www.dotabuff.com/matches/1388217)** | Dec 10, 2011 | Game 2 | **The Retry** | 37:09 | Goblak Carry Chen (12/4/15) |
 | **[1392301](https://www.dotabuff.com/matches/1392301)** | Dec 10, 2011 | Game 3 | **The Retry** | 51:25 | Bl00DAnGeL Mirana (16/3/8) |
 
-### Other Recovered Matches (Team Shakira & Group Stage)
+#### Na'Vi vs Mousesports (2-0)
+*Recovered on Feb 10, 2026 via Dendi's history*
 
-| Match ID | Date (UTC) | Stage | Teams | Winner | Duration |
+| Match ID | Date (UTC) | Game | Winner | Duration | Note |
 |---|---|---|---|---|---|
-| **[1186729](https://www.dotabuff.com/matches/1186729)** | Dec 8, 11:44 | Group | Shakira Mix vs ? | Dire | 17:15 |
-| **[1188242](https://www.dotabuff.com/matches/1188242)** | Dec 8, 12:06 | Group | Shakira Mix vs ? | Dire | 28:53 |
-| **[1289398](https://www.dotabuff.com/matches/1289398)** | Dec 9, 17:11 | Group | ? vs Team Shakira | Shakira | 42:29 |
-| **[1362471](https://www.dotabuff.com/matches/1362471)** | Dec 10, 15:49 | Group | Team Shakira vs ? | Shakira | 23:43 |
-| **[1364296](https://www.dotabuff.com/matches/1364296)** | Dec 10, 16:19 | Quarterfinal | Team Shakira vs Na'Vi | Shakira | 23:41 |
-| **[1424838](https://www.dotabuff.com/matches/1424838)** | Dec 11, 12:34 | Playoff | ? vs Team Shakira | Shakira | 37:51 |
-| **[1436898](https://www.dotabuff.com/matches/1436898)** | Dec 11, 16:03 | Playoff | ? vs Team Shakira | Shakira | 19:55 |
-| **[1439203](https://www.dotabuff.com/matches/1439203)** | Dec 11, 16:29 | Playoff | Team Shakira vs ? | Shakira | 27:16 |
-
-> **Note**: Match 1364296 (Shakira vs Na'Vi) is likely Game 1 or 2 of the Quarterfinals.
-
----
-
-## 🕵️ Missing Matches (Priorities)
-
-We are still looking for:
-1.  **Semifinal: Na'Vi vs Mousesports** (2-0)
-2.  **3rd Place Match: Moscow Five vs Mousesports** (M5 won)
+| **[1432784](https://www.dotabuff.com/matches/1432784)** | Dec 11, 2011 | Game 1 | **Na'Vi** | 27:29 | Dendi Pudge (13/2/5) |
+| **[1429793](https://www.dotabuff.com/matches/1429793)** | Dec 11, 2011 | Game 2 | **Na'Vi** | 39:51 | XBOCT AM, SingSing Veno |
 
 ---
 
@@ -90,6 +77,13 @@ We are still looking for:
 - **Klif** (skillb0mja): `92259345`
 - **KyKy** (amber4ek): `92926005`
 
+**Mousesports**
+- **SingSing**: `19757254`
+- **Rexi**: `4211480`
+- **Trixi** (Kallu): `8712306`
+- **Fire** (100%): `11603325` (Standin?)
+- **Twista/DeMeNt?** (black beatles): `90793520`
+
 ---
 
 ## 📺 Video Archive (VODs)
@@ -99,6 +93,7 @@ We are still looking for:
 | **Grand Final G1** | [YouTube](https://www.youtube.com/watch?v=AVGKqabIg1I) | TR vs Na'Vi (Match 1446677) |
 | **Grand Final G2** | [YouTube](https://www.youtube.com/watch?v=ZeFGW7UbagI) | Na'Vi vs TR (Match 1450273) |
 | **Grand Final G3** | [YouTube](https://www.youtube.com/watch?v=SfLNm9HVlks) | TR vs Na'Vi (Match 1454446) |
+| **Na'Vi vs Mouz G2** | [YouTube](https://www.youtube.com/watch?v=Zubvblkyk-U) | Match 1429793 (TobiWan) |
 | **TR vs Shakira** | [Link](https://www.youtube.com/watch?v=nawIP_HhmUg) | Group Stage Match |
 | **eSahara vs GameZone** | [Link](https://www.youtube.com/watch?v=s9BQzVm2e6A) | Group Stage Match |
 | **Na'Vi vs eSahara** | [Link](https://www.youtube.com/watch?v=CHuBWwTEWDo) | Group Stage Match |
