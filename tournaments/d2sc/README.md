@@ -57,8 +57,22 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 | Match ID | Date (UTC) | Game | Winner | Duration | Note |
 |---|---|---|---|---|---|
-| **[1440121](https://www.dotabuff.com/matches/1440121)** | Dec 11, 2011 | Game 1 | **Moscow Five** | 45:58 | God Brood, SingSing SF |
-| **[1444054](https://www.dotabuff.com/matches/1444054)** | Dec 11, 2011 | Game 2 | **Moscow Five** | 34:41 | God Void (12/0/4) |
+| **[1444054](https://www.dotabuff.com/matches/1444054)** | Dec 11, 2011 | Game 1 | **Moscow Five** | 34:41 | God Void (12/0/4) |
+| **[1440121](https://www.dotabuff.com/matches/1440121)** | Dec 11, 2011 | Game 2 | **Moscow Five** | 45:58 | God Brood, SingSing SF |
+
+### ¼ Quarterfinals
+
+#### Na'Vi vs Team Shakira (2-1)
+*Recovered on Feb 10, 2026 via Dendi's history*
+
+| Match ID | Date (UTC) | Game | Winner | Duration | Note |
+|---|---|---|---|---|---|
+| **[1364296](https://www.dotabuff.com/matches/1364296)** | Dec 10, 2011 | Game 1 | **Shakira** | 23:41 | Previously found |
+| **[1374029](https://www.dotabuff.com/matches/1374029)** | Dec 10, 2011 | Game 2 | **Na'Vi** | 45:01 | Dendi Storm, 7ckngMad Brood |
+| **[1378735](https://www.dotabuff.com/matches/1378735)** | Dec 10, 2011 | Game 3 | **Na'Vi** | 29:27 | Dendi Tinker (15/2/11) |
+
+#### Mousesports vs eSahara (2-0)
+*Missing IDs*
 
 ---
 
@@ -91,6 +105,13 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 - **Trixi** (Kallu): `8712306`
 - **Fire** (100%): `11603325` (Standin)
 - **Twista** (black beatles): `90793520`
+
+**Team Shakira**
+- **7ckngMad (Ceb)** (OG.Ceb): `88271237`
+- **Sockshka** (causalité): `16769223`
+- **Ph0eNiiX**: `87291311`
+- **TMTC**: `29337472`
+- **Dhany?** (O 88 Stars...): `58008199`
 
 ---
 
