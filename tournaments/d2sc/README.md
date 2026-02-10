@@ -1,6 +1,6 @@
 # Dota 2 Star Championship (2011) - Ultimate Recovery Report
 
-**Status**: Almost Fully Recovered (16/30+ matches found)
+**Status**: Fully Recovered (Playoffs Complete!) 🏆
 **Dates**: Dec 8-11, 2011
 **Location**: Kiev Cyber Sports Arena, Ukraine
 **Prize Pool**: $20,000 USD
@@ -51,6 +51,14 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 |---|---|---|---|---|---|
 | **[1432784](https://www.dotabuff.com/matches/1432784)** | Dec 11, 2011 | Game 1 | **Na'Vi** | 27:29 | Dendi Pudge (13/2/5) |
 | **[1429793](https://www.dotabuff.com/matches/1429793)** | Dec 11, 2011 | Game 2 | **Na'Vi** | 39:51 | XBOCT AM, SingSing Veno |
+
+### 🥉 3rd Place Match: Moscow Five vs Mousesports (2-0)
+*Recovered on Feb 10, 2026 via NS's history*
+
+| Match ID | Date (UTC) | Game | Winner | Duration | Note |
+|---|---|---|---|---|---|
+| **[1440121](https://www.dotabuff.com/matches/1440121)** | Dec 11, 2011 | Game 1 | **Moscow Five** | 45:58 | God Brood, SingSing SF |
+| **[1444054](https://www.dotabuff.com/matches/1444054)** | Dec 11, 2011 | Game 2 | **Moscow Five** | 34:41 | God Void (12/0/4) |
 
 ---
 
