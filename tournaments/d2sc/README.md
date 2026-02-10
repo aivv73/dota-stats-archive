@@ -62,14 +62,13 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 ### ¼ Quarterfinals
 
-#### Na'Vi vs Team Shakira (2-1)
+#### Na'Vi vs Team Shakira (2-0)
 *Recovered on Feb 10, 2026 via Dendi's history*
 
 | Match ID | Date (UTC) | Game | Winner | Duration | Note |
 |---|---|---|---|---|---|
-| **[1364296](https://www.dotabuff.com/matches/1364296)** | Dec 10, 2011 | Game 1 | **Shakira** | 23:41 | Previously found |
-| **[1374029](https://www.dotabuff.com/matches/1374029)** | Dec 10, 2011 | Game 2 | **Na'Vi** | 45:01 | Dendi Storm, 7ckngMad Brood |
-| **[1378735](https://www.dotabuff.com/matches/1378735)** | Dec 10, 2011 | Game 3 | **Na'Vi** | 29:27 | Dendi Tinker (15/2/11) |
+| **[1374029](https://www.dotabuff.com/matches/1374029)** | Dec 10, 2011 | Game 1 | **Na'Vi** | 45:01 | Dendi Storm, 7ckngMad Brood |
+| **[1378735](https://www.dotabuff.com/matches/1378735)** | Dec 10, 2011 | Game 2 | **Na'Vi** | 29:27 | Dendi Tinker (15/2/11) |
 
 #### Mousesports vs eSahara (2-0)
 *Missing IDs*
@@ -110,8 +109,8 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 - **7ckngMad (Ceb)** (OG.Ceb): `88271237`
 - **Sockshka** (causalité): `16769223`
 - **Ph0eNiiX**: `87291311`
-- **TMTC**: `29337472`
-- **Dhany?** (O 88 Stars...): `58008199`
+- **Funzii** (TMTC): `29337472`
+- **Dhany** (O 88 Stars...): `58008199`
 
 ---
 
