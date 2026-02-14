@@ -49,8 +49,8 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 | Match ID | Date (UTC) | Game | Winner | Duration | Note |
 |---|---|---|---|---|---|
-| **[1432784](https://www.dotabuff.com/matches/1432784)** | Dec 11, 2011 | Game 1 | **Na'Vi** | 27:29 | Dendi Pudge (13/2/5) |
-| **[1429793](https://www.dotabuff.com/matches/1429793)** | Dec 11, 2011 | Game 2 | **Na'Vi** | 39:51 | XBOCT AM, SingSing Veno |
+| **[1429793](https://www.dotabuff.com/matches/1429793)** | Dec 11, 2011 | Game 1 | **Na'Vi** | 39:51 | XBOCT AM, SingSing Veno |
+| **[1432784](https://www.dotabuff.com/matches/1432784)** | Dec 11, 2011 | Game 2 | **Na'Vi** | 27:29 | Dendi Pudge (13/2/5) |
 
 ### 🥉 3rd Place Match: Moscow Five vs Mousesports (2-0)
 *Recovered on Feb 10, 2026 via NS's history*
