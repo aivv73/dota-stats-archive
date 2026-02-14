@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/aivv73/dota-stats-archive#readme",
   "dependencies": {
-    "mcp-sqlite": "^1.0.7"
+    "mcp-sqlite": "^1.0.7",
+    "sqlite3": "^5.1.7"
   }
 }
