@@ -57,8 +57,8 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 | Match ID | Date (UTC) | Game | Winner | Duration | Note |
 |---|---|---|---|---|---|
-| **[1444054](https://www.dotabuff.com/matches/1444054)** | Dec 11, 2011 | Game 1 | **Moscow Five** | 34:41 | God Void (12/0/4) |
-| **[1440121](https://www.dotabuff.com/matches/1440121)** | Dec 11, 2011 | Game 2 | **Moscow Five** | 45:58 | God Brood, SingSing SF |
+| **[1440121](https://www.dotabuff.com/matches/1440121)** | Dec 11, 2011 | Game 1 | **Moscow Five** | 45:58 | God Brood, SingSing SF |
+| **[1444054](https://www.dotabuff.com/matches/1444054)** | Dec 11, 2011 | Game 2 | **Moscow Five** | 34:41 | God Void (12/0/4) |
 
 ### ¼ Quarterfinals
 
