@@ -1,6 +1,6 @@
 # Dota 2 Star Championship (2011) - Ultimate Recovery Report
 
-**Status**: Fully Recovered (Playoffs Complete!) 🏆
+**Status**: Playoffs Fully Recovered (14/14 matches!) 🏆 | Group Stage: In Progress
 **Dates**: Dec 8-11, 2011
 **Location**: Kiev Cyber Sports Arena, Ukraine
 **Prize Pool**: $20,000 USD
@@ -70,8 +70,13 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 | **[1374029](https://www.dotabuff.com/matches/1374029)** | Dec 10, 2011 | Game 1 | **Na'Vi** | 45:01 | Dendi Storm, 7ckngMad Brood |
 | **[1378735](https://www.dotabuff.com/matches/1378735)** | Dec 10, 2011 | Game 2 | **Na'Vi** | 29:27 | Dendi Tinker (15/2/11) |
 
-#### Mousesports vs eSahara (2-0)
-*Missing IDs*
+#### The Retry vs eSahara (2-0)
+*Recovered on Feb 14, 2026 via Dotabuff (Practice lobby, Game Mode None)*
+
+| Match ID | Date (UTC) | Game | Winner | Duration | Note |
+|---|---|---|---|---|---|
+| **[1357441](https://www.dotabuff.com/matches/1357441)** | Dec 10, 2011 | Game 1 | **The Retry** | 38:23 | ALWAYSWANNAFLY AA, Goblak Shadow Shaman |
+| **[1362194](https://www.dotabuff.com/matches/1362194)** | Dec 10, 2011 | Game 2 | **The Retry** | 28:55 | TheResistance AM, Goblak Chen |
 
 ---
 
@@ -111,6 +116,13 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 - **Ph0eNiiX**: `87291311`
 - **Funzii** (TMTC): `29337472`
 - **Dhany** (O 88 Stars...): `58008199`
+
+**eSahara**
+- **Funn1k**: `37832572`
+- **Mag~** (Mag): `41272215`
+- **dubas**: `93655625`
+- **Nexius**: `86747846`
+- **Jerry** (ajkeks): `86723143`
 
 ---
 
