@@ -118,11 +118,11 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 - **Dhany** (O 88 Stars...): `58008199`
 
 **eSahara**
-- **Funn1k**: `37832572`
+- **Funn1k** (ajkeks): `86723143`
 - **Mag~** (Mag): `41272215`
 - **dubas**: `93655625`
 - **Nexius**: `86747846`
-- **Jerry** (ajkeks): `86723143`
+- **Jerry**: `37832572`
 
 ---
 
