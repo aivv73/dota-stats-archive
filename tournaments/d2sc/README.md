@@ -92,6 +92,7 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 | **[1271738](https://www.dotabuff.com/matches/1271738)** | Dec 09, 2011 | **Team Shakira** (Dire) | 22:49 | Practice |
 | **[1270278](https://www.dotabuff.com/matches/1270278)** | Dec 09, 2011 | **mousesports** (Dire) | 52:46 | Practice |
 | **[1275955](https://www.dotabuff.com/matches/1275955)** | Dec 09, 2011 | **mousesports** (Dire) | 30:01 | Practice |
+| **[1263344](https://www.dotabuff.com/matches/1263344)** | Dec 09, 2011 | **The Retry** | *(unknown)* | Practice |
 
 ---
 
