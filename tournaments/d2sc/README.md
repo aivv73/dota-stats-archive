@@ -82,7 +82,7 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 ## 🎮 Group Stage #2 (Swiss) — найденные матчи
 
-### Group 1 — Team Shakira vs mousesports (bo1)
+### Group 1
 *Recovered on Mar 04, 2026 via Dotabuff*
 
 | Match ID | Date (UTC) | Winner | Duration | Lobby |
