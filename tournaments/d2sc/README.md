@@ -80,6 +80,17 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 ---
 
+## 🎮 Group Stage #2 (Swiss) — найденные матчи
+
+### Group 1 — Team Shakira vs mousesports (bo1)
+*Recovered on Mar 04, 2026 via Dotabuff*
+
+| Match ID | Date (UTC) | Winner | Duration | Lobby |
+|---|---|---|---|---|
+| **[1262367](https://www.dotabuff.com/matches/1262367)** | Dec 09, 2011 | **Team Shakira** (Radiant) | 1:02:49 | Practice |
+
+---
+
 ## 👥 Verified Player IDs (2011 Era)
 
 **The Retry**
