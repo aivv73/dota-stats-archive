@@ -86,7 +86,7 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 *Recovered on Mar 04, 2026 via Dotabuff*
 
 | Match ID | Date (UTC) | Winner | Loser | Duration |
-|---|---|---|---|---|---|
+|---|---|---|---|---|
 | **[1262367](https://www.dotabuff.com/matches/1262367)** | Dec 09, 2011 | **Team Shakira** (Radiant) | mousesports | 1:02:49 |
 | **[1263344](https://www.dotabuff.com/matches/1263344)** | Dec 09, 2011 | **The Retry** (Dire) | Lick the Click | 22:15 |
 | **[1271738](https://www.dotabuff.com/matches/1271738)** | Dec 09, 2011 | **Team Shakira** (Dire) | Lick the Click | 22:49 |
