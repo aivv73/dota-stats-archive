@@ -88,6 +88,7 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 | Match ID | Date (UTC) | Winner | Duration | Lobby |
 |---|---|---|---|---|
 | **[1262367](https://www.dotabuff.com/matches/1262367)** | Dec 09, 2011 | **Team Shakira** (Radiant) | 1:02:49 | Practice |
+| **[1290094](https://www.dotabuff.com/matches/1290094)** | Dec 09, 2011 | **The Retry** (Radiant) | 53:22 | Practice |
 
 ---
 
