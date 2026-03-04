@@ -98,9 +98,9 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 ### Group 2
 *Recovered on Mar 04, 2026 via Dotabuff*
 
-| Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
-|---|---|---|---|---|---|
-| **[1306078](https://www.dotabuff.com/matches/1306078)** | Dec 09, 2011 | **eSahara** (Dire) | Power Rangers | 38:09 | |
+| Match ID | Date (UTC) | Winner | Loser | Duration |
+|---|---|---|---|---|
+| **[1306078](https://www.dotabuff.com/matches/1306078)** | Dec 09, 2011 | **eSahara** (Dire) | Power Rangers | 38:09 |
 
 ---
 
