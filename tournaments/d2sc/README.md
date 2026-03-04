@@ -151,6 +151,7 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 **Power Rangers**
 - **zxc** (D): `88655279`
 - **Irma** (Амгалан): `86825601`
+- **f4n1us** (000): `89975049`
 
 **eSahara**
 - **Funn1k** (ajkeks): `86723143`
