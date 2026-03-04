@@ -85,22 +85,23 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 ### Group 1
 *Recovered on Mar 04, 2026 via Dotabuff*
 
-| Match ID | Date (UTC) | Winner | Loser | Duration |
-|---|---|---|---|---|
-| **[1262367](https://www.dotabuff.com/matches/1262367)** | Dec 09, 2011 | **Team Shakira** (Radiant) | mousesports | 1:02:49 |
-| **[1263344](https://www.dotabuff.com/matches/1263344)** | Dec 09, 2011 | **The Retry** (Dire) | Lick the Click | 22:15 |
-| **[1271738](https://www.dotabuff.com/matches/1271738)** | Dec 09, 2011 | **Team Shakira** (Dire) | Lick the Click | 22:49 |
-| **[1270278](https://www.dotabuff.com/matches/1270278)** | Dec 09, 2011 | **mousesports** (Dire) | The Retry | 52:46 |
-| **[1275955](https://www.dotabuff.com/matches/1275955)** | Dec 09, 2011 | **mousesports** (Dire) | Lick the Click | 30:01 |
-| **[1290094](https://www.dotabuff.com/matches/1290094)** | Dec 09, 2011 | **The Retry** (Radiant) | Team Shakira | 53:22 |
+| Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
+|---|---|---|---|---|---|
+| **[1262367](https://www.dotabuff.com/matches/1262367)** | Dec 09, 2011 | **Team Shakira** (Radiant) | mousesports | 1:02:49 | |
+| **[1263344](https://www.dotabuff.com/matches/1263344)** | Dec 09, 2011 | **The Retry** (Dire) | Lick the Click | 22:15 | |
+| **[1271738](https://www.dotabuff.com/matches/1271738)** | Dec 09, 2011 | **Team Shakira** (Dire) | Lick the Click | 22:49 | |
+| **[1270278](https://www.dotabuff.com/matches/1270278)** | Dec 09, 2011 | **mousesports** (Dire) | The Retry | 52:46 | |
+| **[1275955](https://www.dotabuff.com/matches/1275955)** | Dec 09, 2011 | **mousesports** (Dire) | Lick the Click | 30:01 | |
+| **[1290094](https://www.dotabuff.com/matches/1290094)** | Dec 09, 2011 | **The Retry** (Radiant) | Team Shakira | 53:22 | |
 
 
 ### Group 2
 *Recovered on Mar 04, 2026 via Dotabuff*
 
-| Match ID | Date (UTC) | Winner | Loser | Duration |
-|---|---|---|---|---|
-| **[1306078](https://www.dotabuff.com/matches/1306078)** | Dec 09, 2011 | **eSahara** (Dire) | Power Rangers | 38:09 |
+| Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
+|---|---|---|---|---|---|
+| **[1306078](https://www.dotabuff.com/matches/1306078)** | Dec 09, 2011 | **eSahara** (Dire) | Power Rangers | 38:09 | |
+| **[1297132](https://www.dotabuff.com/matches/1297132)** | Dec 09, 2011 | **Moscow Five** (Radiant) | Power Rangers | 48:43 | | |
 
 ---
 
