@@ -80,19 +80,26 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 ---
 
-## 🎮 Group Stage #2 (Swiss) — найденные матчи
+## 🎮 Group Stage #2 — найденные матчи
 
 ### Group 1
 *Recovered on Mar 04, 2026 via Dotabuff*
 
-| Match ID | Date (UTC) | Winner | Duration | Lobby |
-|---|---|---|---|---|
-| **[1262367](https://www.dotabuff.com/matches/1262367)** | Dec 09, 2011 | **Team Shakira** (Radiant) | 1:02:49 | Practice |
-| **[1290094](https://www.dotabuff.com/matches/1290094)** | Dec 09, 2011 | **The Retry** (Radiant) | 53:22 | Practice |
-| **[1271738](https://www.dotabuff.com/matches/1271738)** | Dec 09, 2011 | **Team Shakira** (Dire) | 22:49 | Practice |
-| **[1270278](https://www.dotabuff.com/matches/1270278)** | Dec 09, 2011 | **mousesports** (Dire) | 52:46 | Practice |
-| **[1275955](https://www.dotabuff.com/matches/1275955)** | Dec 09, 2011 | **mousesports** (Dire) | 30:01 | Practice |
-| **[1263344](https://www.dotabuff.com/matches/1263344)** | Dec 09, 2011 | **The Retry** (Dire) | 22:15 | Practice |
+| Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
+|---|---|---|---|---|---|
+| **[1262367](https://www.dotabuff.com/matches/1262367)** | Dec 09, 2011 | **Team Shakira** (Radiant) | mousesports | 1:02:49 | |
+| **[1290094](https://www.dotabuff.com/matches/1290094)** | Dec 09, 2011 | **The Retry** (Radiant) | Team Shakira | 53:22 | |
+| **[1271738](https://www.dotabuff.com/matches/1271738)** | Dec 09, 2011 | **Team Shakira** (Dire) | Lick the Click | 22:49 | |
+| **[1270278](https://www.dotabuff.com/matches/1270278)** | Dec 09, 2011 | **mousesports** (Dire) | The Retry | 52:46 | |
+| **[1275955](https://www.dotabuff.com/matches/1275955)** | Dec 09, 2011 | **mousesports** (Dire) | Lick the Click | 30:01 | |
+| **[1263344](https://www.dotabuff.com/matches/1263344)** | Dec 09, 2011 | **The Retry** (Dire) | Lick the Click | 22:15 | |
+
+### Group 2
+*TODO: recover matches*
+
+| Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
+|---|---|---|---|---|---|
+| *(TBD)* |  |  |  |  |  |
 
 ---
 
