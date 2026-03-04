@@ -148,6 +148,9 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 - **SG-** (Light of Heaven): `84412533`
 - **WarLocK** (PZD-GRNT): `90335356`
 
+**Power Rangers**
+- **zxc** (D): `88655279`
+
 **eSahara**
 - **Funn1k** (ajkeks): `86723143`
 - **Mag~** (Mag): `41272215`
