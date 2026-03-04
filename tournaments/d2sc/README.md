@@ -100,12 +100,12 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 | Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
 |---|---|---|---|---|---|
-| **[1306078](https://www.dotabuff.com/matches/1306078)** | Dec 09, 2011 | **eSahara** (Dire) | Power Rangers | 38:09 | |
-| **[1297132](https://www.dotabuff.com/matches/1297132)** | Dec 09, 2011 | **Moscow Five** (Radiant) | Power Rangers | 48:43 | |
 | **[1287028](https://www.dotabuff.com/matches/1287028)** | Dec 09, 2011 | **Natus Vincere** (Dire) | Power Rangers | 31:56 | |
-| **[1299347](https://www.dotabuff.com/matches/1299347)** | Dec 09, 2011 | **Moscow Five** (Radiant) | Natus Vincere | 1:02:16 | |
 | **[1291724](https://www.dotabuff.com/matches/1291724)** | Dec 09, 2011 | **Moscow Five** (Radiant) | eSahara | 40:18 | |
 | **[1297083](https://www.dotabuff.com/matches/1297083)** | Dec 09, 2011 | **Natus Vincere** (Dire) | eSahara | 25:53 | | |
+| **[1297132](https://www.dotabuff.com/matches/1297132)** | Dec 09, 2011 | **Moscow Five** (Radiant) | Power Rangers | 48:43 | |
+| **[1299347](https://www.dotabuff.com/matches/1299347)** | Dec 09, 2011 | **Moscow Five** (Radiant) | Natus Vincere | 1:02:16 | |
+| **[1306078](https://www.dotabuff.com/matches/1306078)** | Dec 09, 2011 | **eSahara** (Dire) | Power Rangers | 38:09 | |
 
 ---
 
