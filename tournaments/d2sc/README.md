@@ -85,6 +85,7 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 | Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
 |---|---|---|---|---|---|
+| **[1205326](https://www.dotabuff.com/matches/1205326)** | Dec 08, 2011 | **Natus Vincere** (Radiant) | The Retry | 22:27 | Puppey K is unclear on screenshot; recorded as 0 (treat ? as 0 unless corrected). |
 | *(TBD)* |  |  |  |  |  |
 
 ### Group B
