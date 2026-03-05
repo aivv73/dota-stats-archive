@@ -99,6 +99,7 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 | Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
 |---|---|---|---|---|---|
+| **[1217669](https://www.dotabuff.com/matches/1217669)** | Dec 08, 2011 | **Power Rangers** (Dire) | Lick the Click | 12:38 | |
 | *(TBD)* |  |  |  |  |  |
 
 ### Group D
