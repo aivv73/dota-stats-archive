@@ -185,6 +185,9 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 - **Mist** (✪Mist-): `85985193`
 - **Mass\x27ka** (patience): `90578089`
 
+**STF**
+- **votan** ([NSF]Votan): `42797802`
+
 **Team Shakira**
 - **7ckngMad (Ceb)** (OG.Ceb): `88271237`
 - **Sockshka** (causalité): `16769223`
