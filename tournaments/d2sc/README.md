@@ -168,6 +168,11 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 - **Fire** (100%): `11603325` (Standin)
 - **Twista** (black beatles): `90793520`
 
+**3D**
+- **dima(mc)** (Dima[MC]): `93717977`
+- **Semmy** (SeMmy): `47081813`
+- **Resolut1on**: *(TBD — need exact Liquipedia handle + Steam32 / Dotabuff player link)*
+
 **Team Shakira**
 - **7ckngMad (Ceb)** (OG.Ceb): `88271237`
 - **Sockshka** (causalité): `16769223`
