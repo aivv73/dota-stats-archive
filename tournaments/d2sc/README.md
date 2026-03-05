@@ -205,6 +205,11 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 - **Funzii** (TMTC): `29337472`
 - **Dhany** (O 88 Stars...): `58008199`
 
+**Fos Style**
+- **MeTTpuM** (mmmmmmm...): `45088881`
+- **bobriq** (rush3d.gang): `41890273`
+- **st1gma**: `89424167`
+
 **Lick the Click**
 - **Balazs** (John Carry): `38191013`
 - **einliedь** (revun): `87125778`
