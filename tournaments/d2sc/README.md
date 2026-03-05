@@ -85,6 +85,7 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 | Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
 |---|---|---|---|---|---|
+| **[1185505](https://www.dotabuff.com/matches/1185505)** | Dec 08, 2011 | **Natus Vincere** (Dire) | 3D | 23:58 | Na'Vi played with stand-ins: ZeroGravity and player nick "0". |
 | **[1194490](https://www.dotabuff.com/matches/1194490)** | Dec 08, 2011 | **Natus Vincere** (Dire) | Fos Style | 30:15 | Puppey K shown as ? on screenshot; treated as 0. |
 | **[1190419](https://www.dotabuff.com/matches/1190419)** | Dec 08, 2011 | **The Retry** (Dire) | 3D | 21:11 | |
 | **[1186004](https://www.dotabuff.com/matches/1186004)** | Dec 08, 2011 | **The Retry** (Dire) | Fos Style | 39:32 | |
