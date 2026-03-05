@@ -190,6 +190,10 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 **STF**
 - **votan** ([NSF]Votan): `42797802`
 
+**GAMEZONE**
+- **nvrthestar** (NVR): `68440189`
+- **matrica** (Alex D.): `86894970`
+
 **Team Shakira**
 - **7ckngMad (Ceb)** (OG.Ceb): `88271237`
 - **Sockshka** (causalité): `16769223`
