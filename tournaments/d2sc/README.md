@@ -81,17 +81,16 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 ## 🎮 Group Stage #1 — найденные матчи
 
 ### Group A
-*TODO: recover matches*
+*Recovered on Mar 05, 2026 via Dotabuff*
 
 | Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
 |---|---|---|---|---|---|
-| **[1199424](https://www.dotabuff.com/matches/1199424)** | Dec 08, 2011 | **Fos Style** (Dire) | 3D | 39:41 | (3D had player "Love yaros" in this match) |
 | **[1185505](https://www.dotabuff.com/matches/1185505)** | Dec 08, 2011 | **Natus Vincere** (Dire) | 3D | 23:58 | Na'Vi played with stand-ins: ZeroGravity and player nick "0". |
+| **[1186004](https://www.dotabuff.com/matches/1186004)** | Dec 08, 2011 | **The Retry** (Dire) | Fos Style | 39:32 | |
 | **[1194490](https://www.dotabuff.com/matches/1194490)** | Dec 08, 2011 | **Natus Vincere** (Dire) | Fos Style | 30:15 | Puppey K shown as ? on screenshot; treated as 0. |
 | **[1190419](https://www.dotabuff.com/matches/1190419)** | Dec 08, 2011 | **The Retry** (Dire) | 3D | 21:11 | |
-| **[1186004](https://www.dotabuff.com/matches/1186004)** | Dec 08, 2011 | **The Retry** (Dire) | Fos Style | 39:32 | |
 | **[1205326](https://www.dotabuff.com/matches/1205326)** | Dec 08, 2011 | **Natus Vincere** (Radiant) | The Retry | 22:27 | Puppey K is unclear on screenshot; recorded as 0 (treat ? as 0 unless corrected). |
-| *(TBD)* |  |  |  |  |  |
+| **[1199424](https://www.dotabuff.com/matches/1199424)** | Dec 08, 2011 | **Fos Style** (Dire) | 3D | 39:41 | (3D had player "Love yaros" in this match) |
 
 ### Group B
 *Recovered on Mar 05, 2026 via Dotabuff*
