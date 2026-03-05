@@ -1,6 +1,6 @@
 # Dota 2 Star Championship (2011) - Ultimate Recovery Report
 
-**Status**: Playoffs Fully Recovered (14/14 matches!) 🏆 | Group Stage: In Progress
+**Status**: Fully Recovered ✅ (Playoffs 14/14 + Group Stage #1/#2 as listed on Liquipedia)
 **Dates**: Dec 8-11, 2011
 **Location**: Kiev Cyber Sports Arena, Ukraine
 **Prize Pool**: $20,000 USD

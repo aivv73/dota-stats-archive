@@ -10,7 +10,7 @@ To reconstruct the history of tournaments like **Dota 2 Star Championship**, **E
 
 | Tournament | Year | Status | Matches Recovered | Notes |
 |---|---|---|---|---|
-| **[Dota 2 Star Championship](tournaments/d2sc/)** | 2011 | 🟡 **In Progress** | 46 | Playoffs fully restored; Group Stage #2 complete; Group Stage #1 in progress. |
+| **[Dota 2 Star Championship](tournaments/d2sc/)** | 2011 | 🟢 **Recovered** | 46 | Playoffs + all Liquipedia-listed group stage matches recovered. |
 | **ESWC 2011** | 2011 | 🟢 **Recovered** | 300+ | Large dataset preserved in DB |
 | **The Defense Season 1** | 2011 | 🔴 **Pending** | - | Next priority target |
 
