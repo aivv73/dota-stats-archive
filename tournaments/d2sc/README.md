@@ -8,8 +8,20 @@
 **GitHub repo**: <https://github.com/aivv73/dota-stats-archive>
 
 ---
-https://dota2.fandom.com/wiki/Dota_2_Star_Championship
-https://dota2.fandom.com/wiki/Dota_2_Star_Championship_squads
+
+**Sources**:
+- Liquipedia (may be Cloudflare-blocked for automation): https://liquipedia.net/dota2/Dota_2_Star_Championship
+- Fandom: https://dota2.fandom.com/wiki/Dota_2_Star_Championship
+- Fandom squads: https://dota2.fandom.com/wiki/Dota_2_Star_Championship_squads
+
+**Team name canonicalization (Fandom/Liquipedia-style)**:
+- Natus Vincere *(aka Na'Vi)*
+- Mousesports *(aka mousesports / Mouz)*
+- TeamShakira *(aka Team Shakira)*
+- GameZone *(aka GAMEZONE)*
+- iV'aN *(aka iV`aN)*
+- Jamais Vu *(aka Jamaos Vu)*
+- Poor Happy Guys *(aka The Elder Gods / TeG — unconfirmed alias)*
 
 ## 🏆 Tournament Overview
 
@@ -27,13 +39,13 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 ## 📂 Recovered Match Data
 
-### 🏆 Grand Final: The Retry vs Na'Vi (2-1)
+### 🏆 Grand Final: The Retry vs Natus Vincere (2-1)
 *Recovered on Feb 10, 2026 via Goblak's history*
 
 | Match ID | Date (UTC) | Game | Winner | Duration | Note |
 |---|---|---|---|---|---|
 | **[1446677](https://www.dotabuff.com/matches/1446677)** | Dec 11, 2011 | Game 1 | **The Retry** | 53:27 | PGG Enigma, Dendi Pudge |
-| **[1450273](https://www.dotabuff.com/matches/1450273)** | Dec 11, 2011 | Game 2 | **Na'Vi** | 34:30 | XBOCT AM, Goblak Brood |
+| **[1450273](https://www.dotabuff.com/matches/1450273)** | Dec 11, 2011 | Game 2 | **Natus Vincere** | 34:30 | XBOCT AM, Goblak Brood |
 | **[1454446](https://www.dotabuff.com/matches/1454446)** | Dec 11, 2011 | Game 3 | **The Retry** | 37:13 | TR Wins Tournament! |
 
 ### 🔥 Semifinals
@@ -47,13 +59,13 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 | **[1388217](https://www.dotabuff.com/matches/1388217)** | Dec 10, 2011 | Game 2 | **The Retry** | 37:09 | Goblak Carry Chen (12/4/15) |
 | **[1392301](https://www.dotabuff.com/matches/1392301)** | Dec 10, 2011 | Game 3 | **The Retry** | 51:25 | Bl00DAnGeL Mirana (16/3/8) |
 
-#### Na'Vi vs Mousesports (2-0)
+#### Natus Vincere vs Mousesports (2-0)
 *Recovered on Feb 10, 2026 via Dendi's history*
 
 | Match ID | Date (UTC) | Game | Winner | Duration | Note |
 |---|---|---|---|---|---|
-| **[1429793](https://www.dotabuff.com/matches/1429793)** | Dec 11, 2011 | Game 1 | **Na'Vi** | 39:51 | XBOCT AM, SingSing Veno |
-| **[1432784](https://www.dotabuff.com/matches/1432784)** | Dec 11, 2011 | Game 2 | **Na'Vi** | 27:29 | Dendi Pudge (13/2/5) |
+| **[1429793](https://www.dotabuff.com/matches/1429793)** | Dec 11, 2011 | Game 1 | **Natus Vincere** | 39:51 | XBOCT AM, SingSing Veno |
+| **[1432784](https://www.dotabuff.com/matches/1432784)** | Dec 11, 2011 | Game 2 | **Natus Vincere** | 27:29 | Dendi Pudge (13/2/5) |
 
 ### 🥉 3rd Place Match: Moscow Five vs Mousesports (2-0)
 *Recovered on Feb 10, 2026 via NS's history*
@@ -65,13 +77,13 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 ### ¼ Quarterfinals
 
-#### Na'Vi vs Team Shakira (2-0)
+#### Natus Vincere vs TeamShakira (2-0)
 *Recovered on Feb 10, 2026 via Dendi's history*
 
 | Match ID | Date (UTC) | Game | Winner | Duration | Note |
 |---|---|---|---|---|---|
-| **[1374029](https://www.dotabuff.com/matches/1374029)** | Dec 10, 2011 | Game 1 | **Na'Vi** | 45:01 | Dendi Storm, 7ckngMad Brood |
-| **[1378735](https://www.dotabuff.com/matches/1378735)** | Dec 10, 2011 | Game 2 | **Na'Vi** | 29:27 | Dendi Tinker (15/2/11) |
+| **[1374029](https://www.dotabuff.com/matches/1374029)** | Dec 10, 2011 | Game 1 | **Natus Vincere** | 45:01 | Dendi Storm, 7ckngMad Brood |
+| **[1378735](https://www.dotabuff.com/matches/1378735)** | Dec 10, 2011 | Game 2 | **Natus Vincere** | 29:27 | Dendi Tinker (15/2/11) |
 
 #### The Retry vs eSahara (2-0)
 *Recovered on Feb 14, 2026 via Dotabuff (Practice lobby, Game Mode None)*
@@ -88,7 +100,7 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 | Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
 |---|---|---|---|---|---|
-| **[1185505](https://www.dotabuff.com/matches/1185505)** | Dec 08, 2011 | **Natus Vincere** (Dire) | 3D | 23:58 | Na'Vi played with stand-ins: ZeroGravity and player nick "0". |
+| **[1185505](https://www.dotabuff.com/matches/1185505)** | Dec 08, 2011 | **Natus Vincere** (Dire) | 3D | 23:58 | Natus Vincere played with stand-ins: ZeroGravity and player nick "0". |
 | **[1186004](https://www.dotabuff.com/matches/1186004)** | Dec 08, 2011 | **The Retry** (Dire) | Fos Style | 39:32 | |
 | **[1194490](https://www.dotabuff.com/matches/1194490)** | Dec 08, 2011 | **Natus Vincere** (Dire) | Fos Style | 30:15 | Puppey K shown as ? on screenshot; treated as 0. |
 | **[1190419](https://www.dotabuff.com/matches/1190419)** | Dec 08, 2011 | **The Retry** (Dire) | 3D | 21:11 | |
@@ -100,11 +112,11 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 | Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
 |---|---|---|---|---|---|
-| **[1188231](https://www.dotabuff.com/matches/1188231)** | Dec 08, 2011 | **Team Shakira** (Dire) | PD | 21:02 | |
-| **[1190440](https://www.dotabuff.com/matches/1190440)** | Dec 08, 2011 | **eSahara** (Dire) | GAMEZONE | 30:18 | |
-| **[1200027](https://www.dotabuff.com/matches/1200027)** | Dec 08, 2011 | **Team Shakira** (Radiant) | GAMEZONE | 25:03 | |
+| **[1188231](https://www.dotabuff.com/matches/1188231)** | Dec 08, 2011 | **TeamShakira** (Dire) | PD | 21:02 | |
+| **[1190440](https://www.dotabuff.com/matches/1190440)** | Dec 08, 2011 | **eSahara** (Dire) | GameZone | 30:18 | |
+| **[1200027](https://www.dotabuff.com/matches/1200027)** | Dec 08, 2011 | **TeamShakira** (Radiant) | GameZone | 25:03 | |
 | **[1193219](https://www.dotabuff.com/matches/1193219)** | Dec 08, 2011 | **eSahara** (Dire) | PD | 30:09 | |
-| **[1211608](https://www.dotabuff.com/matches/1211608)** | Dec 08, 2011 | **eSahara** (Dire) | Team Shakira | 43:42 | |
+| **[1211608](https://www.dotabuff.com/matches/1211608)** | Dec 08, 2011 | **eSahara** (Dire) | TeamShakira | 43:42 | |
 
 ### Group C
 *Recovered on Mar 05, 2026 via Dotabuff*
@@ -121,11 +133,11 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 | Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
 |---|---|---|---|---|---|
 | **[1205670](https://www.dotabuff.com/matches/1205670)** | Dec 08, 2011 | **Moscow Five** (Dire) | Jamais Vu (Jamaos Vu) | 32:24 | |
-| **[1210922](https://www.dotabuff.com/matches/1210922)** | Dec 08, 2011 | **mousesports** (Dire) | iV`aN | 22:57 | |
-| **[1212605](https://www.dotabuff.com/matches/1212605)** | Dec 08, 2011 | **Moscow Five** (Radiant) | iV`aN | 29:00 | |
-| **[1212771](https://www.dotabuff.com/matches/1212771)** | Dec 08, 2011 | **mousesports** (Dire) | Jamais Vu (Jamaos Vu) | 26:30 | |
-| **[1216304](https://www.dotabuff.com/matches/1216304)** | Dec 08, 2011 | **iV`aN** (Dire) | Jamais Vu (Jamaos Vu) | 50:24 | |
-| **[1256077](https://www.dotabuff.com/matches/1256077)** | Dec 09, 2011 | **mousesports** (Dire) | Moscow Five | 53:33 | |
+| **[1210922](https://www.dotabuff.com/matches/1210922)** | Dec 08, 2011 | **Mousesports** (Dire) | iV'aN | 22:57 | |
+| **[1212605](https://www.dotabuff.com/matches/1212605)** | Dec 08, 2011 | **Moscow Five** (Radiant) | iV'aN | 29:00 | |
+| **[1212771](https://www.dotabuff.com/matches/1212771)** | Dec 08, 2011 | **Mousesports** (Dire) | Jamais Vu (Jamaos Vu) | 26:30 | |
+| **[1216304](https://www.dotabuff.com/matches/1216304)** | Dec 08, 2011 | **iV'aN** (Dire) | Jamais Vu (Jamaos Vu) | 50:24 | |
+| **[1256077](https://www.dotabuff.com/matches/1256077)** | Dec 09, 2011 | **Mousesports** (Dire) | Moscow Five | 53:33 | |
 
 ---
 
@@ -136,12 +148,12 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 | Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
 |---|---|---|---|---|---|
-| **[1262367](https://www.dotabuff.com/matches/1262367)** | Dec 09, 2011 | **Team Shakira** (Radiant) | mousesports | 1:02:49 | |
+| **[1262367](https://www.dotabuff.com/matches/1262367)** | Dec 09, 2011 | **TeamShakira** (Radiant) | Mousesports | 1:02:49 | |
 | **[1263344](https://www.dotabuff.com/matches/1263344)** | Dec 09, 2011 | **The Retry** (Dire) | Lick the Click | 22:15 | |
-| **[1271738](https://www.dotabuff.com/matches/1271738)** | Dec 09, 2011 | **Team Shakira** (Dire) | Lick the Click | 22:49 | |
-| **[1270278](https://www.dotabuff.com/matches/1270278)** | Dec 09, 2011 | **mousesports** (Dire) | The Retry | 52:46 | |
-| **[1275955](https://www.dotabuff.com/matches/1275955)** | Dec 09, 2011 | **mousesports** (Dire) | Lick the Click | 30:01 | |
-| **[1290094](https://www.dotabuff.com/matches/1290094)** | Dec 09, 2011 | **The Retry** (Radiant) | Team Shakira | 53:22 | |
+| **[1271738](https://www.dotabuff.com/matches/1271738)** | Dec 09, 2011 | **TeamShakira** (Dire) | Lick the Click | 22:49 | |
+| **[1270278](https://www.dotabuff.com/matches/1270278)** | Dec 09, 2011 | **Mousesports** (Dire) | The Retry | 52:46 | |
+| **[1275955](https://www.dotabuff.com/matches/1275955)** | Dec 09, 2011 | **Mousesports** (Dire) | Lick the Click | 30:01 | |
+| **[1290094](https://www.dotabuff.com/matches/1290094)** | Dec 09, 2011 | **The Retry** (Radiant) | TeamShakira | 53:22 | |
 
 
 ### Group 2
@@ -204,7 +216,7 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 - **ComeWithMe**: *(Steam ID unknown; roster per fandom squads; appears in DB player names)*
 - **s0ny**: *(Steam ID unknown; roster per fandom squads)*
 
-**iV`aN**
+**iV'aN**
 - **Mist** (✪Mist-): `85985193`
 - **Fatalist**: *(Steam ID unknown; roster per fandom squads)*
 - **K!**: *(Steam ID unknown; roster per fandom squads)*
@@ -214,11 +226,11 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 **STF**
 - **votan** ([NSF]Votan): `42797802`
 
-**GAMEZONE**
+**GameZone**
 - **nvrthestar** (NVR): `68440189`
 - **matrica** (Alex D.): `86894970`
 
-**Team Shakira**
+**TeamShakira**
 - **7ckngMad (Ceb)** (OG.Ceb): `88271237`
 - **Sockshka** (causalité): `16769223`
 - **Ph0eNiiX**: `87291311`
@@ -261,11 +273,11 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 | Match | URL | Description |
 |---|---|---|
-| **Grand Final G1** | [YouTube](https://www.youtube.com/watch?v=AVGKqabIg1I) | TR vs Na'Vi (Match 1446677) |
-| **Grand Final G2** | [YouTube](https://www.youtube.com/watch?v=ZeFGW7UbagI) | Na'Vi vs TR (Match 1450273) |
-| **Grand Final G3** | [YouTube](https://www.youtube.com/watch?v=SfLNm9HVlks) | TR vs Na'Vi (Match 1454446) |
-| **Na'Vi vs Mouz G2** | [YouTube](https://www.youtube.com/watch?v=Zubvblkyk-U) | Match 1429793 (TobiWan) |
+| **Grand Final G1** | [YouTube](https://www.youtube.com/watch?v=AVGKqabIg1I) | TR vs Natus Vincere (Match 1446677) |
+| **Grand Final G2** | [YouTube](https://www.youtube.com/watch?v=ZeFGW7UbagI) | Natus Vincere vs TR (Match 1450273) |
+| **Grand Final G3** | [YouTube](https://www.youtube.com/watch?v=SfLNm9HVlks) | TR vs Natus Vincere (Match 1454446) |
+| **Natus Vincere vs Mousesports G2** *(Mouz)* | [YouTube](https://www.youtube.com/watch?v=Zubvblkyk-U) | Match 1429793 (TobiWan) |
 | **TR vs Shakira** | [Link](https://www.youtube.com/watch?v=nawIP_HhmUg) | Group Stage Match |
 | **eSahara vs GameZone** | [Link](https://www.youtube.com/watch?v=s9BQzVm2e6A) | Group Stage Match |
-| **Na'Vi vs eSahara** | [Link](https://www.youtube.com/watch?v=CHuBWwTEWDo) | Group Stage Match |
-| **Na'Vi vs Shakira** | [Link](https://www.youtube.com/watch?v=KetfllyoKQk) | Quarterfinal Game 2 |
+| **Natus Vincere vs eSahara** | [Link](https://www.youtube.com/watch?v=CHuBWwTEWDo) | Group Stage Match |
+| **Natus Vincere vs Shakira** | [Link](https://www.youtube.com/watch?v=KetfllyoKQk) | Quarterfinal Game 2 |
