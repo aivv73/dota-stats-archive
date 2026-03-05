@@ -5,9 +5,9 @@
 **Location**: Kiev Cyber Sports Arena, Ukraine
 **Prize Pool**: $20,000 USD
 **Organizer**: Star Ladder
-*https://dota2.fandom.com/wiki/Dota_2_Star_Championship
-*https://dota2.fandom.com/wiki/Dota_2_Star_Championship_squads
 ---
+https://dota2.fandom.com/wiki/Dota_2_Star_Championship
+https://dota2.fandom.com/wiki/Dota_2_Star_Championship_squads
 
 ## 🏆 Tournament Overview
 
