@@ -92,6 +92,7 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 | Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
 |---|---|---|---|---|---|
+| **[1211608](https://www.dotabuff.com/matches/1211608)** | Dec 08, 2011 | **eSahara** (Dire) | Team Shakira | 43:42 | |
 | *(TBD)* |  |  |  |  |  |
 
 ### Group C
