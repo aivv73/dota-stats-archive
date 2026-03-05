@@ -106,6 +106,7 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 | Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
 |---|---|---|---|---|---|
+| **[1210922](https://www.dotabuff.com/matches/1210922)** | Dec 08, 2011 | **mousesports** (Dire) | iV`aN | 22:57 | |
 | **[1212771](https://www.dotabuff.com/matches/1212771)** | Dec 08, 2011 | **mousesports** (Dire) | Jamaos Vu | 26:30 | |
 | **[1256077](https://www.dotabuff.com/matches/1256077)** | Dec 09, 2011 | **mousesports** (Dire) | Moscow Five | 53:33 | |
 
