@@ -95,14 +95,13 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 | *(TBD)* |  |  |  |  |  |
 
 ### Group C
-*TODO: recover matches (includes FF results)*
+*Recovered on Mar 05, 2026 via Dotabuff*
 
 | Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
 |---|---|---|---|---|---|
 | **[1211759](https://www.dotabuff.com/matches/1211759)** | Dec 08, 2011 | **Lick the Click** (Dire) | STF | 35:27 | Candidate; there is also match 1206577 with same matchup but opposite result. |
-| **[1261638](https://www.dotabuff.com/matches/1261638)** | Dec 09, 2011 | **Power Rangers** (Radiant) | STF | 23:16 | |
 | **[1217669](https://www.dotabuff.com/matches/1217669)** | Dec 08, 2011 | **Power Rangers** (Dire) | Lick the Click | 12:38 | |
-| *(TBD)* |  |  |  |  |  |
+| **[1261638](https://www.dotabuff.com/matches/1261638)** | Dec 09, 2011 | **Power Rangers** (Radiant) | STF | 23:16 | |
 
 ### Group D
 *Recovered on Mar 05, 2026 via Dotabuff*
