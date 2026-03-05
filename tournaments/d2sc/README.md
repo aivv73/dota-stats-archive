@@ -175,6 +175,10 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 - **Semmy** (SeMmy): `47081813`
 - **Resolut1on**: `86725175` (Dotabuff: https://www.dotabuff.com/players/86725175) — *(Liquipedia handle for D2SC 2011: TBD; seen as Lance/Flate/Say elsewhere)*
 
+**iV`aN**
+- **Mist** (✪Mist-): `85985193`
+- **Mass\x27ka** (patience): `90578089`
+
 **Team Shakira**
 - **7ckngMad (Ceb)** (OG.Ceb): `88271237`
 - **Sockshka** (causalité): `16769223`
