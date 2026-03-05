@@ -168,7 +168,7 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 - **Fire** (100%): `11603325` (Standin)
 - **Twista** (black beatles): `90793520`
 
-**3D**
+**Jamaos Vu**
 - **dima(mc)** (Dima[MC]): `93717977`
 - **Semmy** (SeMmy): `47081813`
 - **Resolut1on**: `86725175` (Dotabuff: https://www.dotabuff.com/players/86725175) — *(Liquipedia handle for D2SC 2011: TBD; seen as Lance/Flate/Say elsewhere)*
