@@ -156,6 +156,8 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 - **zxc** (D): `88655279`
 - **Irma** (Амгалан): `86825601`
 - **f4n1us** (000): `89975049`
+- **Berik** (asdl): `86736979`
+- **kuHuk** (Бургер с говном): `91980656`
 
 **eSahara**
 - **Funn1k** (ajkeks): `86723143`
