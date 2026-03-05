@@ -88,16 +88,15 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 | *(TBD)* |  |  |  |  |  |
 
 ### Group B
-*TODO: recover matches*
+*Recovered on Mar 05, 2026 via Dotabuff*
 
 | Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
 |---|---|---|---|---|---|
-| **[1193219](https://www.dotabuff.com/matches/1193219)** | Dec 08, 2011 | **eSahara** (Dire) | PD | 30:09 | |
 | **[1188231](https://www.dotabuff.com/matches/1188231)** | Dec 08, 2011 | **Team Shakira** (Dire) | PD | 21:02 | |
-| **[1200027](https://www.dotabuff.com/matches/1200027)** | Dec 08, 2011 | **Team Shakira** (Radiant) | GAMEZONE | 25:03 | |
 | **[1190440](https://www.dotabuff.com/matches/1190440)** | Dec 08, 2011 | **eSahara** (Dire) | GAMEZONE | 30:18 | |
+| **[1200027](https://www.dotabuff.com/matches/1200027)** | Dec 08, 2011 | **Team Shakira** (Radiant) | GAMEZONE | 25:03 | |
+| **[1193219](https://www.dotabuff.com/matches/1193219)** | Dec 08, 2011 | **eSahara** (Dire) | PD | 30:09 | |
 | **[1211608](https://www.dotabuff.com/matches/1211608)** | Dec 08, 2011 | **eSahara** (Dire) | Team Shakira | 43:42 | |
-| *(TBD)* |  |  |  |  |  |
 
 ### Group C
 *Recovered on Mar 05, 2026 via Dotabuff*
