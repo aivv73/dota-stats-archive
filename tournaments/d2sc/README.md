@@ -156,6 +156,9 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 ## 👥 Verified Player IDs (2011 Era)
 
+> **Note (2026-03-05):** player names in `dota_archive.db` were normalized to these canonical labels (Liquipedia-style) where mappings are known. Aliases from Dotabuff are kept in parentheses here.
+
+
 **The Retry**
 - **Goblak**: `89137399`
 - **PGG** (pleased): `87565571`

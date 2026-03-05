@@ -10,7 +10,7 @@ To reconstruct the history of tournaments like **Dota 2 Star Championship**, **E
 
 | Tournament | Year | Status | Matches Recovered | Notes |
 |---|---|---|---|---|
-| **[Dota 2 Star Championship](tournaments/d2sc/)** | 2011 | 🟢 **Recovered** | 16+ | **Playoffs Fully Restored** (Finals, Semis, 3rd Place) |
+| **[Dota 2 Star Championship](tournaments/d2sc/)** | 2011 | 🟡 **In Progress** | 46 | Playoffs fully restored; Group Stage #2 complete; Group Stage #1 in progress. |
 | **ESWC 2011** | 2011 | 🟢 **Recovered** | 300+ | Large dataset preserved in DB |
 | **The Defense Season 1** | 2011 | 🔴 **Pending** | - | Next priority target |
 
@@ -21,6 +21,7 @@ See **[Lost Tournaments List](Lost_Tournaments_List.md)** for the full roadmap a
 We recover "lost" matches using a manual archaeological approach:
 1.  **Targeting**: Identify dates and rosters from Liquipedia/VODs.
 2.  **Deep Search**: Scan Dotabuff match history of key players (e.g., Dendi, Goblak, SingSing) filtering by **"Lobby Type: Practice"** and specific dates (e.g., Dec 2011).
+    - For very old matches, names are often inconsistent across sources; this repo keeps a **canonical (Liquipedia-style) player label** and tracks Dotabuff aliases in tournament notes.
 3.  **Cross-Referencing**: Match hero compositions, durations, and KDA stats with VOD footage to verify the Match ID.
 4.  **Archiving**: Store the confirmed Match ID and metadata in our local database.
 
