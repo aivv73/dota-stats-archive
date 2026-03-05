@@ -5,6 +5,8 @@
 **Location**: Kiev Cyber Sports Arena, Ukraine
 **Prize Pool**: $20,000 USD
 **Organizer**: Star Ladder
+**GitHub repo**: <https://github.com/aivv73/dota-stats-archive>
+
 ---
 https://dota2.fandom.com/wiki/Dota_2_Star_Championship
 https://dota2.fandom.com/wiki/Dota_2_Star_Championship_squads
@@ -118,11 +120,11 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 
 | Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
 |---|---|---|---|---|---|
-| **[1205670](https://www.dotabuff.com/matches/1205670)** | Dec 08, 2011 | **Moscow Five** (Dire) | Jamaos Vu | 32:24 | |
+| **[1205670](https://www.dotabuff.com/matches/1205670)** | Dec 08, 2011 | **Moscow Five** (Dire) | Jamais Vu (Jamaos Vu) | 32:24 | |
 | **[1210922](https://www.dotabuff.com/matches/1210922)** | Dec 08, 2011 | **mousesports** (Dire) | iV`aN | 22:57 | |
 | **[1212605](https://www.dotabuff.com/matches/1212605)** | Dec 08, 2011 | **Moscow Five** (Radiant) | iV`aN | 29:00 | |
-| **[1212771](https://www.dotabuff.com/matches/1212771)** | Dec 08, 2011 | **mousesports** (Dire) | Jamaos Vu | 26:30 | |
-| **[1216304](https://www.dotabuff.com/matches/1216304)** | Dec 08, 2011 | **iV`aN** (Dire) | Jamaos Vu | 50:24 | |
+| **[1212771](https://www.dotabuff.com/matches/1212771)** | Dec 08, 2011 | **mousesports** (Dire) | Jamais Vu (Jamaos Vu) | 26:30 | |
+| **[1216304](https://www.dotabuff.com/matches/1216304)** | Dec 08, 2011 | **iV`aN** (Dire) | Jamais Vu (Jamaos Vu) | 50:24 | |
 | **[1256077](https://www.dotabuff.com/matches/1256077)** | Dec 09, 2011 | **mousesports** (Dire) | Moscow Five | 53:33 | |
 
 ---
@@ -188,15 +190,26 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 - **Fire** (100%): `11603325` (Standin)
 - **Twista** (black beatles): `90793520`
 
-**Jamaos Vu**
+**Jamais Vu (Jamaos Vu)**
 - **dima(mc)** (Dima[MC]): `93717977`
 - **Semmy** (SeMmy): `47081813`
 - **Resolut1on**: `86725175` (Dotabuff: https://www.dotabuff.com/players/86725175) — *(Liquipedia handle for D2SC 2011: TBD; seen as Lance/Flate/Say elsewhere)*
 - **Say** (eGL. <#Strife> g2a.com): `93832944`
 
+**Poor Happy Guys (The Elder Gods / TeG)**
+- **Freezer**: *(Steam ID unknown; roster per fandom squads)*
+- **ppasarel**: *(Steam ID unknown; roster per fandom squads)*
+- **Lyon**: *(Steam ID unknown; roster per fandom squads)*
+- **Coco**: *(Steam ID unknown; roster per fandom squads)*
+- **ComeWithMe**: *(Steam ID unknown; roster per fandom squads; appears in DB player names)*
+- **s0ny**: *(Steam ID unknown; roster per fandom squads)*
+
 **iV`aN**
 - **Mist** (✪Mist-): `85985193`
+- **Fatalist**: *(Steam ID unknown; roster per fandom squads)*
+- **K!**: *(Steam ID unknown; roster per fandom squads)*
 - **Mass\x27ka** (patience): `90578089`
+- **Bignum**: *(Steam ID unknown; roster per fandom squads)*
 
 **STF**
 - **votan** ([NSF]Votan): `42797802`
