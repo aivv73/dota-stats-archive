@@ -78,6 +78,36 @@ One of the very first Dota 2 LAN tournaments, held in Kiev. It featured top team
 | **[1357441](https://www.dotabuff.com/matches/1357441)** | Dec 10, 2011 | Game 1 | **The Retry** | 38:23 | ALWAYSWANNAFLY AA, Goblak Shadow Shaman |
 | **[1362194](https://www.dotabuff.com/matches/1362194)** | Dec 10, 2011 | Game 2 | **The Retry** | 28:55 | TheResistance AM, Goblak Chen |
 
+## 🎮 Group Stage #1 — найденные матчи
+
+### Group A
+*TODO: recover matches*
+
+| Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
+|---|---|---|---|---|---|
+| *(TBD)* |  |  |  |  |  |
+
+### Group B
+*TODO: recover matches*
+
+| Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
+|---|---|---|---|---|---|
+| *(TBD)* |  |  |  |  |  |
+
+### Group C
+*TODO: recover matches (includes FF results)*
+
+| Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
+|---|---|---|---|---|---|
+| *(TBD)* |  |  |  |  |  |
+
+### Group D
+*Recovered on Mar 05, 2026 via Dotabuff*
+
+| Match ID | Date (UTC) | Winner | Loser | Duration | Notes |
+|---|---|---|---|---|---|
+| **[1256077](https://www.dotabuff.com/matches/1256077)** | Dec 09, 2011 | **mousesports** (Dire) | Moscow Five | 53:33 | |
+
 ---
 
 ## 🎮 Group Stage #2 — найденные матчи
