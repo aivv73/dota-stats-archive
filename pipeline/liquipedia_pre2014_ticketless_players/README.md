@@ -16,6 +16,16 @@ currently labeled `likely_ticketless`.
 It does **not** re-decide whether a tournament was really ticketless. It only
 collects the players that appear in that already-integrated scope.
 
+Current stage-2 cleanup also treats these tournaments as
+**supplemental-only player sources**:
+
+- `The International 2011`
+- `Dota2 Star Championship`
+
+Players who appear **only** in those supplemental tournaments are excluded from
+the final stage-2 output. Their observations are still used to enrich players
+who also appear in other target tournaments.
+
 ## Liquipedia inputs
 
 Tournament-page roster extraction:
@@ -61,6 +71,20 @@ The JSON keeps:
 
 Derived SteamID64 values are kept, but they are marked as
 `confidence=derived` with source `derived_from_account_id`.
+
+## Cleanup rules
+
+The stage intentionally stays conservative:
+
+- keeps numeric-looking handles when the roster evidence is otherwise plausible
+  (for example `820`)
+- strips clearly broken trailing comment/ref remnants from observed names before
+  normalization
+- groups unresolved observations by explicit `TeamCard.pXlink` hints before
+  falling back to normalized observed names
+- merges unresolved name-only groups into a resolved or ID-backed player only
+  when the normalized observed handle points to a **single** stronger match
+- does **not** auto-merge on broad alias speculation when the evidence is weak
 
 ## Run
 

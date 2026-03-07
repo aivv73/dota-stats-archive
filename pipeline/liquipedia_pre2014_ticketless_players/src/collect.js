@@ -29,6 +29,10 @@ const DEFAULT_USER_AGENT =
   process.env.LIQUIPEDIA_USER_AGENT ||
   'dota-stats-archive-liquipedia-ticketless-players/1.0 (local workspace; contact: local)';
 const STEAM64_BASE = 76561197960265728n;
+const SUPPLEMENTAL_ONLY_TOURNAMENTS = new Set([
+  'The International 2011',
+  'Dota2 Star Championship',
+]);
 
 function chunk(array, size) {
   const chunks = [];
@@ -63,13 +67,17 @@ function unique(values) {
 }
 
 function normalizeWikiTitle(value) {
-  return cleanWikitextValue(value).replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
+  return cleanWikitextValue(value)
+    .replace(/\s*<!--.*$/g, ' ')
+    .replace(/\s*<ref\b.*$/gi, ' ')
+    .replace(/_/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function normalizeNameKey(value) {
   return normalizeWikiTitle(value)
     .toLowerCase()
-    .replace(/\([^)]*\)/g, ' ')
     .replace(/[^\p{L}\p{N}]+/gu, ' ')
     .replace(/\s+/g, ' ')
     .trim();
@@ -111,6 +119,9 @@ function writeCsv(filePath, rows) {
     'tournament_count',
     'tournaments',
     'resolution_evidence',
+    'scope_role',
+    'primary_tournaments',
+    'supplemental_tournaments',
   ];
 
   const lines = [
@@ -689,13 +700,121 @@ function buildGroupKey(observation) {
     return `page:${observation.resolved_player_page.page_title}`;
   }
 
+  const linkedKey = normalizeNameKey(observation.linked_player_page || '');
+
+  if (linkedKey) {
+    return `linked:${linkedKey}`;
+  }
+
+  const observedNameKey = normalizeNameKey(observation.observed_name);
+
+  if (observedNameKey) {
+    return `name:${observedNameKey}`;
+  }
+
   const observedAccountId = observation.observed_account_ids?.[0]?.value;
 
   if (observedAccountId) {
     return `account:${observedAccountId}`;
   }
 
-  return `name:${normalizeNameKey(observation.observed_name)}`;
+  return `fallback:${observation.tournament_page_title}:${observation.slot}`;
+}
+
+function describeObservationGroup(observations) {
+  return {
+    hasAccountId: observations.some(
+      (observation) =>
+        (observation.observed_account_ids || []).length > 0 ||
+        (observation.resolved_player_page?.account_ids || []).length > 0,
+    ),
+    hasResolvedPage: observations.some(
+      (observation) => Boolean(observation.resolved_player_page?.page_title),
+    ),
+    linkedHintKeys: unique(
+      observations
+        .map((observation) => normalizeNameKey(observation.linked_player_page || ''))
+        .filter(Boolean),
+    ),
+    observedNameKeys: unique(
+      observations
+        .map((observation) => normalizeNameKey(observation.observed_name))
+        .filter(Boolean),
+    ),
+  };
+}
+
+function mergeObservationGroups(groups) {
+  const entries = [...groups.entries()].map(([key, observations]) => ({
+    key,
+    observations: [...observations],
+  }));
+  const metadataByKey = new Map(
+    entries.map((entry) => [entry.key, describeObservationGroup(entry.observations)]),
+  );
+  const strongNameIndex = new Map();
+
+  for (const entry of entries) {
+    const metadata = metadataByKey.get(entry.key);
+
+    if (!metadata.hasResolvedPage && !metadata.hasAccountId) {
+      continue;
+    }
+
+    for (const nameKey of metadata.observedNameKeys) {
+      const targets = strongNameIndex.get(nameKey) || new Set();
+      targets.add(entry.key);
+      strongNameIndex.set(nameKey, targets);
+    }
+  }
+
+  const mergeTargets = new Map();
+
+  for (const entry of entries) {
+    const metadata = metadataByKey.get(entry.key);
+
+    if (metadata.hasResolvedPage || metadata.hasAccountId) {
+      continue;
+    }
+
+    if (metadata.linkedHintKeys.length > 0 || metadata.observedNameKeys.length !== 1) {
+      continue;
+    }
+
+    const matches = [...(strongNameIndex.get(metadata.observedNameKeys[0]) || new Set())].filter(
+      (key) => key !== entry.key,
+    );
+
+    if (matches.length === 1) {
+      mergeTargets.set(entry.key, matches[0]);
+    }
+  }
+
+  if (mergeTargets.size === 0) {
+    return {
+      groups,
+      mergedGroupCount: 0,
+    };
+  }
+
+  const mergedGroups = new Map();
+  const mergedSourceKeys = new Set();
+
+  for (const entry of entries) {
+    const targetKey = mergeTargets.get(entry.key) || entry.key;
+    const mergedObservations = mergedGroups.get(targetKey) || [];
+    mergedObservations.push(...entry.observations);
+    mergedGroups.set(targetKey, mergedObservations);
+
+    if (targetKey !== entry.key) {
+      mergedSourceKeys.add(entry.key);
+    }
+  }
+
+  return {
+    groups: mergedGroups,
+    mergedGroupCount: mergedSourceKeys.size,
+  };
 }
 
 function joinPlayerRecord(groupKey, observations) {
@@ -758,6 +877,16 @@ function joinPlayerRecord(groupKey, observations) {
       : 'tournament_teamcard.observed_name';
 
   const tournaments = unique(observations.map((observation) => observation.tournament_title));
+  const primaryTargetTournaments = tournaments.filter(
+    (title) => !SUPPLEMENTAL_ONLY_TOURNAMENTS.has(title),
+  );
+  const supplementalSourceTournaments = tournaments.filter((title) =>
+    SUPPLEMENTAL_ONLY_TOURNAMENTS.has(title),
+  );
+  const primaryTargetAppearances = observations.filter(
+    (observation) => !SUPPLEMENTAL_ONLY_TOURNAMENTS.has(observation.tournament_title),
+  ).length;
+  const supplementalSourceAppearances = observations.length - primaryTargetAppearances;
   const resolutionEvidence = unique(
     [
       page?.page_title ? 'player_page_infobox' : null,
@@ -799,16 +928,28 @@ function joinPlayerRecord(groupKey, observations) {
     canonical_handle_source: canonicalHandleSource,
     liquipedia_page_title: page?.page_title || null,
     liquipedia_url: page?.liquipedia_url || null,
+    primary_target_appearances: primaryTargetAppearances,
+    primary_target_tournaments: primaryTargetTournaments,
     resolution_confidence: resolutionConfidence,
     resolution_evidence: resolutionEvidence,
     resolution_status: resolutionStatus,
+    scope_role:
+      primaryTargetTournaments.length === 0
+        ? 'supplemental_only'
+        : supplementalSourceTournaments.length === 0
+          ? 'primary_only'
+          : 'primary_with_supplemental',
+    supplemental_source_appearances: supplementalSourceAppearances,
+    supplemental_source_tournaments: supplementalSourceTournaments,
     steam_ids: steamIds,
     tournaments,
   };
 }
 
-function summarizePlayers(players, observations, tournamentPageStats) {
+function summarizePlayers(players, observations, tournamentPageStats, cleanupStats) {
   return {
+    cleanup_group_merges: cleanupStats.mergedGroupCount,
+    players_after_cleanup_before_scope_filter: cleanupStats.preScopeFilterPlayerCount,
     players_with_account_ids: players.filter((player) => player.account_ids.length > 0).length,
     players_with_any_numeric_id: players.filter(
       (player) => player.account_ids.length > 0 || player.steam_ids.length > 0,
@@ -826,6 +967,7 @@ function summarizePlayers(players, observations, tournamentPageStats) {
       (player) => Boolean(player.liquipedia_page_title),
     ).length,
     players_with_steam_ids: players.filter((player) => player.steam_ids.length > 0).length,
+    players_excluded_as_supplemental_only: cleanupStats.supplementalOnlyExcluded,
     players_without_numeric_id: players.filter(
       (player) => player.account_ids.length === 0 && player.steam_ids.length === 0,
     ).length,
@@ -852,13 +994,16 @@ function buildCsvRows(players) {
     liquipedia_page_title: player.liquipedia_page_title,
     liquipedia_url: player.liquipedia_url,
     observed_names: player.aliases.observed_names,
+    primary_tournaments: player.primary_target_tournaments,
     resolution_confidence: player.resolution_confidence,
     resolution_evidence: player.resolution_evidence,
     resolution_status: player.resolution_status,
     romanized_names: player.aliases.romanized_names,
+    scope_role: player.scope_role,
     steam_ids: player.steam_ids.map((entry) =>
       entry.confidence === 'derived' ? `${entry.value} (derived)` : entry.value,
     ),
+    supplemental_tournaments: player.supplemental_source_tournaments,
     tournament_count: player.tournaments.length,
     tournaments: player.tournaments,
   }));
@@ -950,24 +1095,41 @@ async function main() {
     groups.set(groupKey, existing);
   }
 
-  const players = [...groups.entries()]
+  const mergedGroups = mergeObservationGroups(groups);
+  const allPlayers = [...mergedGroups.groups.entries()]
     .map(([groupKey, groupObservations]) => joinPlayerRecord(groupKey, groupObservations))
     .sort((left, right) => left.canonical_handle.localeCompare(right.canonical_handle));
+  const players = allPlayers.filter((player) => player.scope_role !== 'supplemental_only');
 
   const summary = summarizePlayers(players, observations, {
     fetchedLive: fetchedTournamentPages,
     loadedFromStage1Cache: stage1CachedPages.size,
     missingFromStage1Cache: missingTournamentTitles.length,
+  }, {
+    mergedGroupCount: mergedGroups.mergedGroupCount,
+    preScopeFilterPlayerCount: allPlayers.length,
+    supplementalOnlyExcluded: allPlayers.length - players.length,
   });
 
   const payload = {
+    cleanup: {
+      rules_applied: [
+        'strip unclosed comment or ref remnants from observed handles before normalization',
+        'prefer explicit TeamCard linked-page hints as grouping keys before name-only fallback',
+        'merge unresolved name-only groups into a uniquely matching resolved/id-backed entity when the normalized observed handle matches',
+        'preserve numeric-looking handles unless other parse evidence is clearly broken',
+        'exclude players seen only in supplemental tournaments while keeping supplemental observations for mixed-scope players',
+      ],
+      supplemental_only_tournaments: [...SUPPLEMENTAL_ONLY_TOURNAMENTS],
+    },
     generated_at: new Date().toISOString(),
     scope: {
       candidate_tournament_count: scope.counts?.candidateTournaments || scopeCandidates.length,
       rule:
-        'The player scope is inherited from the integrated pre-2014 likely-ticketless tournament list. This stage does not re-decide ticket status.',
+        'The player scope is inherited from the integrated pre-2014 likely-ticketless tournament list. This stage does not re-decide ticket status, and it excludes players who appear only in supplemental tournaments.',
       scope_file: path.relative(path.resolve(STAGE_ROOT, '..', '..'), options.scopePath),
       source_hierarchy: scope.source_hierarchy || null,
+      supplemental_only_tournaments: [...SUPPLEMENTAL_ONLY_TOURNAMENTS],
     },
     provenance: {
       endpoints_used: ['action=query&prop=revisions'],
@@ -984,6 +1146,8 @@ async function main() {
     heuristic_caveats: {
       id_resolution:
         'Numeric IDs are only explicit when present in Liquipedia TeamCard fields or Liquipedia player-page infobox fields. Derived SteamID64 values are marked as derived_from_account_id.',
+      numeric_handles:
+        'Numeric-looking handles are preserved unless other parse evidence is clearly broken. They are not discarded just for being numeric.',
       unresolved_players:
         'Players without a resolved Liquipedia page or numeric ID remain grouped by normalized observed name only and should be treated as lower-confidence entities.',
     },
@@ -996,6 +1160,10 @@ async function main() {
 
   console.log(`[stage2] wrote JSON: ${options.jsonPath}`);
   console.log(`[stage2] wrote CSV: ${options.csvPath}`);
+  console.log(`[stage2] cleanup group merges: ${summary.cleanup_group_merges}`);
+  console.log(
+    `[stage2] supplemental-only players excluded: ${summary.players_excluded_as_supplemental_only}`,
+  );
   console.log(`[stage2] unique players: ${summary.unique_players}`);
   console.log(`[stage2] players with numeric ids: ${summary.players_with_any_numeric_id}`);
   console.log(`[stage2] players without numeric ids: ${summary.players_without_numeric_id}`);
