@@ -50,6 +50,15 @@ Liquipedia `TeamCard` roster fields plus Liquipedia player-page infobox data for
 aliases and account/Steam IDs where available. Missing IDs stay explicit as
 unresolved rather than guessed.
 
+A first practice-history stage now lives in
+[`pipeline/practice_match_history_stage3/`](pipeline/practice_match_history_stage3/).
+It uses the cleaned stage-2 player inventory plus verified D2SC profile
+mapping notes to build a small SQLite database of Dotabuff practice-history
+rows. The current first pass is intentionally explicit about limits: it keeps
+full scope-player/account provenance, but deeper Dotabuff pagination is
+currently Cloudflare-blocked in this environment, so multi-page histories are
+marked as partial/limited rather than silently treated as complete.
+
 ### Key Tables
 
 #### `tournaments`

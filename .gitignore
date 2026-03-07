@@ -3,3 +3,4 @@ node_modules/
 *.log
 pipeline/liquipedia_pre2014_stage1/cache/
 pipeline/liquipedia_pre2014_ticketless_players/cache/
+pipeline/practice_match_history_stage3/cache/

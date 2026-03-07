@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-03-07T23:16:40.777Z",
+  "run_id": "9db7acdf-d742-4a3e-8738-080740fa26b4",
+  "input_files": {
+    "d2sc_readme": "tournaments/d2sc/README.md",
+    "player_inventory": "pipeline/liquipedia_pre2014_ticketless_players/data/pre2014_ticketless_players.json"
+  },
+  "cutoff_datetime_utc": "2014-12-31T23:59:59Z",
+  "counts": {
+    "d2sc_verified_mappings_loaded": 54,
+    "players_total": 276,
+    "players_with_accounts": 144,
+    "players_without_accounts": 132,
+    "players_with_d2sc_auxiliary_accounts": 24,
+    "collection_statuses": [
+      {
+        "collection_status": "blocked",
+        "count": 144
+      },
+      {
+        "collection_status": "unresolved",
+        "count": 132
+      }
+    ],
+    "distinct_accounts_collected": 0,
+    "distinct_match_ids_collected": 0,
+    "practice_match_rows_collected": 0
+  },
+  "caveats": [
+    "Dotabuff history pages are collected through Playwright because direct HTTP requests are Cloudflare-blocked.",
+    "This committed first-pass run completed player/account scope resolution but collected 0 practice rows: the resolved-account set was effectively blocked from readable Dotabuff history access in this environment.",
+    "The current step-3 scope inherits the existing cleaned stage-2 player inventory. The broader <=2014 tournament-scope expansion still has to happen upstream in the tournament/player stages.",
+    "Only players with explicit stage-2 account IDs or uniquely matched D2SC verified account IDs are processable in this first pass.",
+    "The SQLite artifact is still useful as a unified scope/account provenance database and retry point for later live collection passes."
+  ],
+  "top_players_by_rows": []
+}

@@ -8,6 +8,7 @@
     "stage1:liquipedia-pre2014:refresh": "node pipeline/liquipedia_pre2014_stage1/src/collect.js --refresh-cache",
     "stage2:ticketless-players": "node pipeline/liquipedia_pre2014_ticketless_players/src/collect.js",
     "stage2:ticketless-players:refresh": "node pipeline/liquipedia_pre2014_ticketless_players/src/collect.js --refresh-cache",
+    "stage3:practice-match-history": "node pipeline/practice_match_history_stage3/src/collect.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
