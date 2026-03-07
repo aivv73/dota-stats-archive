@@ -29,6 +29,14 @@ We recover "lost" matches using a manual archaeological approach:
 
 The project uses a **SQLite database** (`dota_archive.db`) as the primary storage.
 
+## 🧱 Pipeline Stages
+
+The first automated Liquipedia inventory stage now lives in
+[`pipeline/liquipedia_pre2014_stage1/`](pipeline/liquipedia_pre2014_stage1/).
+It builds a local SQLite + JSON inventory of Liquipedia Dota 2 tournament pages
+with start years before 2014, using public MediaWiki API endpoints only and a
+documented ticket-status heuristic.
+
 ### Key Tables
 
 #### `tournaments`

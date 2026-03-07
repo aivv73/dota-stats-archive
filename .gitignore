@@ -1,3 +1,4 @@
 node_modules/
 .DS_Store
 *.log
+pipeline/liquipedia_pre2014_stage1/cache/

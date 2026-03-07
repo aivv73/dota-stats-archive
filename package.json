@@ -4,6 +4,8 @@
   "description": "Archived Dota 2 tournament statistics and match data.",
   "main": "index.js",
   "scripts": {
+    "stage1:liquipedia-pre2014": "node pipeline/liquipedia_pre2014_stage1/src/collect.js",
+    "stage1:liquipedia-pre2014:refresh": "node pipeline/liquipedia_pre2014_stage1/src/collect.js --refresh-cache",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
