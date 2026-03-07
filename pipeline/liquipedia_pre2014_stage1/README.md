@@ -71,6 +71,17 @@ Storage outputs:
 - SQLite: `pipeline/liquipedia_pre2014_stage1/data/liquipedia_pre2014_stage1.db`
 - JSON export: `pipeline/liquipedia_pre2014_stage1/data/liquipedia_pre2014_stage1.json`
 
+Derived ticketless-candidate outputs:
+
+- JSON candidate list:
+  `pipeline/liquipedia_pre2014_stage1/data/pre2014_ticketless_candidates.json`
+- CSV candidate list:
+  `pipeline/liquipedia_pre2014_stage1/data/pre2014_ticketless_candidates.csv`
+
+Those derived files keep **Liquipedia as canonical** for the ticket heuristic and
+use **Dota 2 Fandom only as a secondary source** for title/date backfill and
+cross-checking. They do **not** upgrade the ticketless heuristic into certainty.
+
 ## Ticket classification
 
 This stage is intentionally conservative.

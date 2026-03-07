@@ -37,6 +37,12 @@ It builds a local SQLite + JSON inventory of Liquipedia Dota 2 tournament pages
 with start years before 2014, using public MediaWiki API endpoints only and a
 documented ticket-status heuristic.
 
+That stage also now includes a derived candidate list for **pre-2014 tournaments
+that appear ticketless by heuristic**, stored as JSON + CSV in
+[`pipeline/liquipedia_pre2014_stage1/data/`](pipeline/liquipedia_pre2014_stage1/data/).
+The label is intentionally conservative: it means "likely ticketless" from
+Liquipedia `dotatv` absence plus date thresholding, not hard proof.
+
 ### Key Tables
 
 #### `tournaments`
