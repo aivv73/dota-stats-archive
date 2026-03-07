@@ -43,6 +43,13 @@ that appear ticketless by heuristic**, stored as JSON + CSV in
 The label is intentionally conservative: it means "likely ticketless" from
 Liquipedia `dotatv` absence plus date thresholding, not hard proof.
 
+A follow-on player stage now lives in
+[`pipeline/liquipedia_pre2014_ticketless_players/`](pipeline/liquipedia_pre2014_ticketless_players/).
+It turns that scoped tournament set into a unique player inventory using
+Liquipedia `TeamCard` roster fields plus Liquipedia player-page infobox data for
+aliases and account/Steam IDs where available. Missing IDs stay explicit as
+unresolved rather than guessed.
+
 ### Key Tables
 
 #### `tournaments`

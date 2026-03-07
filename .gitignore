@@ -2,3 +2,4 @@ node_modules/
 .DS_Store
 *.log
 pipeline/liquipedia_pre2014_stage1/cache/
+pipeline/liquipedia_pre2014_ticketless_players/cache/
