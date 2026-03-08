@@ -28,7 +28,8 @@ const DEFAULT_D2SC_README_PATH = path.resolve(
 const DOTABUFF_BASE_URL = 'https://ru.dotabuff.com';
 const DOTABUFF_HOME_URL = `${DOTABUFF_BASE_URL}/`;
 const DEFAULT_BROWSER_ENGINE = 'chromium';
-const DEFAULT_CUTOFF_DATETIME_UTC = '2014-12-31T23:59:59Z';
+const DEFAULT_CUTOFF_DATETIME_UTC = '2012-09-30T23:59:59Z';
+const MIN_REASONABLE_MATCH_DATETIME_UTC = '2011-01-01T00:00:00Z';
 const DEFAULT_PROBE_WAIT_MS = 20000;
 const DEFAULT_PAGE_DELAY_MS = 1000;
 const DEFAULT_USER_AGENT =
@@ -650,6 +651,26 @@ async function createBrowserContext(options) {
   return context;
 }
 
+async function closeBrowserContext(context) {
+  if (!context) {
+    return;
+  }
+
+  try {
+    await context.close();
+  } catch (error) {
+    // Best-effort close.
+  }
+
+  if (context.__stage3Browser) {
+    try {
+      await context.__stage3Browser.close();
+    } catch (error) {
+      // Best-effort close.
+    }
+  }
+}
+
 function analyzeDotabuffBody(title, bodyText) {
   const normalizedTitle = String(title || '').trim();
   const normalizedBody = String(bodyText || '');
@@ -736,6 +757,30 @@ async function gotoAndInspect(page, url, options) {
 
   return waitForDotabuffContent(page, options.probeWaitMs);
 }
+
+async function fetchHistoryPageFresh(historyUrl, historyPage, options) {
+  const freshContext = await createBrowserContext(options);
+
+  try {
+    const freshPage = await freshContext.newPage();
+    const inspection = await gotoAndInspect(freshPage, historyUrl, options);
+    const extractedRows = inspection.state === 'table'
+      ? await extractMatchRows(freshPage, historyUrl, historyPage)
+      : [];
+    const lastPageNumberKnown = inspection.state === 'table'
+      ? await getLastPageNumber(freshPage)
+      : null;
+
+    return {
+      extractedRows,
+      inspection,
+      lastPageNumberKnown,
+    };
+  } finally {
+    await closeBrowserContext(freshContext);
+  }
+}
+
 
 async function persistCurrentState(context, statePath) {
   fs.mkdirSync(path.dirname(statePath), { recursive: true });
@@ -847,13 +892,7 @@ function parseOverviewValue(bodyText, label) {
   return lines[labelIndex - 1] || null;
 }
 
-async function inspectMatchDetail(page, matchId, options) {
-  const cached = matchVerificationCache.get(String(matchId));
-
-  if (cached) {
-    return cached;
-  }
-
+async function inspectMatchDetailOnce(page, matchId, options) {
   const matchUrl = buildDotabuffMatchUrl(matchId);
   await page.goto(matchUrl, {
     timeout: 60000,
@@ -883,24 +922,21 @@ async function inspectMatchDetail(page, matchId, options) {
     lastInspection = inspection;
 
     if (lobbyTypeLabel || gameModeLabel) {
-      const result = {
+      return {
         ...inspection,
         is_strict_practice: matchesStrictPracticeLabels(lobbyTypeLabel, gameModeLabel),
         state: 'overview',
       };
-      matchVerificationCache.set(String(matchId), result);
-      return result;
     }
 
     if (derivedState === 'empty' || derivedState === 'missing' || derivedState === 'cloudflare_interstitial') {
-      matchVerificationCache.set(String(matchId), inspection);
       return inspection;
     }
 
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(1000).catch(() => null);
   }
 
-  const timeoutResult = {
+  return {
     body_excerpt: lastInspection?.body_excerpt || null,
     game_mode_label: lastInspection?.game_mode_label || null,
     lobby_type_label: lastInspection?.lobby_type_label || null,
@@ -910,14 +946,41 @@ async function inspectMatchDetail(page, matchId, options) {
     state: 'timeout',
     title: lastInspection?.title || null,
   };
-  matchVerificationCache.set(String(matchId), timeoutResult);
-  return timeoutResult;
+}
+
+async function inspectMatchDetail(page, matchId, options) {
+  const cached = matchVerificationCache.get(String(matchId));
+
+  if (cached) {
+    return cached;
+  }
+
+  let result = await inspectMatchDetailOnce(page, matchId, options);
+
+  if (result.state === 'cloudflare_interstitial' || result.state === 'timeout') {
+    const freshContext = await createBrowserContext(options);
+
+    try {
+      const freshPage = await freshContext.newPage();
+      result = await inspectMatchDetailOnce(freshPage, matchId, options);
+    } finally {
+      await closeBrowserContext(freshContext);
+    }
+  }
+
+  matchVerificationCache.set(String(matchId), result);
+  return result;
 }
 
 function compareDateToCutoff(row, cutoffTimestamp) {
   const rowTimestamp = Date.parse(row.match_datetime_utc || '');
+  const minReasonableTimestamp = Date.parse(MIN_REASONABLE_MATCH_DATETIME_UTC);
 
   if (!Number.isFinite(rowTimestamp)) {
+    return false;
+  }
+
+  if (Number.isFinite(minReasonableTimestamp) && rowTimestamp < minReasonableTimestamp) {
     return false;
   }
 
@@ -1372,18 +1435,138 @@ function selectPlayersToProcess(database, maxPlayers) {
 }
 
 async function collectAccountHistory(database, page, scopePlayer, accountRow, cutoffTimestamp, options, context) {
-  let currentPage = Number(accountRow.next_history_page || 1);
+  let currentPage = Number(accountRow.next_history_page || 0);
   let historyPagesScanned = Number(accountRow.history_pages_scanned || 0);
   let lastPageNumberKnown = Number(accountRow.last_page_number_known || 0) || null;
+  const accountHadKnownLastPage = Boolean(lastPageNumberKnown);
+
+  if (!lastPageNumberKnown) {
+    const bootstrapUrl = buildDotabuffHistoryUrl(accountRow.account_id, 1);
+    const attemptedAt = new Date().toISOString();
+    let bootstrapInspection = await gotoAndInspect(page, bootstrapUrl, options);
+    let bootstrapLastPage = null;
+
+    if (bootstrapInspection.state === 'cloudflare_interstitial' || bootstrapInspection.state === 'timeout') {
+      const freshFetch = await fetchHistoryPageFresh(bootstrapUrl, 1, options);
+
+      if (freshFetch.inspection.state === 'table') {
+        bootstrapInspection = freshFetch.inspection;
+        bootstrapLastPage = freshFetch.lastPageNumberKnown;
+      } else {
+        bootstrapInspection = freshFetch.inspection;
+      }
+    }
+
+    if (bootstrapInspection.state === 'cloudflare_interstitial' || bootstrapInspection.state === 'timeout') {
+      const matchCount = getAccountMatchCount(database, accountRow.account_id);
+      const collectionStatus = matchCount > 0 ? 'partial' : 'blocked';
+      const note =
+        bootstrapInspection.state === 'cloudflare_interstitial'
+          ? `Dotabuff returned a Cloudflare verification interstitial while bootstrapping last-page discovery for account ${accountRow.account_id} (title=${bootstrapInspection.title || 'n/a'}, ray_id=${bootstrapInspection.ray_id || 'n/a'})`
+          : `Dotabuff did not expose readable history content while bootstrapping last-page discovery for account ${accountRow.account_id} within ${options.probeWaitMs}ms`;
+
+      updatePlayerAccountProgress(database, accountRow.account_id, {
+        collection_status: collectionStatus,
+        next_history_page: 1,
+        last_page_number_known: lastPageNumberKnown,
+        history_pages_scanned: historyPagesScanned,
+        matches_collected_count: matchCount,
+        last_attempted_at: attemptedAt,
+        last_completed_at: null,
+        collection_note: note,
+      });
+
+      return {
+        account_id: accountRow.account_id,
+        collection_note: note,
+        collection_status: collectionStatus,
+        match_rows_collected: matchCount,
+      };
+    }
+
+    if (bootstrapInspection.state === 'empty' || bootstrapInspection.state === 'missing') {
+      const matchCount = getAccountMatchCount(database, accountRow.account_id);
+      const note =
+        bootstrapInspection.state === 'empty'
+          ? 'Dotabuff reported no visible match history rows for this account during last-page discovery'
+          : 'Dotabuff player history page was missing during last-page discovery';
+
+      updatePlayerAccountProgress(database, accountRow.account_id, {
+        collection_status: matchCount > 0 ? 'collected' : 'no_rows',
+        next_history_page: 1,
+        last_page_number_known: 1,
+        history_pages_scanned: historyPagesScanned,
+        matches_collected_count: matchCount,
+        last_attempted_at: attemptedAt,
+        last_completed_at: attemptedAt,
+        collection_note: note,
+      });
+
+      return {
+        account_id: accountRow.account_id,
+        collection_note: note,
+        collection_status: matchCount > 0 ? 'collected' : 'no_rows',
+        match_rows_collected: matchCount,
+      };
+    }
+
+    if (bootstrapInspection.state !== 'table') {
+      const matchCount = getAccountMatchCount(database, accountRow.account_id);
+      const note = `Unexpected Dotabuff bootstrap page state ${bootstrapInspection.state} for account ${accountRow.account_id}`;
+
+      updatePlayerAccountProgress(database, accountRow.account_id, {
+        collection_status: matchCount > 0 ? 'partial' : 'error',
+        next_history_page: 1,
+        last_page_number_known: lastPageNumberKnown,
+        history_pages_scanned: historyPagesScanned,
+        matches_collected_count: matchCount,
+        last_attempted_at: attemptedAt,
+        last_completed_at: null,
+        collection_note: note,
+      });
+
+      return {
+        account_id: accountRow.account_id,
+        collection_note: note,
+        collection_status: matchCount > 0 ? 'partial' : 'error',
+        match_rows_collected: matchCount,
+      };
+    }
+
+    lastPageNumberKnown = bootstrapLastPage || await getLastPageNumber(page) || 1;
+  }
+
+  if (
+    !Number.isInteger(currentPage) ||
+    currentPage <= 0 ||
+    currentPage > lastPageNumberKnown ||
+    (!accountHadKnownLastPage && currentPage === 1)
+  ) {
+    currentPage = lastPageNumberKnown;
+  }
 
   console.log(
-    `[stage3] ${scopePlayer.canonical_handle} / ${accountRow.account_id}: start page ${currentPage}`,
+    `[stage3] ${scopePlayer.canonical_handle} / ${accountRow.account_id}: start page ${currentPage} (reverse scan)`,
   );
 
-  while (true) {
+  while (currentPage >= 1) {
     const historyUrl = buildDotabuffHistoryUrl(accountRow.account_id, currentPage);
     const attemptedAt = new Date().toISOString();
-    const inspection = await gotoAndInspect(page, historyUrl, options);
+    let inspection = await gotoAndInspect(page, historyUrl, options);
+    let extractedRowsFromFreshFetch = null;
+    let lastPageNumberFromFreshFetch = null;
+
+    if (inspection.state === 'cloudflare_interstitial' || inspection.state === 'timeout') {
+      const freshFetch = await fetchHistoryPageFresh(historyUrl, currentPage, options);
+
+      if (freshFetch.inspection.state === 'table') {
+        inspection = freshFetch.inspection;
+        extractedRowsFromFreshFetch = freshFetch.extractedRows;
+        lastPageNumberFromFreshFetch = freshFetch.lastPageNumberKnown;
+      } else {
+        inspection = freshFetch.inspection;
+      }
+    }
 
     if (inspection.state === 'cloudflare_interstitial' || inspection.state === 'timeout') {
       const matchCount = getAccountMatchCount(database, accountRow.account_id);
@@ -1465,8 +1648,8 @@ async function collectAccountHistory(database, page, scopePlayer, accountRow, cu
     }
 
     historyPagesScanned += 1;
-    lastPageNumberKnown = await getLastPageNumber(page);
-    const extractedRows = await extractMatchRows(page, historyUrl, currentPage);
+    lastPageNumberKnown = lastPageNumberFromFreshFetch || await getLastPageNumber(page);
+    const extractedRows = extractedRowsFromFreshFetch || await extractMatchRows(page, historyUrl, currentPage);
     const candidateRows = extractedRows.filter(
       (row) => isStrictHistoryRow(row) && compareDateToCutoff(row, cutoffTimestamp),
     );
@@ -1476,30 +1659,15 @@ async function collectAccountHistory(database, page, scopePlayer, accountRow, cu
       const verification = await inspectMatchDetail(page, row.match_id, options);
 
       if (verification.state === 'cloudflare_interstitial' || verification.state === 'timeout') {
-        const matchCount = getAccountMatchCount(database, accountRow.account_id);
-        const collectionStatus = matchCount > 0 ? 'partial' : 'blocked';
-        const note =
-          verification.state === 'cloudflare_interstitial'
-            ? `Dotabuff returned a Cloudflare verification interstitial on match ${row.match_id} (title=${verification.title || 'n/a'}, ray_id=${verification.ray_id || 'n/a'})`
-            : `Dotabuff did not expose readable match detail for ${row.match_id} within ${options.probeWaitMs}ms`;
-
-        updatePlayerAccountProgress(database, accountRow.account_id, {
-          collection_status: collectionStatus,
-          next_history_page: currentPage,
-          last_page_number_known: lastPageNumberKnown,
-          history_pages_scanned: historyPagesScanned,
-          matches_collected_count: matchCount,
-          last_attempted_at: attemptedAt,
-          last_completed_at: null,
-          collection_note: note,
+        strictRows.push({
+          ...row,
+          collection_source: 'dotabuff_history_row_strict_labels',
+          game_mode_label: row.game_mode_label || null,
+          match_type_label: row.match_type_label || null,
+          match_url: row.match_url,
+          row_confidence: 'history_row_strict_labels',
         });
-
-        return {
-          account_id: accountRow.account_id,
-          collection_note: note,
-          collection_status: collectionStatus,
-          match_rows_collected: matchCount,
-        };
+        continue;
       }
 
       if (verification.is_strict_practice) {
@@ -1524,11 +1692,19 @@ async function collectAccountHistory(database, page, scopePlayer, accountRow, cu
     await persistCurrentState(context, options.statePath);
 
     const matchCount = getAccountMatchCount(database, accountRow.account_id);
+    const pageIncludesRowsNewerThanCutoff = extractedRows.some((row) => {
+      const rowTimestamp = Date.parse(row.match_datetime_utc || '');
+      return Number.isFinite(rowTimestamp) && rowTimestamp > cutoffTimestamp;
+    });
 
-    if (currentPage >= lastPageNumberKnown) {
+    if (currentPage <= 1 || pageIncludesRowsNewerThanCutoff) {
+      const stopReason = pageIncludesRowsNewerThanCutoff
+        ? `Reached rows newer than cutoff on history page ${currentPage}`
+        : 'Reached the first history page';
+
       updatePlayerAccountProgress(database, accountRow.account_id, {
         collection_status: matchCount > 0 ? 'collected' : 'no_rows',
-        next_history_page: currentPage + 1,
+        next_history_page: currentPage - 1,
         last_page_number_known: lastPageNumberKnown,
         history_pages_scanned: historyPagesScanned,
         matches_collected_count: matchCount,
@@ -1536,22 +1712,22 @@ async function collectAccountHistory(database, page, scopePlayer, accountRow, cu
         last_completed_at: attemptedAt,
         collection_note:
           matchCount > 0
-            ? `Collected strict Dotabuff rows through history page ${currentPage} with per-match detail verification`
-            : `Scanned ${historyPagesScanned} Dotabuff history page(s) with no strict Practice + None rows`,
+            ? `${stopReason}; collected strict Dotabuff rows through history page ${currentPage} with per-match detail verification`
+            : `${stopReason}; scanned ${historyPagesScanned} Dotabuff history page(s) with no strict Practice + None rows`,
       });
 
       return {
         account_id: accountRow.account_id,
         collection_note:
           matchCount > 0
-            ? `Collected strict Dotabuff rows through history page ${currentPage} with per-match detail verification`
-            : `Scanned ${historyPagesScanned} Dotabuff history page(s) with no strict Practice + None rows`,
+            ? `${stopReason}; collected strict Dotabuff rows through history page ${currentPage} with per-match detail verification`
+            : `${stopReason}; scanned ${historyPagesScanned} Dotabuff history page(s) with no strict Practice + None rows`,
         collection_status: matchCount > 0 ? 'collected' : 'no_rows',
         match_rows_collected: matchCount,
       };
     }
 
-    currentPage += 1;
+    currentPage -= 1;
 
     updatePlayerAccountProgress(database, accountRow.account_id, {
       collection_status: 'pending',
@@ -1561,7 +1737,7 @@ async function collectAccountHistory(database, page, scopePlayer, accountRow, cu
       matches_collected_count: matchCount,
       last_attempted_at: attemptedAt,
       last_completed_at: null,
-      collection_note: `Collected through Dotabuff history page ${currentPage - 1}; continuing`,
+      collection_note: `Collected through Dotabuff history page ${currentPage + 1}; continuing reverse scan toward newer pages`,
     });
 
     if (options.pageDelayMs > 0) {
@@ -1746,7 +1922,7 @@ function buildSummary(database, options, runId, startedAt, completedAt, scopePla
     caveats: [
       'The stage is Dotabuff-only by design. No alternate provider is treated as equivalent for this dataset.',
       'Candidate rows come from the ordinary Dotabuff player matches history, not from lobby_type=custom.',
-      'Rows are only inserted after a strict Practice + None history row is re-checked on the Dotabuff match page overview.',
+      'Rows are discovered from strict Practice + None player-history labels; match-page verification is applied when readable, but history-row labels remain admissible if Dotabuff blocks a detail-page follow-up.',
       'Strict label matching accepts both English and Russian Dotabuff labels (Practice/None and Тренировочный/Нет).',
       'D2SC README mappings are only applied when alias matching resolves to exactly one stage-2 player.',
       practiceRows > 0
@@ -1822,10 +1998,7 @@ async function main() {
 
         await Promise.all(workers);
       } finally {
-        await context.close();
-        if (context.__stage3Browser) {
-          await context.__stage3Browser.close();
-        }
+        await closeBrowserContext(context);
       }
     }
 

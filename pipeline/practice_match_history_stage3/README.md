@@ -32,6 +32,17 @@ Stage 3 only accepts Dotabuff history rows where both visible labels match:
 Rows that fail either label check are discarded, even if they came from a
 practice-lobby player history page.
 
+## Default collection window
+
+The default cutoff is intentionally narrower than the stage-1/stage-2 scope:
+
+- default latest accepted match datetime: `2012-09-30T23:59:59Z`
+
+This reflects the current working assumption that the useful Dotabuff-visible
+practice-lobby leakage mostly disappears after mid/late 2012, so scanning past
+September 2012 is usually wasted crawl time. You can still override this with
+`--cutoff-datetime` if needed.
+
 ## Current status
 
 As of **2026-03-08**, the committed artifact is **not canonical match data**.
@@ -161,7 +172,7 @@ Optional flags:
 - `--probe-wait-ms 20000`
 - `--page-delay-ms 1000`
 - `--concurrency 1`
-- `--cutoff-datetime 2014-12-31T23:59:59Z`
+- `--cutoff-datetime 2012-09-30T23:59:59Z`
 - `--db /custom/path/practice_match_history_stage3.db`
 - `--summary /custom/path/practice_match_history_stage3_summary.json`
 - `--player-inventory /custom/path/pre2014_ticketless_players.json`
