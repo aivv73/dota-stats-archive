@@ -25,7 +25,7 @@ const DEFAULT_D2SC_README_PATH = path.resolve(
   __dirname,
   '../../../tournaments/d2sc/README.md',
 );
-const DOTABUFF_BASE_URL = 'https://www.dotabuff.com';
+const DOTABUFF_BASE_URL = 'https://ru.dotabuff.com';
 const DOTABUFF_HOME_URL = `${DOTABUFF_BASE_URL}/`;
 const DEFAULT_BROWSER_ENGINE = 'chromium';
 const DEFAULT_CUTOFF_DATETIME_UTC = '2014-12-31T23:59:59Z';
@@ -33,7 +33,10 @@ const DEFAULT_PROBE_WAIT_MS = 20000;
 const DEFAULT_PAGE_DELAY_MS = 1000;
 const DEFAULT_USER_AGENT =
   'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36';
-const SCHEMA_VERSION = 3;
+const STRICT_LOBBY_TYPE_LABEL_KEYS = new Set(['practice', 'тренировочный']);
+const STRICT_GAME_MODE_LABEL_KEYS = new Set(['none', 'нет']);
+const SCHEMA_VERSION = 4;
+const matchVerificationCache = new Map();
 
 function parseArguments(argv) {
   const options = {
@@ -53,6 +56,7 @@ function parseArguments(argv) {
     reset: false,
     statePath: DEFAULT_STATE_PATH,
     summaryPath: DEFAULT_SUMMARY_PATH,
+    useState: false,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -120,6 +124,9 @@ function parseArguments(argv) {
       case '--summary':
         options.summaryPath = path.resolve(nextToken);
         index += 1;
+        break;
+      case '--use-state':
+        options.useState = true;
         break;
       default:
         throw new Error(`Unknown argument: ${token}`);
@@ -191,8 +198,12 @@ function relativeToRepo(filePath) {
 }
 
 function buildDotabuffHistoryUrl(accountId, pageNumber = 1) {
-  const base = `${DOTABUFF_BASE_URL}/players/${accountId}/matches?enhance=overview&lobby_type=practice`;
-  return pageNumber > 1 ? `${base}&page=${pageNumber}` : base;
+  const base = `${DOTABUFF_BASE_URL}/players/${accountId}/matches`;
+  return pageNumber > 1 ? `${base}?page=${pageNumber}` : base;
+}
+
+function buildDotabuffMatchUrl(matchId) {
+  return `${DOTABUFF_BASE_URL}/matches/${matchId}`;
 }
 
 function extractRayId(bodyText) {
@@ -617,6 +628,8 @@ async function createBrowserContext(options) {
   const browserType = getBrowserType(options.browserEngine);
   const launchOptions = {
     headless: !options.headful,
+  };
+  const contextOptions = {
     locale: 'en-US',
     timezoneId: 'UTC',
     userAgent: DEFAULT_USER_AGENT,
@@ -626,24 +639,11 @@ async function createBrowserContext(options) {
     },
   };
 
-  if (options.browserEngine === 'chromium') {
-    launchOptions.args = ['--disable-blink-features=AutomationControlled'];
-  }
+  const browser = await browserType.launch(launchOptions);
+  const context = await browser.newContext(contextOptions);
+  context.__stage3Browser = browser;
 
-  const context = await browserType.launchPersistentContext(
-    options.persistentProfileDir,
-    launchOptions,
-  );
-
-  try {
-    await context.addInitScript(() => {
-      Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
-    });
-  } catch (error) {
-    // Some engines may reject this. Keep going.
-  }
-
-  if (!options.refreshState) {
+  if (options.useState && !options.refreshState) {
     await primeContextFromStorageState(context, options.statePath);
   }
 
@@ -654,15 +654,28 @@ function analyzeDotabuffBody(title, bodyText) {
   const normalizedTitle = String(title || '').trim();
   const normalizedBody = String(bodyText || '');
 
-  if (/No matches found/i.test(normalizedBody) || /This profile is private/i.test(normalizedBody)) {
+  if (
+    /No matches found/i.test(normalizedBody) ||
+    /This profile is private/i.test(normalizedBody) ||
+    /Матчи не найдены/i.test(normalizedBody) ||
+    /Этот профиль является закрытым/i.test(normalizedBody)
+  ) {
     return 'empty';
   }
 
-  if (/Page not found/i.test(normalizedBody) || /Sorry, we couldn't find that page/i.test(normalizedBody)) {
+  if (
+    /Page not found/i.test(normalizedBody) ||
+    /Sorry, we couldn't find that page/i.test(normalizedBody) ||
+    /Страница не найдена/i.test(normalizedBody)
+  ) {
     return 'missing';
   }
 
-  if (/Performing security verification/i.test(normalizedBody) || /Just a moment/i.test(normalizedTitle)) {
+  if (
+    /Performing security verification/i.test(normalizedBody) ||
+    /Выполнение проверки безопасности/i.test(normalizedBody) ||
+    /Just a moment/i.test(normalizedTitle)
+  ) {
     return 'cloudflare_interstitial';
   }
 
@@ -809,8 +822,96 @@ async function extractMatchRows(page, historyUrl, historyPage) {
   );
 }
 
-function isStrictPracticeRow(row) {
-  return normalizeKey(row.match_type_label) === 'practice' && normalizeKey(row.game_mode_label) === 'none';
+function matchesStrictPracticeLabels(lobbyTypeLabel, gameModeLabel) {
+  return (
+    STRICT_LOBBY_TYPE_LABEL_KEYS.has(normalizeKey(lobbyTypeLabel)) &&
+    STRICT_GAME_MODE_LABEL_KEYS.has(normalizeKey(gameModeLabel))
+  );
+}
+
+function isStrictHistoryRow(row) {
+  return matchesStrictPracticeLabels(row.match_type_label, row.game_mode_label);
+}
+
+function parseOverviewValue(bodyText, label) {
+  const lines = String(bodyText || '')
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const labelIndex = lines.findIndex((line) => line.toUpperCase() === String(label).trim().toUpperCase());
+
+  if (labelIndex <= 0) {
+    return null;
+  }
+
+  return lines[labelIndex - 1] || null;
+}
+
+async function inspectMatchDetail(page, matchId, options) {
+  const cached = matchVerificationCache.get(String(matchId));
+
+  if (cached) {
+    return cached;
+  }
+
+  const matchUrl = buildDotabuffMatchUrl(matchId);
+  await page.goto(matchUrl, {
+    timeout: 60000,
+    waitUntil: 'domcontentloaded',
+  });
+
+  const attempts = Math.max(Math.ceil(options.probeWaitMs / 1000), 1);
+  let lastInspection = null;
+
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    const title = await page.title().catch(() => null);
+    const bodyText = await page.locator('body').innerText().catch(() => '');
+    const derivedState = analyzeDotabuffBody(title, bodyText);
+    const lobbyTypeLabel = parseOverviewValue(bodyText, 'LOBBY TYPE');
+    const gameModeLabel = parseOverviewValue(bodyText, 'GAME MODE');
+    const inspection = {
+      body_excerpt: summarizeText(bodyText),
+      game_mode_label: gameModeLabel,
+      lobby_type_label: lobbyTypeLabel,
+      match_id: String(matchId),
+      match_url: matchUrl,
+      ray_id: extractRayId(bodyText),
+      state: derivedState,
+      title,
+    };
+
+    lastInspection = inspection;
+
+    if (lobbyTypeLabel || gameModeLabel) {
+      const result = {
+        ...inspection,
+        is_strict_practice: matchesStrictPracticeLabels(lobbyTypeLabel, gameModeLabel),
+        state: 'overview',
+      };
+      matchVerificationCache.set(String(matchId), result);
+      return result;
+    }
+
+    if (derivedState === 'empty' || derivedState === 'missing' || derivedState === 'cloudflare_interstitial') {
+      matchVerificationCache.set(String(matchId), inspection);
+      return inspection;
+    }
+
+    await page.waitForTimeout(1000);
+  }
+
+  const timeoutResult = {
+    body_excerpt: lastInspection?.body_excerpt || null,
+    game_mode_label: lastInspection?.game_mode_label || null,
+    lobby_type_label: lastInspection?.lobby_type_label || null,
+    match_id: String(matchId),
+    match_url: matchUrl,
+    ray_id: lastInspection?.ray_id || null,
+    state: 'timeout',
+    title: lastInspection?.title || null,
+  };
+  matchVerificationCache.set(String(matchId), timeoutResult);
+  return timeoutResult;
 }
 
 function compareDateToCutoff(row, cutoffTimestamp) {
@@ -846,7 +947,7 @@ function insertCollectionRun(database, options, runId, startedAt) {
       runId,
       startedAt,
       null,
-      'dotabuff_player_history',
+      'dotabuff_match_detail_verified',
       'pending',
       options.cutoffDatetimeUtc,
       options.browserEngine,
@@ -1317,7 +1418,7 @@ async function collectAccountHistory(database, page, scopePlayer, accountRow, cu
       const note =
         inspection.state === 'empty'
           ? currentPage === 1
-            ? 'Dotabuff reported no visible practice history rows for this account'
+            ? 'Dotabuff reported no visible match history rows for this account'
             : `Dotabuff pagination ended at page ${currentPage - 1}`
           : `Dotabuff history page was missing for this account at page ${currentPage}`;
 
@@ -1366,9 +1467,52 @@ async function collectAccountHistory(database, page, scopePlayer, accountRow, cu
     historyPagesScanned += 1;
     lastPageNumberKnown = await getLastPageNumber(page);
     const extractedRows = await extractMatchRows(page, historyUrl, currentPage);
-    const strictRows = extractedRows.filter(
-      (row) => isStrictPracticeRow(row) && compareDateToCutoff(row, cutoffTimestamp),
+    const candidateRows = extractedRows.filter(
+      (row) => isStrictHistoryRow(row) && compareDateToCutoff(row, cutoffTimestamp),
     );
+    const strictRows = [];
+
+    for (const row of candidateRows) {
+      const verification = await inspectMatchDetail(page, row.match_id, options);
+
+      if (verification.state === 'cloudflare_interstitial' || verification.state === 'timeout') {
+        const matchCount = getAccountMatchCount(database, accountRow.account_id);
+        const collectionStatus = matchCount > 0 ? 'partial' : 'blocked';
+        const note =
+          verification.state === 'cloudflare_interstitial'
+            ? `Dotabuff returned a Cloudflare verification interstitial on match ${row.match_id} (title=${verification.title || 'n/a'}, ray_id=${verification.ray_id || 'n/a'})`
+            : `Dotabuff did not expose readable match detail for ${row.match_id} within ${options.probeWaitMs}ms`;
+
+        updatePlayerAccountProgress(database, accountRow.account_id, {
+          collection_status: collectionStatus,
+          next_history_page: currentPage,
+          last_page_number_known: lastPageNumberKnown,
+          history_pages_scanned: historyPagesScanned,
+          matches_collected_count: matchCount,
+          last_attempted_at: attemptedAt,
+          last_completed_at: null,
+          collection_note: note,
+        });
+
+        return {
+          account_id: accountRow.account_id,
+          collection_note: note,
+          collection_status: collectionStatus,
+          match_rows_collected: matchCount,
+        };
+      }
+
+      if (verification.is_strict_practice) {
+        strictRows.push({
+          ...row,
+          collection_source: 'dotabuff_match_detail_verified',
+          game_mode_label: verification.game_mode_label || row.game_mode_label || null,
+          match_type_label: verification.lobby_type_label || row.match_type_label || null,
+          match_url: verification.match_url || row.match_url,
+          row_confidence: 'match_page_verified',
+        });
+      }
+    }
 
     insertPracticeMatches(
       database,
@@ -1392,16 +1536,16 @@ async function collectAccountHistory(database, page, scopePlayer, accountRow, cu
         last_completed_at: attemptedAt,
         collection_note:
           matchCount > 0
-            ? `Collected strict Dotabuff rows through history page ${currentPage}`
-            : `Scanned ${historyPagesScanned} Dotabuff page(s) with no strict Practice + None rows`,
+            ? `Collected strict Dotabuff rows through history page ${currentPage} with per-match detail verification`
+            : `Scanned ${historyPagesScanned} Dotabuff history page(s) with no strict Practice + None rows`,
       });
 
       return {
         account_id: accountRow.account_id,
         collection_note:
           matchCount > 0
-            ? `Collected strict Dotabuff rows through history page ${currentPage}`
-            : `Scanned ${historyPagesScanned} Dotabuff page(s) with no strict Practice + None rows`,
+            ? `Collected strict Dotabuff rows through history page ${currentPage} with per-match detail verification`
+            : `Scanned ${historyPagesScanned} Dotabuff history page(s) with no strict Practice + None rows`,
         collection_status: matchCount > 0 ? 'collected' : 'no_rows',
         match_rows_collected: matchCount,
       };
@@ -1559,7 +1703,7 @@ function buildSummary(database, options, runId, startedAt, completedAt, scopePla
     generated_at: completedAt,
     started_at: startedAt,
     run_id: runId,
-    source_provider: 'dotabuff_player_history',
+    source_provider: 'dotabuff_match_detail_verified',
     dataset_status: datasetStatus,
     is_truly_dotabuff_derived: practiceRows > 0,
     input_files: {
@@ -1601,11 +1745,15 @@ function buildSummary(database, options, runId, startedAt, completedAt, scopePla
     blocker_report: blockerReport || null,
     caveats: [
       'The stage is Dotabuff-only by design. No alternate provider is treated as equivalent for this dataset.',
-      'Rows are only inserted when Dotabuff history rows explicitly show Lobby Type = Practice and Game Mode = None.',
+      'Candidate rows come from the ordinary Dotabuff player matches history, not from lobby_type=custom.',
+      'Rows are only inserted after a strict Practice + None history row is re-checked on the Dotabuff match page overview.',
+      'Strict label matching accepts both English and Russian Dotabuff labels (Practice/None and Тренировочный/Нет).',
       'D2SC README mappings are only applied when alias matching resolves to exactly one stage-2 player.',
       practiceRows > 0
         ? 'The current artifact contains true Dotabuff-derived rows.'
-        : 'The current artifact is non-canonical/WIP because Dotabuff access was blocked before row extraction.',
+        : blockerReport
+          ? 'The current artifact is non-canonical/WIP because Dotabuff access was blocked before row extraction.'
+          : 'The current artifact contains no verified strict Practice + None rows for the processed subset yet.',
     ],
     top_players_by_rows: topPlayersByRows,
   };
@@ -1655,46 +1803,29 @@ async function main() {
       const context = await createBrowserContext(options);
 
       try {
-        const sampleAccountRow = allSql(
-          database,
-          `SELECT account_id
-           FROM player_accounts
-           WHERE scope_player_id = ?
-           ORDER BY account_id
-           LIMIT 1`,
-          [selectedScopePlayers[0].scope_player_id],
-        )[0];
+        let nextIndex = 0;
+        const workerCount = Math.min(options.concurrency, selectedScopePlayers.length);
+        const workers = Array.from({ length: workerCount }, async () => {
+          while (nextIndex < selectedScopePlayers.length) {
+            const scopePlayer = selectedScopePlayers[nextIndex];
+            nextIndex += 1;
+            await collectScopePlayer(
+              database,
+              context,
+              scopePlayer,
+              cutoffTimestamp,
+              options,
+            );
+            processedPlayersCount += 1;
+          }
+        });
 
-        blockerReport = await probeDotabuffAccess(
-          context,
-          sampleAccountRow.account_id,
-          options,
-        );
-
-        if (blockerReport.blocked) {
-          markSelectedPlayersBlocked(database, selectedScopePlayers, blockerReport);
-        } else {
-          let nextIndex = 0;
-          const workerCount = Math.min(options.concurrency, selectedScopePlayers.length);
-          const workers = Array.from({ length: workerCount }, async () => {
-            while (nextIndex < selectedScopePlayers.length) {
-              const scopePlayer = selectedScopePlayers[nextIndex];
-              nextIndex += 1;
-              await collectScopePlayer(
-                database,
-                context,
-                scopePlayer,
-                cutoffTimestamp,
-                options,
-              );
-              processedPlayersCount += 1;
-            }
-          });
-
-          await Promise.all(workers);
-        }
+        await Promise.all(workers);
       } finally {
         await context.close();
+        if (context.__stage3Browser) {
+          await context.__stage3Browser.close();
+        }
       }
     }
 
