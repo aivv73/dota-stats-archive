@@ -4,15 +4,19 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const { DatabaseSync } = require('node:sqlite');
+const { chromium, firefox, webkit } = require('playwright');
 
 const STAGE_ROOT = path.resolve(__dirname, '..');
 const REPO_ROOT = path.resolve(STAGE_ROOT, '..', '..');
 const DEFAULT_DATA_DIR = path.join(STAGE_ROOT, 'data');
+const DEFAULT_CACHE_DIR = path.join(STAGE_ROOT, 'cache', 'playwright');
 const DEFAULT_DB_PATH = path.join(DEFAULT_DATA_DIR, 'practice_match_history_stage3.db');
 const DEFAULT_SUMMARY_PATH = path.join(
   DEFAULT_DATA_DIR,
   'practice_match_history_stage3_summary.json',
 );
+const DEFAULT_STATE_PATH = path.join(DEFAULT_CACHE_DIR, 'dotabuff-storage-state.json');
+const DEFAULT_PERSISTENT_PROFILE_DIR = path.join(DEFAULT_CACHE_DIR, 'persistent', 'chromium');
 const DEFAULT_PLAYER_INVENTORY_PATH = path.resolve(
   __dirname,
   '../../liquipedia_pre2014_ticketless_players/data/pre2014_ticketless_players.json',
@@ -21,32 +25,33 @@ const DEFAULT_D2SC_README_PATH = path.resolve(
   __dirname,
   '../../../tournaments/d2sc/README.md',
 );
-const DEFAULT_HEROES_DB_PATH = path.resolve(__dirname, '../../../dota_archive.db');
-const DEFAULT_API_BASE_URL = 'https://api.opendota.com/api';
-const DEFAULT_BATCH_SIZE = 100;
-const DEFAULT_CONCURRENCY = 4;
+const DOTABUFF_BASE_URL = 'https://www.dotabuff.com';
+const DOTABUFF_HOME_URL = `${DOTABUFF_BASE_URL}/`;
+const DEFAULT_BROWSER_ENGINE = 'chromium';
 const DEFAULT_CUTOFF_DATETIME_UTC = '2014-12-31T23:59:59Z';
-const DEFAULT_REQUEST_DELAY_MS = 0;
+const DEFAULT_PROBE_WAIT_MS = 20000;
+const DEFAULT_PAGE_DELAY_MS = 1000;
 const DEFAULT_USER_AGENT =
-  'dota-stats-archive-stage3/2.0 (+local workspace; source=OpenDota strict practice history)';
-const OPEN_DOTA_PRACTICE_LOBBY_TYPE = 1;
-const OPEN_DOTA_NONE_GAME_MODE = 0;
-const SCHEMA_VERSION = 2;
+  'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36';
+const SCHEMA_VERSION = 3;
 
 function parseArguments(argv) {
   const options = {
-    apiBaseUrl: DEFAULT_API_BASE_URL,
-    batchSize: DEFAULT_BATCH_SIZE,
-    concurrency: DEFAULT_CONCURRENCY,
+    browserEngine: DEFAULT_BROWSER_ENGINE,
+    cacheDir: DEFAULT_CACHE_DIR,
+    concurrency: 1,
     cutoffDatetimeUtc: DEFAULT_CUTOFF_DATETIME_UTC,
     dbPath: DEFAULT_DB_PATH,
     d2scReadmePath: DEFAULT_D2SC_README_PATH,
-    heroesDbPath: DEFAULT_HEROES_DB_PATH,
+    headful: false,
     maxPlayers: null,
+    pageDelayMs: DEFAULT_PAGE_DELAY_MS,
+    persistentProfileDir: DEFAULT_PERSISTENT_PROFILE_DIR,
     playerInventoryPath: DEFAULT_PLAYER_INVENTORY_PATH,
-    refreshComplete: false,
-    requestDelayMs: DEFAULT_REQUEST_DELAY_MS,
+    probeWaitMs: DEFAULT_PROBE_WAIT_MS,
+    refreshState: false,
     reset: false,
+    statePath: DEFAULT_STATE_PATH,
     summaryPath: DEFAULT_SUMMARY_PATH,
   };
 
@@ -55,12 +60,12 @@ function parseArguments(argv) {
     const nextToken = argv[index + 1];
 
     switch (token) {
-      case '--api-base-url':
-        options.apiBaseUrl = String(nextToken || '').trim();
+      case '--browser':
+        options.browserEngine = String(nextToken || '').trim();
         index += 1;
         break;
-      case '--batch-size':
-        options.batchSize = Number(nextToken);
+      case '--cache-dir':
+        options.cacheDir = path.resolve(nextToken);
         index += 1;
         break;
       case '--concurrency':
@@ -79,27 +84,38 @@ function parseArguments(argv) {
         options.d2scReadmePath = path.resolve(nextToken);
         index += 1;
         break;
-      case '--heroes-db':
-        options.heroesDbPath = path.resolve(nextToken);
-        index += 1;
+      case '--headful':
+        options.headful = true;
         break;
       case '--max-players':
         options.maxPlayers = Number(nextToken);
+        index += 1;
+        break;
+      case '--page-delay-ms':
+        options.pageDelayMs = Number(nextToken);
+        index += 1;
+        break;
+      case '--persistent-profile-dir':
+        options.persistentProfileDir = path.resolve(nextToken);
         index += 1;
         break;
       case '--player-inventory':
         options.playerInventoryPath = path.resolve(nextToken);
         index += 1;
         break;
-      case '--refresh-complete':
-        options.refreshComplete = true;
-        break;
-      case '--request-delay-ms':
-        options.requestDelayMs = Number(nextToken);
+      case '--probe-wait-ms':
+        options.probeWaitMs = Number(nextToken);
         index += 1;
+        break;
+      case '--refresh-state':
+        options.refreshState = true;
         break;
       case '--reset':
         options.reset = true;
+        break;
+      case '--state':
+        options.statePath = path.resolve(nextToken);
+        index += 1;
         break;
       case '--summary':
         options.summaryPath = path.resolve(nextToken);
@@ -110,12 +126,8 @@ function parseArguments(argv) {
     }
   }
 
-  if (!options.apiBaseUrl) {
-    throw new Error('api-base-url must be a non-empty URL');
-  }
-
-  if (!Number.isInteger(options.batchSize) || options.batchSize <= 0) {
-    throw new Error('batch-size must be a positive integer');
+  if (!['chromium', 'firefox', 'webkit'].includes(options.browserEngine)) {
+    throw new Error('browser must be one of: chromium, firefox, webkit');
   }
 
   if (!Number.isInteger(options.concurrency) || options.concurrency <= 0) {
@@ -133,8 +145,12 @@ function parseArguments(argv) {
     throw new Error('cutoff-datetime must be an ISO-8601 datetime string');
   }
 
-  if (!Number.isInteger(options.requestDelayMs) || options.requestDelayMs < 0) {
-    throw new Error('request-delay-ms must be an integer >= 0');
+  if (!Number.isInteger(options.pageDelayMs) || options.pageDelayMs < 0) {
+    throw new Error('page-delay-ms must be an integer >= 0');
+  }
+
+  if (!Number.isInteger(options.probeWaitMs) || options.probeWaitMs <= 0) {
+    throw new Error('probe-wait-ms must be a positive integer');
   }
 
   return options;
@@ -174,18 +190,18 @@ function relativeToRepo(filePath) {
   return path.relative(REPO_ROOT, filePath);
 }
 
-function isoFromUnixSeconds(value) {
-  if (!Number.isFinite(Number(value))) {
-    return null;
-  }
-
-  return new Date(Number(value) * 1000).toISOString();
+function buildDotabuffHistoryUrl(accountId, pageNumber = 1) {
+  const base = `${DOTABUFF_BASE_URL}/players/${accountId}/matches?enhance=overview&lobby_type=practice`;
+  return pageNumber > 1 ? `${base}&page=${pageNumber}` : base;
 }
 
-function getResultLabel(playerSlot, radiantWin) {
-  const isRadiant = Number(playerSlot) < 128;
-  const didWin = (isRadiant && Boolean(radiantWin)) || (!isRadiant && !Boolean(radiantWin));
-  return didWin ? 'Win' : 'Loss';
+function extractRayId(bodyText) {
+  const match = String(bodyText || '').match(/Ray ID:\s*([A-Za-z0-9]+)/i);
+  return match ? match[1] : null;
+}
+
+function summarizeText(bodyText) {
+  return String(bodyText || '').replace(/\s+/g, ' ').trim().slice(0, 260);
 }
 
 function buildScopePlayerKey(player) {
@@ -363,7 +379,7 @@ function loadScopePlayers(playerInventoryPath, d2scReadmePath) {
       .sort((left, right) => left.account_id.localeCompare(right.account_id))
       .map((mapping) => ({
         account_id: mapping.account_id,
-        dotabuff_player_url: `https://www.dotabuff.com/players/${mapping.account_id}`,
+        dotabuff_player_url: `${DOTABUFF_BASE_URL}/players/${mapping.account_id}`,
         mapping_confidence: mapping.confidence,
         mapping_note: mapping.notes.join(' | ') || null,
         mapping_sources: mapping.sources,
@@ -396,46 +412,8 @@ function loadScopePlayers(playerInventoryPath, d2scReadmePath) {
 
   return {
     d2scMappings,
-    inventory,
     players: enrichedPlayers,
   };
-}
-
-function loadHeroMap(heroesDbPath) {
-  const heroMap = new Map();
-
-  if (!heroesDbPath || !fs.existsSync(heroesDbPath)) {
-    return heroMap;
-  }
-
-  const database = new DatabaseSync(heroesDbPath, { readonly: true });
-
-  try {
-    const rows = database.prepare('SELECT id, localized_name, name FROM heroes').all();
-
-    for (const row of rows) {
-      heroMap.set(Number(row.id), row.localized_name || row.name || `Hero ${row.id}`);
-    }
-  } catch (error) {
-    console.warn(`[stage3] warning: could not load heroes from ${heroesDbPath}: ${error.message}`);
-  } finally {
-    database.close();
-  }
-
-  return heroMap;
-}
-
-function buildOpenDotaMatchesUrl(apiBaseUrl, accountId, batchSize, offset) {
-  const normalizedBaseUrl = apiBaseUrl.endsWith('/') ? apiBaseUrl : `${apiBaseUrl}/`;
-  const url = new URL(`players/${accountId}/matches`, normalizedBaseUrl);
-
-  url.searchParams.set('game_mode', String(OPEN_DOTA_NONE_GAME_MODE));
-  url.searchParams.set('limit', String(batchSize));
-  url.searchParams.set('lobby_type', String(OPEN_DOTA_PRACTICE_LOBBY_TYPE));
-  url.searchParams.set('offset', String(offset));
-  url.searchParams.set('significant', '0');
-
-  return url.toString();
 }
 
 function runSql(database, sql, params = []) {
@@ -478,12 +456,15 @@ function initializeDatabase(dbPath, reset = false) {
         started_at TEXT NOT NULL,
         completed_at TEXT,
         source_provider TEXT NOT NULL,
+        dataset_status TEXT NOT NULL,
         cutoff_datetime_utc TEXT NOT NULL,
+        browser_engine TEXT NOT NULL,
+        headful INTEGER NOT NULL,
+        state_path TEXT,
+        persistent_profile_dir TEXT,
         player_inventory_path TEXT NOT NULL,
         d2sc_readme_path TEXT NOT NULL,
-        heroes_db_path TEXT,
-        max_players INTEGER,
-        batch_size INTEGER NOT NULL,
+        blocker_report_json TEXT,
         notes TEXT
       );
 
@@ -517,17 +498,14 @@ function initializeDatabase(dbPath, reset = false) {
         mapping_confidence TEXT NOT NULL,
         mapping_note TEXT,
         collection_status TEXT NOT NULL,
-        next_offset INTEGER NOT NULL DEFAULT 0,
-        batch_size INTEGER NOT NULL DEFAULT 100,
-        requests_completed INTEGER NOT NULL DEFAULT 0,
+        next_history_page INTEGER NOT NULL DEFAULT 1,
+        last_page_number_known INTEGER,
+        history_pages_scanned INTEGER NOT NULL DEFAULT 0,
         matches_collected_count INTEGER NOT NULL DEFAULT 0,
-        last_api_match_id TEXT,
-        last_match_datetime_utc TEXT,
         last_attempted_at TEXT,
         last_completed_at TEXT,
         collection_note TEXT,
-        collection_source TEXT NOT NULL,
-        api_endpoint TEXT NOT NULL,
+        dotabuff_player_url TEXT NOT NULL,
         FOREIGN KEY(scope_player_id) REFERENCES scope_players(scope_player_id)
       );
 
@@ -537,21 +515,17 @@ function initializeDatabase(dbPath, reset = false) {
         account_id TEXT NOT NULL,
         canonical_handle TEXT NOT NULL,
         match_id TEXT NOT NULL,
-        hero_id INTEGER,
         hero_name TEXT NOT NULL,
         match_datetime_utc TEXT,
-        start_time_unix INTEGER,
-        lobby_type_id INTEGER NOT NULL,
-        game_mode_id INTEGER NOT NULL,
-        duration_seconds INTEGER,
-        player_slot INTEGER,
-        radiant_win INTEGER,
+        match_date_text TEXT,
         result_label TEXT,
-        kills INTEGER,
-        deaths INTEGER,
-        assists INTEGER,
-        source_provider TEXT NOT NULL,
-        source_payload_json TEXT,
+        match_type_label TEXT,
+        game_mode_label TEXT,
+        history_page INTEGER NOT NULL,
+        match_url TEXT NOT NULL,
+        player_history_url TEXT NOT NULL,
+        collection_source TEXT NOT NULL,
+        row_confidence TEXT NOT NULL,
         collected_at TEXT NOT NULL,
         UNIQUE(account_id, match_id),
         FOREIGN KEY(scope_player_id) REFERENCES scope_players(scope_player_id)
@@ -567,8 +541,6 @@ function initializeDatabase(dbPath, reset = false) {
         ON practice_matches(match_id);
       CREATE INDEX idx_practice_matches_scope_player_id
         ON practice_matches(scope_player_id);
-      CREATE INDEX idx_practice_matches_account_id
-        ON practice_matches(account_id);
 
       PRAGMA user_version = ${SCHEMA_VERSION};
     `);
@@ -577,162 +549,278 @@ function initializeDatabase(dbPath, reset = false) {
   return database;
 }
 
-function shouldProcessAccount(collectionStatus, refreshComplete) {
-  if (refreshComplete) {
-    return true;
-  }
-
-  return !['collected', 'no_rows'].includes(collectionStatus);
+function stripStorageStateCookies(cookies) {
+  return (cookies || []).map((cookie) => ({
+    name: cookie.name,
+    value: cookie.value,
+    domain: cookie.domain,
+    path: cookie.path,
+    expires: cookie.expires,
+    httpOnly: cookie.httpOnly,
+    secure: cookie.secure,
+    sameSite: cookie.sameSite,
+  }));
 }
 
-function sleep(durationMs) {
-  if (!durationMs) {
-    return Promise.resolve();
+function getBrowserType(browserEngine) {
+  if (browserEngine === 'firefox') {
+    return firefox;
   }
 
-  return new Promise((resolve) => {
-    setTimeout(resolve, durationMs);
-  });
+  if (browserEngine === 'webkit') {
+    return webkit;
+  }
+
+  return chromium;
 }
 
-async function fetchOpenDotaMatchesPage(accountId, offset, options) {
-  const requestUrl = buildOpenDotaMatchesUrl(
-    options.apiBaseUrl,
-    accountId,
-    options.batchSize,
-    offset,
+async function primeContextFromStorageState(context, statePath) {
+  if (!fs.existsSync(statePath)) {
+    return;
+  }
+
+  const state = JSON.parse(fs.readFileSync(statePath, 'utf8'));
+
+  if (state.cookies?.length) {
+    await context.addCookies(stripStorageStateCookies(state.cookies));
+  }
+
+  const dotabuffOrigin = (state.origins || []).find((origin) => origin.origin === DOTABUFF_BASE_URL);
+
+  if (!dotabuffOrigin?.localStorage?.length) {
+    return;
+  }
+
+  const page = context.pages()[0] || await context.newPage();
+
+  try {
+    await page.goto(DOTABUFF_BASE_URL, {
+      timeout: 45000,
+      waitUntil: 'domcontentloaded',
+    });
+  } catch (error) {
+    // Best-effort prime only.
+  }
+
+  await page.evaluate((entries) => {
+    for (const entry of entries) {
+      localStorage.setItem(entry.name, entry.value);
+    }
+  }, dotabuffOrigin.localStorage);
+}
+
+async function createBrowserContext(options) {
+  fs.mkdirSync(options.cacheDir, { recursive: true });
+  fs.mkdirSync(path.dirname(options.statePath), { recursive: true });
+  fs.mkdirSync(options.persistentProfileDir, { recursive: true });
+
+  const browserType = getBrowserType(options.browserEngine);
+  const launchOptions = {
+    headless: !options.headful,
+    locale: 'en-US',
+    timezoneId: 'UTC',
+    userAgent: DEFAULT_USER_AGENT,
+    viewport: {
+      height: 768,
+      width: 1366,
+    },
+  };
+
+  if (options.browserEngine === 'chromium') {
+    launchOptions.args = ['--disable-blink-features=AutomationControlled'];
+  }
+
+  const context = await browserType.launchPersistentContext(
+    options.persistentProfileDir,
+    launchOptions,
   );
 
-  for (let attempt = 0; attempt < 3; attempt += 1) {
-    try {
-      const response = await fetch(requestUrl, {
-        headers: {
-          accept: 'application/json',
-          'user-agent': DEFAULT_USER_AGENT,
-        },
-        signal: AbortSignal.timeout(45000),
-      });
+  try {
+    await context.addInitScript(() => {
+      Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+    });
+  } catch (error) {
+    // Some engines may reject this. Keep going.
+  }
 
-      if (response.status === 429) {
-        const retryAfterSeconds = Number(response.headers.get('retry-after') || 0);
-        const retryDelayMs = Math.max(retryAfterSeconds * 1000, (attempt + 1) * 3000);
+  if (!options.refreshState) {
+    await primeContextFromStorageState(context, options.statePath);
+  }
 
-        if (attempt < 2) {
-          await sleep(retryDelayMs);
-          continue;
-        }
+  return context;
+}
 
-        return {
-          note: `OpenDota rate limited account ${accountId} at offset ${offset}`,
-          request_url: requestUrl,
-          status: 'rate_limited',
-        };
-      }
+function analyzeDotabuffBody(title, bodyText) {
+  const normalizedTitle = String(title || '').trim();
+  const normalizedBody = String(bodyText || '');
 
-      if (response.status === 404) {
-        return {
-          note: `OpenDota returned 404 for account ${accountId}`,
-          request_url: requestUrl,
-          rows: [],
-          status: 'ok',
-        };
-      }
+  if (/No matches found/i.test(normalizedBody) || /This profile is private/i.test(normalizedBody)) {
+    return 'empty';
+  }
 
-      if (!response.ok) {
-        if (response.status >= 500 && attempt < 2) {
-          await sleep((attempt + 1) * 2000);
-          continue;
-        }
+  if (/Page not found/i.test(normalizedBody) || /Sorry, we couldn't find that page/i.test(normalizedBody)) {
+    return 'missing';
+  }
 
-        return {
-          note: `OpenDota returned HTTP ${response.status} for account ${accountId}`,
-          request_url: requestUrl,
-          status: 'error',
-        };
-      }
+  if (/Performing security verification/i.test(normalizedBody) || /Just a moment/i.test(normalizedTitle)) {
+    return 'cloudflare_interstitial';
+  }
 
-      const rows = await response.json();
+  return null;
+}
 
-      if (!Array.isArray(rows)) {
-        return {
-          note: `OpenDota returned a non-array payload for account ${accountId}`,
-          request_url: requestUrl,
-          status: 'error',
-        };
-      }
+async function waitForDotabuffContent(page, probeWaitMs) {
+  const attempts = Math.max(Math.ceil(probeWaitMs / 1000), 1);
+  let lastInspection = null;
 
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    const rowCount = await page.locator('table tbody tr').count().catch(() => 0);
+    const title = await page.title().catch(() => null);
+    const bodyText = await page.locator('body').innerText().catch(() => '');
+    const derivedState = analyzeDotabuffBody(title, bodyText);
+    const inspection = {
+      body_excerpt: summarizeText(bodyText),
+      ray_id: extractRayId(bodyText),
+      row_count: rowCount,
+      state: derivedState,
+      title,
+    };
+
+    lastInspection = inspection;
+
+    if (rowCount > 0) {
       return {
-        request_url: requestUrl,
-        rows,
-        status: 'ok',
-      };
-    } catch (error) {
-      if (attempt < 2) {
-        await sleep((attempt + 1) * 2000);
-        continue;
-      }
-
-      return {
-        note: `OpenDota request failed for account ${accountId}: ${error.message}`,
-        request_url: requestUrl,
-        status: 'error',
+        ...inspection,
+        state: 'table',
       };
     }
+
+    if (derivedState === 'empty' || derivedState === 'missing') {
+      return inspection;
+    }
+
+    await page.waitForTimeout(1000);
+  }
+
+  if (lastInspection?.state === 'cloudflare_interstitial') {
+    return lastInspection;
   }
 
   return {
-    note: `OpenDota request retries exhausted for account ${accountId}`,
-    request_url: requestUrl,
-    status: 'error',
+    body_excerpt: lastInspection?.body_excerpt || null,
+    ray_id: lastInspection?.ray_id || null,
+    row_count: lastInspection?.row_count || 0,
+    state: 'timeout',
+    title: lastInspection?.title || null,
   };
 }
 
-function transformOpenDotaRows(scopePlayer, accountId, rows, heroMap, cutoffTimestamp) {
-  const practiceRows = [];
+async function gotoAndInspect(page, url, options) {
+  await page.goto(url, {
+    timeout: 60000,
+    waitUntil: 'domcontentloaded',
+  });
 
-  for (const row of rows) {
-    if (
-      Number(row.lobby_type) !== OPEN_DOTA_PRACTICE_LOBBY_TYPE ||
-      Number(row.game_mode) !== OPEN_DOTA_NONE_GAME_MODE
-    ) {
-      continue;
-    }
+  return waitForDotabuffContent(page, options.probeWaitMs);
+}
 
-    const startTimeUnix = Number(row.start_time);
-    const matchDatetimeUtc = isoFromUnixSeconds(startTimeUnix);
-    const matchTimestamp = Date.parse(matchDatetimeUtc || '');
+async function persistCurrentState(context, statePath) {
+  fs.mkdirSync(path.dirname(statePath), { recursive: true });
+  await context.storageState({ path: statePath });
+}
 
-    if (Number.isFinite(cutoffTimestamp) && Number.isFinite(matchTimestamp) && matchTimestamp > cutoffTimestamp) {
-      continue;
-    }
+async function probeDotabuffAccess(context, accountId, options) {
+  const page = context.pages()[0] || await context.newPage();
+  const home = await gotoAndInspect(page, DOTABUFF_HOME_URL, options);
+  const historyUrl = buildDotabuffHistoryUrl(accountId, 1);
+  const history = await gotoAndInspect(page, historyUrl, options);
 
-    const heroId = Number(row.hero_id);
-    const heroName = Number.isFinite(heroId)
-      ? heroMap.get(heroId) || `Hero ${heroId}`
-      : 'Unknown Hero';
-
-    practiceRows.push({
-      account_id: accountId,
-      assists: Number.isFinite(Number(row.assists)) ? Number(row.assists) : null,
-      canonical_handle: scopePlayer.canonical_handle,
-      deaths: Number.isFinite(Number(row.deaths)) ? Number(row.deaths) : null,
-      duration_seconds: Number.isFinite(Number(row.duration)) ? Number(row.duration) : null,
-      game_mode_id: OPEN_DOTA_NONE_GAME_MODE,
-      hero_id: Number.isFinite(heroId) ? heroId : null,
-      hero_name: heroName,
-      kills: Number.isFinite(Number(row.kills)) ? Number(row.kills) : null,
-      lobby_type_id: OPEN_DOTA_PRACTICE_LOBBY_TYPE,
-      match_datetime_utc: matchDatetimeUtc,
-      match_id: String(row.match_id),
-      player_slot: Number.isFinite(Number(row.player_slot)) ? Number(row.player_slot) : null,
-      radiant_win: row.radiant_win === undefined || row.radiant_win === null ? null : row.radiant_win ? 1 : 0,
-      result_label: getResultLabel(row.player_slot, row.radiant_win),
-      source_payload_json: JSON.stringify(row),
-      start_time_unix: Number.isFinite(startTimeUnix) ? startTimeUnix : null,
-    });
+  if (history.state === 'table') {
+    await persistCurrentState(context, options.statePath);
   }
 
-  return practiceRows;
+  return {
+    blocked: history.state === 'cloudflare_interstitial' || history.state === 'timeout',
+    browser_engine: options.browserEngine,
+    headful: options.headful,
+    home: {
+      ...home,
+      url: DOTABUFF_HOME_URL,
+    },
+    history: {
+      ...history,
+      url: historyUrl,
+    },
+    state_path: relativeToRepo(options.statePath),
+  };
+}
+
+async function getLastPageNumber(page) {
+  return page.locator('.pagination').evaluate((node) => {
+    const lastLink = [...node.querySelectorAll('a')].find((anchor) =>
+      /Last/i.test((anchor.textContent || '').trim()),
+    );
+
+    if (!lastLink) {
+      return 1;
+    }
+
+    const match = lastLink.href.match(/[?&]page=(\d+)/);
+    return match ? Number(match[1]) : 1;
+  }).catch(() => 1);
+}
+
+async function extractMatchRows(page, historyUrl, historyPage) {
+  return page.locator('table tbody tr').evaluateAll(
+    (rows, rowContext) =>
+      rows
+        .map((row) => {
+          const cells = row.querySelectorAll('td');
+          const matchLink = row.querySelector('td.cell-large a[href*="/matches/"]');
+          const timeNode = row.querySelector('time');
+          const matchHref = matchLink?.getAttribute('href') || null;
+          const matchId = matchHref?.match(/\/matches\/(\d+)/)?.[1] || null;
+          const heroName = matchLink?.textContent?.trim() || null;
+          const resultLabel = cells[3]?.querySelector('a')?.textContent?.trim() || null;
+          const matchTypeLabel = cells[4]?.childNodes?.[0]?.textContent?.trim() || null;
+          const gameModeLabel = cells[4]?.querySelector('.subtext')?.textContent?.trim() || null;
+
+          if (!matchId || !heroName) {
+            return null;
+          }
+
+          return {
+            collection_source: 'dotabuff_player_history',
+            game_mode_label: gameModeLabel || null,
+            hero_name: heroName,
+            history_page: rowContext.historyPage,
+            match_date_text: timeNode?.textContent?.trim() || null,
+            match_datetime_utc: timeNode?.getAttribute('datetime') || null,
+            match_id: matchId,
+            match_type_label: matchTypeLabel || null,
+            match_url: matchHref ? new URL(matchHref, location.origin).toString() : null,
+            player_history_url: rowContext.historyUrl,
+            result_label: resultLabel || null,
+            row_confidence: 'scraped_history_row',
+          };
+        })
+        .filter(Boolean),
+    { historyPage, historyUrl },
+  );
+}
+
+function isStrictPracticeRow(row) {
+  return normalizeKey(row.match_type_label) === 'practice' && normalizeKey(row.game_mode_label) === 'none';
+}
+
+function compareDateToCutoff(row, cutoffTimestamp) {
+  const rowTimestamp = Date.parse(row.match_datetime_utc || '');
+
+  if (!Number.isFinite(rowTimestamp)) {
+    return false;
+  }
+
+  return rowTimestamp <= cutoffTimestamp;
 }
 
 function insertCollectionRun(database, options, runId, startedAt) {
@@ -743,35 +831,48 @@ function insertCollectionRun(database, options, runId, startedAt) {
       started_at,
       completed_at,
       source_provider,
+      dataset_status,
       cutoff_datetime_utc,
+      browser_engine,
+      headful,
+      state_path,
+      persistent_profile_dir,
       player_inventory_path,
       d2sc_readme_path,
-      heroes_db_path,
-      max_players,
-      batch_size,
+      blocker_report_json,
       notes
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       runId,
       startedAt,
       null,
-      'opendota_player_matches',
+      'dotabuff_player_history',
+      'pending',
       options.cutoffDatetimeUtc,
+      options.browserEngine,
+      options.headful ? 1 : 0,
+      relativeToRepo(options.statePath),
+      relativeToRepo(options.persistentProfileDir),
       relativeToRepo(options.playerInventoryPath),
       relativeToRepo(options.d2scReadmePath),
-      fs.existsSync(options.heroesDbPath) ? relativeToRepo(options.heroesDbPath) : null,
-      options.maxPlayers,
-      options.batchSize,
-      'Strict practice history via OpenDota player matches API with conservative D2SC auxiliary account enrichment.',
+      null,
+      'Dotabuff-only practice history collector. If Dotabuff remains blocked, the stage must stay non-canonical/WIP.',
     ],
   );
 }
 
-function completeCollectionRun(database, runId, completedAt) {
+function completeCollectionRun(database, runId, datasetStatus, blockerReport) {
   runSql(
     database,
-    'UPDATE collection_runs SET completed_at = ? WHERE run_id = ?',
-    [completedAt, runId],
+    `UPDATE collection_runs
+     SET completed_at = ?, dataset_status = ?, blocker_report_json = ?
+     WHERE run_id = ?`,
+    [
+      new Date().toISOString(),
+      datasetStatus,
+      blockerReport ? JSON.stringify(blockerReport) : null,
+      runId,
+    ],
   );
 }
 
@@ -879,8 +980,7 @@ function upsertScopePlayer(database, scopePlayer, seenAt) {
   return existing.scope_player_id;
 }
 
-function upsertPlayerAccount(database, scopePlayerId, scopePlayer, mapping, options) {
-  const apiEndpoint = buildOpenDotaMatchesUrl(options.apiBaseUrl, mapping.account_id, options.batchSize, 0);
+function upsertPlayerAccount(database, scopePlayerId, scopePlayer, mapping) {
   const existing = getSql(
     database,
     'SELECT player_account_id FROM player_accounts WHERE account_id = ?',
@@ -898,18 +998,15 @@ function upsertPlayerAccount(database, scopePlayerId, scopePlayer, mapping, opti
         mapping_confidence,
         mapping_note,
         collection_status,
-        next_offset,
-        batch_size,
-        requests_completed,
+        next_history_page,
+        last_page_number_known,
+        history_pages_scanned,
         matches_collected_count,
-        last_api_match_id,
-        last_match_datetime_utc,
         last_attempted_at,
         last_completed_at,
         collection_note,
-        collection_source,
-        api_endpoint
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        dotabuff_player_url
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         scopePlayerId,
         mapping.account_id,
@@ -918,17 +1015,14 @@ function upsertPlayerAccount(database, scopePlayerId, scopePlayer, mapping, opti
         mapping.mapping_confidence,
         mapping.mapping_note,
         'pending',
+        1,
+        null,
         0,
-        options.batchSize,
-        0,
         0,
         null,
         null,
         null,
-        null,
-        null,
-        'opendota_player_matches',
-        apiEndpoint,
+        mapping.dotabuff_player_url,
       ],
     );
 
@@ -943,9 +1037,7 @@ function upsertPlayerAccount(database, scopePlayerId, scopePlayer, mapping, opti
          mapping_sources_json = ?,
          mapping_confidence = ?,
          mapping_note = ?,
-         batch_size = ?,
-         collection_source = ?,
-         api_endpoint = ?
+         dotabuff_player_url = ?
      WHERE account_id = ?`,
     [
       scopePlayerId,
@@ -953,15 +1045,13 @@ function upsertPlayerAccount(database, scopePlayerId, scopePlayer, mapping, opti
       JSON.stringify(mapping.mapping_sources),
       mapping.mapping_confidence,
       mapping.mapping_note,
-      options.batchSize,
-      'opendota_player_matches',
-      apiEndpoint,
+      mapping.dotabuff_player_url,
       mapping.account_id,
     ],
   );
 }
 
-function insertPracticeMatches(database, scopePlayerId, scopePlayer, rows) {
+function insertPracticeMatches(database, scopePlayerId, scopePlayer, accountId, rows) {
   const collectedAt = new Date().toISOString();
 
   for (const row of rows) {
@@ -972,66 +1062,58 @@ function insertPracticeMatches(database, scopePlayerId, scopePlayer, rows) {
         account_id,
         canonical_handle,
         match_id,
-        hero_id,
         hero_name,
         match_datetime_utc,
-        start_time_unix,
-        lobby_type_id,
-        game_mode_id,
-        duration_seconds,
-        player_slot,
-        radiant_win,
+        match_date_text,
         result_label,
-        kills,
-        deaths,
-        assists,
-        source_provider,
-        source_payload_json,
+        match_type_label,
+        game_mode_label,
+        history_page,
+        match_url,
+        player_history_url,
+        collection_source,
+        row_confidence,
         collected_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       ON CONFLICT(account_id, match_id) DO UPDATE SET
         scope_player_id = excluded.scope_player_id,
         canonical_handle = excluded.canonical_handle,
-        hero_id = excluded.hero_id,
         hero_name = excluded.hero_name,
         match_datetime_utc = excluded.match_datetime_utc,
-        start_time_unix = excluded.start_time_unix,
-        lobby_type_id = excluded.lobby_type_id,
-        game_mode_id = excluded.game_mode_id,
-        duration_seconds = excluded.duration_seconds,
-        player_slot = excluded.player_slot,
-        radiant_win = excluded.radiant_win,
+        match_date_text = excluded.match_date_text,
         result_label = excluded.result_label,
-        kills = excluded.kills,
-        deaths = excluded.deaths,
-        assists = excluded.assists,
-        source_provider = excluded.source_provider,
-        source_payload_json = excluded.source_payload_json,
+        match_type_label = excluded.match_type_label,
+        game_mode_label = excluded.game_mode_label,
+        history_page = excluded.history_page,
+        match_url = excluded.match_url,
+        player_history_url = excluded.player_history_url,
+        collection_source = excluded.collection_source,
+        row_confidence = excluded.row_confidence,
         collected_at = excluded.collected_at`,
       [
         scopePlayerId,
-        row.account_id,
+        accountId,
         scopePlayer.canonical_handle,
         row.match_id,
-        row.hero_id,
         row.hero_name,
         row.match_datetime_utc,
-        row.start_time_unix,
-        row.lobby_type_id,
-        row.game_mode_id,
-        row.duration_seconds,
-        row.player_slot,
-        row.radiant_win,
+        row.match_date_text,
         row.result_label,
-        row.kills,
-        row.deaths,
-        row.assists,
-        'opendota_player_matches',
-        row.source_payload_json,
+        row.match_type_label,
+        row.game_mode_label,
+        row.history_page,
+        row.match_url,
+        row.player_history_url,
+        row.collection_source,
+        row.row_confidence,
         collectedAt,
       ],
     );
   }
+}
+
+function shouldProcessAccount(collectionStatus) {
+  return !['collected', 'no_rows'].includes(collectionStatus);
 }
 
 function getAccountMatchCount(database, accountId) {
@@ -1049,27 +1131,23 @@ function updatePlayerAccountProgress(database, accountId, fields) {
     database,
     `UPDATE player_accounts
      SET collection_status = ?,
-         next_offset = ?,
-         requests_completed = ?,
+         next_history_page = ?,
+         last_page_number_known = ?,
+         history_pages_scanned = ?,
          matches_collected_count = ?,
-         last_api_match_id = ?,
-         last_match_datetime_utc = ?,
          last_attempted_at = ?,
          last_completed_at = ?,
-         collection_note = ?,
-         api_endpoint = ?
+         collection_note = ?
      WHERE account_id = ?`,
     [
       fields.collection_status,
-      fields.next_offset,
-      fields.requests_completed,
+      fields.next_history_page,
+      fields.last_page_number_known,
+      fields.history_pages_scanned,
       fields.matches_collected_count,
-      fields.last_api_match_id,
-      fields.last_match_datetime_utc,
       fields.last_attempted_at,
       fields.last_completed_at,
       fields.collection_note,
-      fields.api_endpoint,
       accountId,
     ],
   );
@@ -1106,7 +1184,7 @@ function refreshScopePlayerCollection(database, scopePlayerId) {
 
     if (statuses.has('error')) {
       collectionStatus = matchCount > 0 ? 'partial' : 'error';
-    } else if (statuses.has('rate_limited')) {
+    } else if (statuses.has('blocked')) {
       collectionStatus = matchCount > 0 ? 'partial' : 'blocked';
     } else if (statuses.has('pending')) {
       collectionStatus = matchCount > 0 ? 'partial' : 'pending';
@@ -1145,7 +1223,7 @@ function refreshAllScopePlayers(database) {
   }
 }
 
-function selectPlayersToProcess(database, maxPlayers, refreshComplete) {
+function selectPlayersToProcess(database, maxPlayers) {
   const accountRows = allSql(
     database,
     `SELECT
@@ -1154,11 +1232,10 @@ function selectPlayersToProcess(database, maxPlayers, refreshComplete) {
        sp.canonical_handle,
        pa.account_id,
        pa.collection_status,
-       pa.next_offset,
-       pa.requests_completed,
+       pa.next_history_page,
+       pa.last_page_number_known,
+       pa.history_pages_scanned,
        pa.matches_collected_count,
-       pa.last_api_match_id,
-       pa.last_match_datetime_utc,
        pa.collection_note
      FROM scope_players sp
      JOIN player_accounts pa ON pa.scope_player_id = sp.scope_player_id
@@ -1183,7 +1260,7 @@ function selectPlayersToProcess(database, maxPlayers, refreshComplete) {
   }
 
   const eligiblePlayers = [...byPlayerId.values()].filter((player) =>
-    player.accounts.some((account) => shouldProcessAccount(account.collection_status, refreshComplete)),
+    player.accounts.some((account) => shouldProcessAccount(account.collection_status)),
   );
 
   if (maxPlayers === null) {
@@ -1193,163 +1270,209 @@ function selectPlayersToProcess(database, maxPlayers, refreshComplete) {
   return eligiblePlayers.slice(0, maxPlayers);
 }
 
-async function collectAccount(database, scopePlayer, accountRow, heroMap, cutoffTimestamp, options) {
-  let currentOffset = Number(accountRow.next_offset || 0);
-
-  if (
-    currentOffset > 0 &&
-    shouldProcessAccount(accountRow.collection_status, options.refreshComplete) &&
-    !options.refreshComplete
-  ) {
-    currentOffset = Math.max(currentOffset - options.batchSize, 0);
-  }
-
-  let requestsCompleted = Number(accountRow.requests_completed || 0);
-  let lastApiMatchId = accountRow.last_api_match_id || null;
-  let lastMatchDatetimeUtc = accountRow.last_match_datetime_utc || null;
+async function collectAccountHistory(database, page, scopePlayer, accountRow, cutoffTimestamp, options, context) {
+  let currentPage = Number(accountRow.next_history_page || 1);
+  let historyPagesScanned = Number(accountRow.history_pages_scanned || 0);
+  let lastPageNumberKnown = Number(accountRow.last_page_number_known || 0) || null;
 
   console.log(
-    `[stage3] ${scopePlayer.canonical_handle} / ${accountRow.account_id}: start offset ${currentOffset}`,
+    `[stage3] ${scopePlayer.canonical_handle} / ${accountRow.account_id}: start page ${currentPage}`,
   );
 
   while (true) {
+    const historyUrl = buildDotabuffHistoryUrl(accountRow.account_id, currentPage);
     const attemptedAt = new Date().toISOString();
-    const fetchResult = await fetchOpenDotaMatchesPage(accountRow.account_id, currentOffset, options);
+    const inspection = await gotoAndInspect(page, historyUrl, options);
 
-    if (fetchResult.status !== 'ok') {
+    if (inspection.state === 'cloudflare_interstitial' || inspection.state === 'timeout') {
       const matchCount = getAccountMatchCount(database, accountRow.account_id);
+      const collectionStatus = matchCount > 0 ? 'partial' : 'blocked';
+      const note =
+        inspection.state === 'cloudflare_interstitial'
+          ? `Dotabuff returned a Cloudflare verification interstitial on history page ${currentPage} (title=${inspection.title || 'n/a'}, ray_id=${inspection.ray_id || 'n/a'})`
+          : `Dotabuff did not expose readable history content on page ${currentPage} within ${options.probeWaitMs}ms`;
 
       updatePlayerAccountProgress(database, accountRow.account_id, {
-        api_endpoint: fetchResult.request_url || buildOpenDotaMatchesUrl(
-          options.apiBaseUrl,
-          accountRow.account_id,
-          options.batchSize,
-          currentOffset,
-        ),
-        collection_note: fetchResult.note,
-        collection_status: fetchResult.status,
-        last_api_match_id: lastApiMatchId,
+        collection_status: collectionStatus,
+        next_history_page: currentPage,
+        last_page_number_known: lastPageNumberKnown,
+        history_pages_scanned: historyPagesScanned,
+        matches_collected_count: matchCount,
         last_attempted_at: attemptedAt,
         last_completed_at: null,
-        last_match_datetime_utc: lastMatchDatetimeUtc,
-        matches_collected_count: matchCount,
-        next_offset: currentOffset,
-        requests_completed: requestsCompleted,
+        collection_note: note,
       });
 
       return {
         account_id: accountRow.account_id,
-        collection_note: fetchResult.note,
-        collection_status: fetchResult.status,
+        collection_note: note,
+        collection_status: collectionStatus,
         match_rows_collected: matchCount,
       };
     }
 
-    requestsCompleted += 1;
+    if (inspection.state === 'missing' || inspection.state === 'empty') {
+      const matchCount = getAccountMatchCount(database, accountRow.account_id);
+      const finalStatus = matchCount > 0 ? 'collected' : 'no_rows';
+      const note =
+        inspection.state === 'empty'
+          ? currentPage === 1
+            ? 'Dotabuff reported no visible practice history rows for this account'
+            : `Dotabuff pagination ended at page ${currentPage - 1}`
+          : `Dotabuff history page was missing for this account at page ${currentPage}`;
 
-    const pageRows = transformOpenDotaRows(
-      scopePlayer,
-      accountRow.account_id,
-      fetchResult.rows,
-      heroMap,
-      cutoffTimestamp,
-    );
-
-    insertPracticeMatches(database, scopePlayer.scope_player_id, scopePlayer, pageRows);
-
-    if (fetchResult.rows.length > 0) {
-      const lastRow = fetchResult.rows[fetchResult.rows.length - 1];
-      lastApiMatchId = String(lastRow.match_id);
-      lastMatchDatetimeUtc = isoFromUnixSeconds(lastRow.start_time);
-    }
-
-    currentOffset += fetchResult.rows.length;
-    const matchCount = getAccountMatchCount(database, accountRow.account_id);
-    const hasMoreRows = fetchResult.rows.length === options.batchSize;
-
-    if (hasMoreRows) {
       updatePlayerAccountProgress(database, accountRow.account_id, {
-        api_endpoint: fetchResult.request_url,
-        collection_note: `Scanned ${currentOffset} OpenDota row(s) so far`,
-        collection_status: 'pending',
-        last_api_match_id: lastApiMatchId,
-        last_attempted_at: attemptedAt,
-        last_completed_at: null,
-        last_match_datetime_utc: lastMatchDatetimeUtc,
+        collection_status: finalStatus,
+        next_history_page: currentPage,
+        last_page_number_known: lastPageNumberKnown,
+        history_pages_scanned: historyPagesScanned,
         matches_collected_count: matchCount,
-        next_offset: currentOffset,
-        requests_completed: requestsCompleted,
+        last_attempted_at: attemptedAt,
+        last_completed_at: attemptedAt,
+        collection_note: note,
       });
 
-      if (options.requestDelayMs > 0) {
-        await sleep(options.requestDelayMs);
-      }
-
-      continue;
+      return {
+        account_id: accountRow.account_id,
+        collection_note: note,
+        collection_status: finalStatus,
+        match_rows_collected: matchCount,
+      };
     }
 
-    const finalStatus = matchCount > 0 ? 'collected' : 'no_rows';
-    const finalNote =
-      fetchResult.rows.length === 0 && currentOffset === 0
-        ? 'OpenDota returned no strict practice rows for this account'
-        : `Completed OpenDota pagination at offset ${currentOffset}`;
+    if (inspection.state !== 'table') {
+      const matchCount = getAccountMatchCount(database, accountRow.account_id);
+      const note = `Unexpected Dotabuff page state ${inspection.state} on history page ${currentPage}`;
+
+      updatePlayerAccountProgress(database, accountRow.account_id, {
+        collection_status: matchCount > 0 ? 'partial' : 'error',
+        next_history_page: currentPage,
+        last_page_number_known: lastPageNumberKnown,
+        history_pages_scanned: historyPagesScanned,
+        matches_collected_count: matchCount,
+        last_attempted_at: attemptedAt,
+        last_completed_at: null,
+        collection_note: note,
+      });
+
+      return {
+        account_id: accountRow.account_id,
+        collection_note: note,
+        collection_status: matchCount > 0 ? 'partial' : 'error',
+        match_rows_collected: matchCount,
+      };
+    }
+
+    historyPagesScanned += 1;
+    lastPageNumberKnown = await getLastPageNumber(page);
+    const extractedRows = await extractMatchRows(page, historyUrl, currentPage);
+    const strictRows = extractedRows.filter(
+      (row) => isStrictPracticeRow(row) && compareDateToCutoff(row, cutoffTimestamp),
+    );
+
+    insertPracticeMatches(
+      database,
+      scopePlayer.scope_player_id,
+      scopePlayer,
+      accountRow.account_id,
+      strictRows,
+    );
+    await persistCurrentState(context, options.statePath);
+
+    const matchCount = getAccountMatchCount(database, accountRow.account_id);
+
+    if (currentPage >= lastPageNumberKnown) {
+      updatePlayerAccountProgress(database, accountRow.account_id, {
+        collection_status: matchCount > 0 ? 'collected' : 'no_rows',
+        next_history_page: currentPage + 1,
+        last_page_number_known: lastPageNumberKnown,
+        history_pages_scanned: historyPagesScanned,
+        matches_collected_count: matchCount,
+        last_attempted_at: attemptedAt,
+        last_completed_at: attemptedAt,
+        collection_note:
+          matchCount > 0
+            ? `Collected strict Dotabuff rows through history page ${currentPage}`
+            : `Scanned ${historyPagesScanned} Dotabuff page(s) with no strict Practice + None rows`,
+      });
+
+      return {
+        account_id: accountRow.account_id,
+        collection_note:
+          matchCount > 0
+            ? `Collected strict Dotabuff rows through history page ${currentPage}`
+            : `Scanned ${historyPagesScanned} Dotabuff page(s) with no strict Practice + None rows`,
+        collection_status: matchCount > 0 ? 'collected' : 'no_rows',
+        match_rows_collected: matchCount,
+      };
+    }
+
+    currentPage += 1;
 
     updatePlayerAccountProgress(database, accountRow.account_id, {
-      api_endpoint: fetchResult.request_url,
-      collection_note: finalNote,
-      collection_status: finalStatus,
-      last_api_match_id: lastApiMatchId,
-      last_attempted_at: attemptedAt,
-      last_completed_at: attemptedAt,
-      last_match_datetime_utc: lastMatchDatetimeUtc,
+      collection_status: 'pending',
+      next_history_page: currentPage,
+      last_page_number_known: lastPageNumberKnown,
+      history_pages_scanned: historyPagesScanned,
       matches_collected_count: matchCount,
-      next_offset: currentOffset,
-      requests_completed: requestsCompleted,
+      last_attempted_at: attemptedAt,
+      last_completed_at: null,
+      collection_note: `Collected through Dotabuff history page ${currentPage - 1}; continuing`,
     });
 
-    return {
-      account_id: accountRow.account_id,
-      collection_note: finalNote,
-      collection_status: finalStatus,
-      match_rows_collected: matchCount,
-    };
+    if (options.pageDelayMs > 0) {
+      await page.waitForTimeout(options.pageDelayMs);
+    }
   }
 }
 
-async function collectScopePlayer(database, scopePlayer, heroMap, cutoffTimestamp, options) {
-  const accountRows = allSql(
-    database,
-    `SELECT
-       account_id,
-       collection_status,
-       next_offset,
-       requests_completed,
-       matches_collected_count,
-       last_api_match_id,
-       last_match_datetime_utc,
-       collection_note
-     FROM player_accounts
-     WHERE scope_player_id = ?
-     ORDER BY account_id`,
-    [scopePlayer.scope_player_id],
-  );
-  const processableAccounts = accountRows.filter((account) =>
-    shouldProcessAccount(account.collection_status, options.refreshComplete),
-  );
+async function collectScopePlayer(database, context, scopePlayer, cutoffTimestamp, options) {
+  const page = await context.newPage();
 
-  for (const accountRow of processableAccounts) {
-    await collectAccount(database, scopePlayer, accountRow, heroMap, cutoffTimestamp, options);
+  try {
+    const accountRows = allSql(
+      database,
+      `SELECT
+         account_id,
+         collection_status,
+         next_history_page,
+         last_page_number_known,
+         history_pages_scanned,
+         matches_collected_count,
+         collection_note
+       FROM player_accounts
+       WHERE scope_player_id = ?
+       ORDER BY account_id`,
+      [scopePlayer.scope_player_id],
+    );
+    const processableAccounts = accountRows.filter((account) =>
+      shouldProcessAccount(account.collection_status),
+    );
+
+    for (const accountRow of processableAccounts) {
+      await collectAccountHistory(
+        database,
+        page,
+        scopePlayer,
+        accountRow,
+        cutoffTimestamp,
+        options,
+        context,
+      );
+    }
+
+    const refreshed = refreshScopePlayerCollection(database, scopePlayer.scope_player_id);
+
+    return {
+      canonical_handle: scopePlayer.canonical_handle,
+      collection_note: refreshed.collection_note,
+      collection_status: refreshed.collection_status,
+      match_rows_collected: refreshed.matches_collected_count,
+      scope_player_id: scopePlayer.scope_player_id,
+    };
+  } finally {
+    await page.close();
   }
-
-  const refreshed = refreshScopePlayerCollection(database, scopePlayer.scope_player_id);
-
-  return {
-    canonical_handle: scopePlayer.canonical_handle,
-    collection_note: refreshed.collection_note,
-    collection_status: refreshed.collection_status,
-    match_rows_collected: refreshed.matches_collected_count,
-    scope_player_id: scopePlayer.scope_player_id,
-  };
 }
 
 function loadScopePlayerRecords(database) {
@@ -1364,7 +1487,42 @@ function loadScopePlayerRecords(database) {
   );
 }
 
-function buildSummary(database, options, runId, startedAt, completedAt, scopePlayers, d2scMappings, beforeRows, selectedPlayersCount, processedPlayersCount, heroMap) {
+function markSelectedPlayersBlocked(database, selectedScopePlayers, blockerReport) {
+  const blockerNote =
+    `Global Dotabuff source blocker: home=${blockerReport.home.state}` +
+    `${blockerReport.home.ray_id ? ` ray_id=${blockerReport.home.ray_id}` : ''}; ` +
+    `history=${blockerReport.history.state}` +
+    `${blockerReport.history.ray_id ? ` ray_id=${blockerReport.history.ray_id}` : ''}`;
+
+  for (const scopePlayer of selectedScopePlayers) {
+    const accountRows = allSql(
+      database,
+      `SELECT account_id, history_pages_scanned, last_page_number_known
+       FROM player_accounts
+       WHERE scope_player_id = ?`,
+      [scopePlayer.scope_player_id],
+    );
+
+    for (const accountRow of accountRows) {
+      const matchCount = getAccountMatchCount(database, accountRow.account_id);
+
+      updatePlayerAccountProgress(database, accountRow.account_id, {
+        collection_status: matchCount > 0 ? 'partial' : 'blocked',
+        next_history_page: 1,
+        last_page_number_known: accountRow.last_page_number_known || null,
+        history_pages_scanned: Number(accountRow.history_pages_scanned || 0),
+        matches_collected_count: matchCount,
+        last_attempted_at: new Date().toISOString(),
+        last_completed_at: null,
+        collection_note: blockerNote,
+      });
+    }
+
+    refreshScopePlayerCollection(database, scopePlayer.scope_player_id);
+  }
+}
+
+function buildSummary(database, options, runId, startedAt, completedAt, scopePlayers, d2scMappings, selectedPlayersCount, processedPlayersCount, blockerReport) {
   const aggregateRows = getSql(
     database,
     `SELECT
@@ -1390,28 +1548,38 @@ function buildSummary(database, options, runId, startedAt, completedAt, scopePla
      ORDER BY matches_collected_count DESC, canonical_handle COLLATE NOCASE
      LIMIT 25`,
   );
-  const rowsAfter = Number(aggregateRows?.practice_match_rows || 0);
+  const practiceRows = Number(aggregateRows?.practice_match_rows || 0);
+  const datasetStatus = practiceRows > 0
+    ? 'dotabuff_derived'
+    : blockerReport
+      ? 'blocked_noncanonical_wip'
+      : 'dotabuff_no_rows';
 
   return {
     generated_at: completedAt,
     started_at: startedAt,
     run_id: runId,
-    source_provider: 'opendota_player_matches',
+    source_provider: 'dotabuff_player_history',
+    dataset_status: datasetStatus,
+    is_truly_dotabuff_derived: practiceRows > 0,
     input_files: {
       d2sc_readme: relativeToRepo(options.d2scReadmePath),
-      heroes_db: fs.existsSync(options.heroesDbPath) ? relativeToRepo(options.heroesDbPath) : null,
+      persistent_profile_dir: relativeToRepo(options.persistentProfileDir),
       player_inventory: relativeToRepo(options.playerInventoryPath),
+      state_path: relativeToRepo(options.statePath),
     },
     cutoff_datetime_utc: options.cutoffDatetimeUtc,
     config: {
-      batch_size: options.batchSize,
+      browser_engine: options.browserEngine,
       concurrency: options.concurrency,
+      headful: options.headful,
       max_players: options.maxPlayers,
-      refresh_complete: options.refreshComplete,
-      request_delay_ms: options.requestDelayMs,
+      page_delay_ms: options.pageDelayMs,
+      probe_wait_ms: options.probeWaitMs,
+      refresh_state: options.refreshState,
       reset: options.reset,
-      strict_game_mode_id: OPEN_DOTA_NONE_GAME_MODE,
-      strict_lobby_type_id: OPEN_DOTA_PRACTICE_LOBBY_TYPE,
+      strict_game_mode_label: 'None',
+      strict_lobby_type_label: 'Practice',
     },
     counts: {
       accounts_total: Number(accountsTotalRow?.count || 0),
@@ -1427,18 +1595,17 @@ function buildSummary(database, options, runId, startedAt, completedAt, scopePla
         player.account_mappings.some((mapping) => mapping.mapping_sources.includes('d2sc_verified_readme')),
       ).length,
       players_without_accounts: scopePlayers.filter((player) => player.account_mappings.length === 0).length,
-      practice_match_rows_added_this_run: rowsAfter - beforeRows,
-      practice_match_rows_collected: rowsAfter,
+      practice_match_rows_collected: practiceRows,
       scope_player_statuses: collectionStatuses,
     },
+    blocker_report: blockerReport || null,
     caveats: [
-      'The canonical stage-3 collector uses OpenDota player match history because live Dotabuff validation remained Cloudflare-blocked in this environment on 2026-03-08.',
-      'Strict practice filtering is enforced numerically: lobby_type = 1 (Practice) and game_mode = 0 (None).',
-      'Rows are stored per player account and match. The same match_id can appear multiple times across different players.',
+      'The stage is Dotabuff-only by design. No alternate provider is treated as equivalent for this dataset.',
+      'Rows are only inserted when Dotabuff history rows explicitly show Lobby Type = Practice and Game Mode = None.',
       'D2SC README mappings are only applied when alias matching resolves to exactly one stage-2 player.',
-      heroMap.size > 0
-        ? `Hero names were resolved locally from ${relativeToRepo(options.heroesDbPath)}.`
-        : 'Hero names fell back to `Hero <id>` because no local heroes table was available.',
+      practiceRows > 0
+        ? 'The current artifact contains true Dotabuff-derived rows.'
+        : 'The current artifact is non-canonical/WIP because Dotabuff access was blocked before row extraction.',
     ],
     top_players_by_rows: topPlayersByRows,
   };
@@ -1462,59 +1629,78 @@ async function main() {
       options.playerInventoryPath,
       options.d2scReadmePath,
     );
-    const heroMap = loadHeroMap(options.heroesDbPath);
     const seenAt = new Date().toISOString();
 
     for (const scopePlayer of scopePlayers) {
       const scopePlayerId = upsertScopePlayer(database, scopePlayer, seenAt);
 
       for (const mapping of scopePlayer.account_mappings) {
-        upsertPlayerAccount(database, scopePlayerId, scopePlayer, mapping, options);
+        upsertPlayerAccount(database, scopePlayerId, scopePlayer, mapping);
       }
     }
 
     refreshAllScopePlayers(database);
 
-    const beforeRows = Number(
-      getSql(database, 'SELECT COUNT(*) AS count FROM practice_matches')?.count || 0,
+    const playersToProcess = selectPlayersToProcess(database, options.maxPlayers);
+    const scopePlayerRecordsById = new Map(
+      loadScopePlayerRecords(database).map((row) => [row.scope_player_id, row]),
     );
-    const playersToProcess = selectPlayersToProcess(
-      database,
-      options.maxPlayers,
-      options.refreshComplete,
-    );
-    const scopePlayerRecordsById = new Map(loadScopePlayerRecords(database).map((row) => [row.scope_player_id, row]));
     const selectedScopePlayers = playersToProcess
       .map((row) => scopePlayerRecordsById.get(row.scope_player_id))
       .filter(Boolean);
-    const perPlayerSummaries = [];
+    let processedPlayersCount = 0;
+    let blockerReport = null;
 
     if (selectedScopePlayers.length > 0) {
-      let nextIndex = 0;
-      const workerCount = Math.min(options.concurrency, selectedScopePlayers.length);
-      const workers = Array.from({ length: workerCount }, async () => {
-        while (nextIndex < selectedScopePlayers.length) {
-          const scopePlayer = selectedScopePlayers[nextIndex];
-          nextIndex += 1;
-          const summary = await collectScopePlayer(
-            database,
-            scopePlayer,
-            heroMap,
-            cutoffTimestamp,
-            options,
-          );
-          perPlayerSummaries.push(summary);
-        }
-      });
+      const context = await createBrowserContext(options);
 
-      await Promise.all(workers);
+      try {
+        const sampleAccountRow = allSql(
+          database,
+          `SELECT account_id
+           FROM player_accounts
+           WHERE scope_player_id = ?
+           ORDER BY account_id
+           LIMIT 1`,
+          [selectedScopePlayers[0].scope_player_id],
+        )[0];
+
+        blockerReport = await probeDotabuffAccess(
+          context,
+          sampleAccountRow.account_id,
+          options,
+        );
+
+        if (blockerReport.blocked) {
+          markSelectedPlayersBlocked(database, selectedScopePlayers, blockerReport);
+        } else {
+          let nextIndex = 0;
+          const workerCount = Math.min(options.concurrency, selectedScopePlayers.length);
+          const workers = Array.from({ length: workerCount }, async () => {
+            while (nextIndex < selectedScopePlayers.length) {
+              const scopePlayer = selectedScopePlayers[nextIndex];
+              nextIndex += 1;
+              await collectScopePlayer(
+                database,
+                context,
+                scopePlayer,
+                cutoffTimestamp,
+                options,
+              );
+              processedPlayersCount += 1;
+            }
+          });
+
+          await Promise.all(workers);
+        }
+      } finally {
+        await context.close();
+      }
     }
 
     refreshAllScopePlayers(database);
 
     const completedAt = new Date().toISOString();
-    completeCollectionRun(database, runId, completedAt);
-
     const summary = buildSummary(
       database,
       options,
@@ -1523,19 +1709,20 @@ async function main() {
       completedAt,
       scopePlayers,
       d2scMappings,
-      beforeRows,
       selectedScopePlayers.length,
-      perPlayerSummaries.length,
-      heroMap,
+      processedPlayersCount,
+      blockerReport,
     );
 
+    completeCollectionRun(database, runId, summary.dataset_status, blockerReport);
     fs.writeFileSync(options.summaryPath, `${JSON.stringify(summary, null, 2)}\n`);
 
+    console.log(`[stage3] dataset status: ${summary.dataset_status}`);
     console.log(`[stage3] scope players: ${summary.counts.players_total}`);
     console.log(`[stage3] player accounts: ${summary.counts.accounts_total}`);
+    console.log(`[stage3] players selected this run: ${summary.counts.players_selected_this_run}`);
     console.log(`[stage3] players processed this run: ${summary.counts.players_processed_this_run}`);
     console.log(`[stage3] practice match rows: ${summary.counts.practice_match_rows_collected}`);
-    console.log(`[stage3] rows added this run: ${summary.counts.practice_match_rows_added_this_run}`);
     console.log(`[stage3] summary: ${options.summaryPath}`);
   } finally {
     database.close();
