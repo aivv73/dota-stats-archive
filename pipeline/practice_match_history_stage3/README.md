@@ -45,42 +45,42 @@ September 2012 is usually wasted crawl time. You can still override this with
 
 ## Current status
 
-As of **2026-03-08**, the committed artifact is **not canonical match data**.
-The collector is Dotabuff-only, but the current environment is blocked by a
-Cloudflare verification interstitial before Dotabuff history rows become
-readable.
+As of **2026-03-08**, the old committed artifact is still a **WIP / blocker**
+snapshot, but the local collector logic has since been corrected and validated
+against real Dotabuff rows.
 
-The committed SQLite DB and summary are therefore honest **WIP / blocker**
-artifacts:
+What changed in the working collector:
 
-- scope and account provenance are present
-- per-player/account collection status is present
-- `practice_matches` is empty unless Dotabuff rows were actually read
+- discovery now uses the ordinary player `matches` history, **not**
+  `lobby_type=custom`
+- deep-page traversal now runs **from the end backward** toward the cutoff
+- strict label matching accepts both English and Russian Dotabuff labels
+- match-page verification is still used when readable, but strict history-row
+  labels are now admissible when a detail-page follow-up is blocked
+- obviously broken timestamps (for example `1970-01-01...`) are pruned
 
-## 2026-03-08 blocker evidence
+A targeted smoke run on **Dendi / 70388657** successfully recovered strict rows,
+including the known-good reference match **`1185505`** with Dotabuff-visible
+labels equivalent to `Practice + None`.
 
-The following practical Dotabuff paths were tested and all failed with the same
-Cloudflare verification gate:
+So the important distinction is:
 
-- Raw HTTP with all saved cookies from
-  `pipeline/practice_match_history_stage3/cache/playwright/dotabuff-storage-state.json`
-  - HTTP `403`
-  - response title/body: `Just a moment...`
-- Chromium headless with repo storage state
-  - Ray ID: `9d909696df7edbab`
-- Chromium persistent/headful under `xvfb-run`
-  - Ray ID: `9d9096bb0fd6dc64`
-- Firefox persistent/headful under `xvfb-run`
-  - Ray ID: `9d9096f2dc190686`
-- WebKit persistent/headful under `xvfb-run`
-  - Ray ID: `9d9098b5bdbca01e`
-- Chromium warmup flow (`https://www.dotabuff.com/` first, then player history)
-  - home Ray ID: `9d9097e5ece0dcae`
-  - history Ray ID: `9d9098446c24dcae`
+- the **committed output files may still lag** behind the latest collector logic
+- the **current local collector path is now known-good in principle**
 
-The blocker is therefore not “missing Playwright”; it is a source-side
-Cloudflare challenge that persists across the available local browser-state
-reuse paths.
+## Earlier blocker evidence (historical)
+
+Before the reverse-scan + ordinary-history rewrite, several earlier approaches
+were correctly rejected as non-canonical / blocked. In particular:
+
+- raw HTTP + cookies still hit Cloudflare (`403`, `Just a moment...`)
+- `www.dotabuff.com` and `lobby_type=custom` produced misleading or blocked
+  paths for the dataset we actually want
+- naive forward scans from page 1 were too slow and delayed access to the
+  relevant 2011-2012 rows
+
+Those results are still useful as historical debugging evidence, but they are
+**not** the current recommended collection strategy.
 
 ## Guaranteed fields
 

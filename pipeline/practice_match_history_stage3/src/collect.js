@@ -561,6 +561,17 @@ function initializeDatabase(dbPath, reset = false) {
   return database;
 }
 
+function pruneInvalidPracticeMatches(database) {
+  runSql(
+    database,
+    `DELETE FROM practice_matches
+     WHERE match_datetime_utc IS NULL
+        OR match_datetime_utc = ''
+        OR match_datetime_utc < ?`,
+    [MIN_REASONABLE_MATCH_DATETIME_UTC],
+  );
+}
+
 function stripStorageStateCookies(cookies) {
   return (cookies || []).map((cookie) => ({
     name: cookie.name,
@@ -1963,6 +1974,7 @@ async function main() {
       }
     }
 
+    pruneInvalidPracticeMatches(database);
     refreshAllScopePlayers(database);
 
     const playersToProcess = selectPlayersToProcess(database, options.maxPlayers);
