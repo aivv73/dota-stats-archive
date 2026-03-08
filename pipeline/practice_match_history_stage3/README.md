@@ -1,7 +1,7 @@
 # Practice Match History Stage 3
 
-This stage builds a first unified local database of **practice-match history
-rows** for the cleaned stage-2 player inventory.
+This stage builds a unified local SQLite database of **strict practice match
+history** for the cleaned stage-2 player inventory.
 
 ## Scope
 
@@ -9,20 +9,31 @@ rows** for the cleaned stage-2 player inventory.
   `pipeline/liquipedia_pre2014_ticketless_players/data/pre2014_ticketless_players.json`
 - Auxiliary account-mapping source:
   `tournaments/d2sc/README.md`
+- Local hero-name source:
+  `dota_archive.db` (`heroes` table), when available
 
-The stage keeps the current business rules in mind:
+The player scope still inherits the cleaned stage-2 rules:
 
-- `The International 2011` and `Dota2 Star Championship` are supplemental-only
-  player sources in the upstream player inventory.
-- The collector only uses those supplemental observations when the player also
-  appears in other target tournaments.
-- The broader `<= 2014` tournament-scope expansion is still upstream work in
-  the tournament/player stages, so this database reflects the **current**
-  cleaned stage-2 inventory rather than a future-expanded scope.
+- `The International 2011` and `Dota2 Star Championship` remain
+  supplemental-only upstream player sources.
+- D2SC verified IDs are used here only as **auxiliary account enrichment** for
+  already-scoped players, and only when alias matching resolves to exactly one
+  stage-2 player.
 
-## What gets collected
+## Strict match definition
 
-Guaranteed per practice-match row:
+Stage 3 only stores rows that satisfy both of these numeric filters:
+
+- `lobby_type = 1` (`Practice`)
+- `game_mode = 0` (`None`)
+
+The canonical collector now uses the OpenDota player matches API because a live
+validation run on **2026-03-08** showed Dotabuff still serving a Cloudflare
+interstitial to automated Playwright sessions in this environment.
+
+## Guaranteed fields
+
+Every row in `practice_matches` guarantees at least:
 
 - `account_id`
 - `canonical_handle`
@@ -30,58 +41,52 @@ Guaranteed per practice-match row:
 - `hero_name`
 - `match_datetime_utc`
 
-Also stored for provenance and practical extension:
+The stage also stores:
 
-- `match_date_text`
+- `hero_id`
+- `start_time_unix`
+- `lobby_type_id`
+- `game_mode_id`
+- `duration_seconds`
+- `player_slot`
+- `radiant_win`
 - `result_label`
-- `match_type_label`
-- `game_mode_label`
-- `history_page`
-- `match_url`
-- `player_history_url`
-- `collection_source`
-- `row_confidence`
+- `kills`
+- `deaths`
+- `assists`
+- `source_provider`
+- `source_payload_json`
 - `collected_at`
 
 ## Database schema
 
-The SQLite database intentionally stays small:
+Canonical SQLite output:
 
 - `collection_runs`
-  - one row describing the run inputs and cutoff
+  - one row per collector execution
 - `scope_players`
-  - one row per stage-2 player in scope, including mapping/collection status
+  - one row per stage-2 player in scope, with mapping and collection status
 - `player_accounts`
-  - verified Dotabuff-processable accounts per scope player
+  - one row per processable account, with resumable pagination state
 - `practice_matches`
   - one row per `account_id` + `match_id`
 
-This is meant to be extended later with fields such as lobby type, side, team,
-duration, and cross-player match grouping.
+## Incremental / restartable behavior
 
-## Collection method
-
-- Dotabuff source:
-  `https://www.dotabuff.com/players/<account_id>/matches?enhance=overview&lobby_type=practice`
-- Playwright is used instead of raw HTTP because Dotabuff is Cloudflare-blocked
-  for direct scraping.
-- The current first pass collects the **first accessible practice-history page**
-  per resolved account and filters rows to `<= 2014-12-31T23:59:59Z`.
-- If Dotabuff reports more than one history page, the stage records that as a
-  **partial / limited** result rather than pretending deeper pages were
-  accessible. In this environment, page-2+ history views are currently
-  Cloudflare-blocked for automated collection.
-- If Dotabuff times out before even page 1 becomes readable, the scope player
-  is marked `blocked` rather than `error`, because that outcome is a source
-  access problem, not a parsing success claim.
-- D2SC verified mappings are applied only when they point to a **single**
-  stage-2 player after conservative alias matching.
+- The database is **not** rebuilt on every run.
+- Account progress is stored in `player_accounts.next_offset`.
+- If a run stops mid-account, the next run resumes with a one-page overlap and
+  relies on `UNIQUE(account_id, match_id)` to de-duplicate safely.
+- `--max-players` only limits the **processable** player subset, not the raw
+  unresolved head of the stage-2 inventory.
+- `--refresh-complete` forces already completed accounts to be re-read.
+- `--reset` recreates the stage-3 schema from scratch.
 
 ## Outputs
 
 - SQLite database:
   `pipeline/practice_match_history_stage3/data/practice_match_history_stage3.db`
-- JSON run summary:
+- JSON summary:
   `pipeline/practice_match_history_stage3/data/practice_match_history_stage3_summary.json`
 
 ## Run
@@ -92,13 +97,26 @@ From the repository root:
 npm run stage3:practice-match-history
 ```
 
+Useful variants:
+
+```bash
+npm run stage3:practice-match-history -- --max-players 25
+npm run stage3:practice-match-history -- --refresh-complete
+npm run stage3:practice-match-history -- --reset
+```
+
 Optional flags:
 
-- `--concurrency 10`
+- `--api-base-url https://api.opendota.com/api`
+- `--batch-size 100`
+- `--concurrency 4`
+- `--cutoff-datetime 2014-12-31T23:59:59Z`
 - `--db /custom/path/practice_match_history_stage3.db`
 - `--summary /custom/path/practice_match_history_stage3_summary.json`
 - `--player-inventory /custom/path/pre2014_ticketless_players.json`
 - `--d2sc-readme /custom/path/d2sc/README.md`
-- `--cutoff-datetime 2014-12-31T23:59:59Z`
+- `--heroes-db /custom/path/dota_archive.db`
 - `--max-players 25`
-- `--refresh-state`
+- `--request-delay-ms 250`
+- `--refresh-complete`
+- `--reset`

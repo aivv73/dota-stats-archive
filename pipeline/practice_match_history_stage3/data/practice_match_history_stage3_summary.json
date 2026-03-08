@@ -1,37 +1,169 @@
 {
-  "generated_at": "2026-03-07T23:16:40.777Z",
-  "run_id": "9db7acdf-d742-4a3e-8738-080740fa26b4",
+  "generated_at": "2026-03-08T08:33:29.744Z",
+  "started_at": "2026-03-08T08:32:49.080Z",
+  "run_id": "1751593a-1bff-462b-903b-321046523b53",
+  "source_provider": "opendota_player_matches",
   "input_files": {
     "d2sc_readme": "tournaments/d2sc/README.md",
+    "heroes_db": "dota_archive.db",
     "player_inventory": "pipeline/liquipedia_pre2014_ticketless_players/data/pre2014_ticketless_players.json"
   },
   "cutoff_datetime_utc": "2014-12-31T23:59:59Z",
+  "config": {
+    "batch_size": 100,
+    "concurrency": 1,
+    "max_players": null,
+    "refresh_complete": false,
+    "request_delay_ms": 750,
+    "reset": false,
+    "strict_game_mode_id": 0,
+    "strict_lobby_type_id": 1
+  },
   "counts": {
+    "accounts_total": 147,
+    "account_statuses": [
+      {
+        "collection_status": "no_rows",
+        "count": 84
+      },
+      {
+        "collection_status": "collected",
+        "count": 63
+      }
+    ],
     "d2sc_verified_mappings_loaded": 54,
+    "distinct_accounts_collected": 63,
+    "distinct_match_ids_collected": 844,
+    "players_processed_this_run": 16,
+    "players_selected_this_run": 16,
     "players_total": 276,
     "players_with_accounts": 144,
-    "players_without_accounts": 132,
     "players_with_d2sc_auxiliary_accounts": 24,
-    "collection_statuses": [
-      {
-        "collection_status": "blocked",
-        "count": 144
-      },
+    "players_without_accounts": 132,
+    "practice_match_rows_added_this_run": 372,
+    "practice_match_rows_collected": 2474,
+    "scope_player_statuses": [
       {
         "collection_status": "unresolved",
         "count": 132
+      },
+      {
+        "collection_status": "no_rows",
+        "count": 81
+      },
+      {
+        "collection_status": "collected",
+        "count": 63
       }
-    ],
-    "distinct_accounts_collected": 0,
-    "distinct_match_ids_collected": 0,
-    "practice_match_rows_collected": 0
+    ]
   },
   "caveats": [
-    "Dotabuff history pages are collected through Playwright because direct HTTP requests are Cloudflare-blocked.",
-    "This committed first-pass run completed player/account scope resolution but collected 0 practice rows: the resolved-account set was effectively blocked from readable Dotabuff history access in this environment.",
-    "The current step-3 scope inherits the existing cleaned stage-2 player inventory. The broader <=2014 tournament-scope expansion still has to happen upstream in the tournament/player stages.",
-    "Only players with explicit stage-2 account IDs or uniquely matched D2SC verified account IDs are processable in this first pass.",
-    "The SQLite artifact is still useful as a unified scope/account provenance database and retry point for later live collection passes."
+    "The canonical stage-3 collector uses OpenDota player match history because live Dotabuff validation remained Cloudflare-blocked in this environment on 2026-03-08.",
+    "Strict practice filtering is enforced numerically: lobby_type = 1 (Practice) and game_mode = 0 (None).",
+    "Rows are stored per player account and match. The same match_id can appear multiple times across different players.",
+    "D2SC README mappings are only applied when alias matching resolves to exactly one stage-2 player.",
+    "Hero names were resolved locally from dota_archive.db."
   ],
-  "top_players_by_rows": []
+  "top_players_by_rows": [
+    {
+      "canonical_handle": "ComeWithMe",
+      "matches_collected_count": 98
+    },
+    {
+      "canonical_handle": "Dendi",
+      "matches_collected_count": 97
+    },
+    {
+      "canonical_handle": "Puppey",
+      "matches_collected_count": 92
+    },
+    {
+      "canonical_handle": "Funn1k",
+      "matches_collected_count": 91
+    },
+    {
+      "canonical_handle": "XBOCT",
+      "matches_collected_count": 84
+    },
+    {
+      "canonical_handle": "Maelk",
+      "matches_collected_count": 83
+    },
+    {
+      "canonical_handle": "Jeyo",
+      "matches_collected_count": 81
+    },
+    {
+      "canonical_handle": "KuroKy",
+      "matches_collected_count": 75
+    },
+    {
+      "canonical_handle": "ChuaN",
+      "matches_collected_count": 69
+    },
+    {
+      "canonical_handle": "Sockshka",
+      "matches_collected_count": 66
+    },
+    {
+      "canonical_handle": "Smile",
+      "matches_collected_count": 65
+    },
+    {
+      "canonical_handle": "Akke",
+      "matches_collected_count": 64
+    },
+    {
+      "canonical_handle": "FLUFFNSTUFF",
+      "matches_collected_count": 63
+    },
+    {
+      "canonical_handle": "Ceb",
+      "matches_collected_count": 61
+    },
+    {
+      "canonical_handle": "Wagamama",
+      "matches_collected_count": 60
+    },
+    {
+      "canonical_handle": "Waytosexy",
+      "matches_collected_count": 60
+    },
+    {
+      "canonical_handle": "ixmike88",
+      "matches_collected_count": 59
+    },
+    {
+      "canonical_handle": "TC",
+      "matches_collected_count": 59
+    },
+    {
+      "canonical_handle": "Sneyking",
+      "matches_collected_count": 58
+    },
+    {
+      "canonical_handle": "Reesion",
+      "matches_collected_count": 56
+    },
+    {
+      "canonical_handle": "Awoke",
+      "matches_collected_count": 55
+    },
+    {
+      "canonical_handle": "syndereN",
+      "matches_collected_count": 50
+    },
+    {
+      "canonical_handle": "Godot",
+      "matches_collected_count": 49
+    },
+    {
+      "canonical_handle": "shatan",
+      "matches_collected_count": 48
+    },
+    {
+      "canonical_handle": "LaNm",
+      "matches_collected_count": 47
+    }
+  ]
 }
