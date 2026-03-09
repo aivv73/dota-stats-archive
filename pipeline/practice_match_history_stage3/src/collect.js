@@ -806,6 +806,10 @@ async function fetchHistoryPageFresh(historyUrl, historyPage, options) {
 
 
 async function persistCurrentState(context, statePath) {
+  if (!context || !statePath) {
+    return;
+  }
+
   fs.mkdirSync(path.dirname(statePath), { recursive: true });
   await context.storageState({ path: statePath });
 }
@@ -1658,19 +1662,9 @@ async function collectAccountHistory(database, page, scopePlayer, accountRow, cu
   if (!lastPageNumberKnown) {
     const bootstrapUrl = buildDotabuffHistoryUrl(accountRow.account_id, 1);
     const attemptedAt = new Date().toISOString();
-    let bootstrapInspection = await gotoAndInspect(page, bootstrapUrl, options);
-    let bootstrapLastPage = null;
-
-    if (bootstrapInspection.state === 'cloudflare_interstitial' || bootstrapInspection.state === 'timeout') {
-      const freshFetch = await fetchHistoryPageFresh(bootstrapUrl, 1, options);
-
-      if (freshFetch.inspection.state === 'table') {
-        bootstrapInspection = freshFetch.inspection;
-        bootstrapLastPage = freshFetch.lastPageNumberKnown;
-      } else {
-        bootstrapInspection = freshFetch.inspection;
-      }
-    }
+    const bootstrapFetch = await fetchHistoryPageFresh(bootstrapUrl, 1, options);
+    const bootstrapInspection = bootstrapFetch.inspection;
+    const bootstrapLastPage = bootstrapFetch.lastPageNumberKnown;
 
     if (bootstrapInspection.state === 'cloudflare_interstitial' || bootstrapInspection.state === 'timeout') {
       const matchCount = getAccountMatchCount(database, accountRow.account_id);
@@ -1748,7 +1742,7 @@ async function collectAccountHistory(database, page, scopePlayer, accountRow, cu
       };
     }
 
-    lastPageNumberKnown = bootstrapLastPage || await getLastPageNumber(page) || 1;
+    lastPageNumberKnown = bootstrapLastPage || 1;
   }
 
   if (
@@ -1767,21 +1761,10 @@ async function collectAccountHistory(database, page, scopePlayer, accountRow, cu
   while (currentPage >= 1) {
     const historyUrl = buildDotabuffHistoryUrl(accountRow.account_id, currentPage);
     const attemptedAt = new Date().toISOString();
-    let inspection = await gotoAndInspect(page, historyUrl, options);
-    let extractedRowsFromFreshFetch = null;
-    let lastPageNumberFromFreshFetch = null;
-
-    if (inspection.state === 'cloudflare_interstitial' || inspection.state === 'timeout') {
-      const freshFetch = await fetchHistoryPageFresh(historyUrl, currentPage, options);
-
-      if (freshFetch.inspection.state === 'table') {
-        inspection = freshFetch.inspection;
-        extractedRowsFromFreshFetch = freshFetch.extractedRows;
-        lastPageNumberFromFreshFetch = freshFetch.lastPageNumberKnown;
-      } else {
-        inspection = freshFetch.inspection;
-      }
-    }
+    const freshFetch = await fetchHistoryPageFresh(historyUrl, currentPage, options);
+    const inspection = freshFetch.inspection;
+    const extractedRowsFromFreshFetch = freshFetch.extractedRows;
+    const lastPageNumberFromFreshFetch = freshFetch.lastPageNumberKnown;
 
     if (inspection.state === 'cloudflare_interstitial' || inspection.state === 'timeout') {
       const matchCount = getAccountMatchCount(database, accountRow.account_id);
@@ -1916,7 +1899,10 @@ async function collectAccountHistory(database, page, scopePlayer, accountRow, cu
       accountRow.account_id,
       strictRows,
     );
-    await persistCurrentState(context, options.statePath);
+
+    if (options.useState) {
+      await persistCurrentState(context, options.statePath);
+    }
 
     const matchCount = getAccountMatchCount(database, accountRow.account_id);
     const pageIncludesRowsNewerThanCutoff = extractedRows.some((row) => {
