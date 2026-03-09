@@ -1398,20 +1398,185 @@ function refreshAllScopePlayers(database) {
   }
 }
 
-function selectPlayersToProcess(database, maxPlayers) {
+function buildPriorityContext(database, scopePlayers) {
+  const metadataByScopePlayerKey = new Map(
+    scopePlayers.map((player) => [player.scope_player_key, player]),
+  );
+  const successfulRows = allSql(
+    database,
+    `SELECT scope_player_key
+     FROM scope_players
+     WHERE matches_collected_count > 0`,
+  );
+  const successfulTeams = new Set();
+  const successfulTournaments = new Set();
+
+  for (const row of successfulRows) {
+    const player = metadataByScopePlayerKey.get(row.scope_player_key);
+
+    if (!player) {
+      continue;
+    }
+
+    for (const tournamentTitle of player.primary_target_tournaments || []) {
+      const normalized = normalizeKey(tournamentTitle);
+
+      if (normalized) {
+        successfulTournaments.add(normalized);
+      }
+    }
+
+    for (const appearance of player.appearances || []) {
+      const normalizedTeam = normalizeKey(appearance.team_name);
+      const normalizedTournament = normalizeKey(appearance.tournament_title);
+
+      if (normalizedTeam) {
+        successfulTeams.add(normalizedTeam);
+      }
+
+      if (normalizedTournament) {
+        successfulTournaments.add(normalizedTournament);
+      }
+    }
+  }
+
+  return {
+    metadataByScopePlayerKey,
+    successfulTeams,
+    successfulTournaments,
+  };
+}
+
+function scorePlayerPriority(playerRecord, metadata, priorityContext) {
+  let score = 0;
+  const reasonParts = [];
+  const mappingSources = new Set(
+    playerRecord.accounts.flatMap((account) => account.mapping_sources || []),
+  );
+  const totalRowsAlreadyCollected = playerRecord.accounts.reduce(
+    (sum, account) => sum + Number(account.matches_collected_count || 0),
+    0,
+  );
+  const totalPagesScanned = playerRecord.accounts.reduce(
+    (sum, account) => sum + Number(account.history_pages_scanned || 0),
+    0,
+  );
+  const hasBlockedAccount = playerRecord.accounts.some((account) => account.collection_status === 'blocked');
+
+  if (totalRowsAlreadyCollected > 0) {
+    score += 10000 + totalRowsAlreadyCollected;
+    reasonParts.push(`resume_rows=${totalRowsAlreadyCollected}`);
+  }
+
+  if (totalPagesScanned > 0) {
+    score += 500 + Math.min(totalPagesScanned * 5, 250);
+    reasonParts.push(`resume_pages=${totalPagesScanned}`);
+  }
+
+  if (hasBlockedAccount) {
+    score -= 250;
+    reasonParts.push('blocked_penalty');
+  }
+
+  if (mappingSources.has('stage2_player_inventory')) {
+    score += 250;
+    reasonParts.push('stage2_id');
+  }
+
+  if (mappingSources.has('d2sc_verified_readme')) {
+    score += 125;
+    reasonParts.push('d2sc_id');
+  }
+
+  if (metadata) {
+    if (metadata.resolution_confidence === 'high') {
+      score += 220;
+      reasonParts.push('high_conf');
+    } else if (metadata.resolution_confidence === 'medium') {
+      score += 90;
+      reasonParts.push('medium_conf');
+    }
+
+    if (/resolved_with_player_page_and_ids/.test(metadata.resolution_status || '')) {
+      score += 120;
+      reasonParts.push('player_page_ids');
+    } else if (/resolved/.test(metadata.resolution_status || '')) {
+      score += 60;
+      reasonParts.push('resolved');
+    }
+
+    const primaryAppearances = Number(metadata.primary_target_appearances || 0);
+
+    if (primaryAppearances > 0) {
+      score += Math.min(primaryAppearances * 30, 240);
+      reasonParts.push(`primary_apps=${primaryAppearances}`);
+    }
+
+    const appearanceCount = Array.isArray(metadata.appearances) ? metadata.appearances.length : 0;
+
+    if (appearanceCount > 0) {
+      score += Math.min(appearanceCount * 8, 120);
+      reasonParts.push(`appearances=${appearanceCount}`);
+    }
+
+    const sharedTournaments = new Set();
+    const sharedTeams = new Set();
+
+    for (const tournamentTitle of metadata.primary_target_tournaments || []) {
+      const normalized = normalizeKey(tournamentTitle);
+
+      if (normalized && priorityContext.successfulTournaments.has(normalized)) {
+        sharedTournaments.add(normalized);
+      }
+    }
+
+    for (const appearance of metadata.appearances || []) {
+      const normalizedTeam = normalizeKey(appearance.team_name);
+      const normalizedTournament = normalizeKey(appearance.tournament_title);
+
+      if (normalizedTeam && priorityContext.successfulTeams.has(normalizedTeam)) {
+        sharedTeams.add(normalizedTeam);
+      }
+
+      if (normalizedTournament && priorityContext.successfulTournaments.has(normalizedTournament)) {
+        sharedTournaments.add(normalizedTournament);
+      }
+    }
+
+    if (sharedTournaments.size > 0) {
+      score += sharedTournaments.size * 140;
+      reasonParts.push(`shared_tournaments=${sharedTournaments.size}`);
+    }
+
+    if (sharedTeams.size > 0) {
+      score += sharedTeams.size * 180;
+      reasonParts.push(`shared_teams=${sharedTeams.size}`);
+    }
+  }
+
+  return {
+    reason: reasonParts.join(','),
+    score,
+  };
+}
+
+function selectPlayersToProcess(database, maxPlayers, scopePlayers) {
   const accountRows = allSql(
     database,
     `SELECT
        sp.scope_player_id,
        sp.scope_player_key,
        sp.canonical_handle,
+       sp.collection_status AS scope_collection_status,
+       sp.matches_collected_count AS scope_matches_collected_count,
        pa.account_id,
        pa.collection_status,
        pa.next_history_page,
        pa.last_page_number_known,
        pa.history_pages_scanned,
        pa.matches_collected_count,
-       pa.collection_note
+       pa.collection_note,
+       pa.mapping_sources_json
      FROM scope_players sp
      JOIN player_accounts pa ON pa.scope_player_id = sp.scope_player_id
      ORDER BY sp.canonical_handle COLLATE NOCASE, pa.account_id`,
@@ -1425,18 +1590,45 @@ function selectPlayersToProcess(database, maxPlayers) {
       playerRecord = {
         accounts: [],
         canonical_handle: row.canonical_handle,
+        scope_collection_status: row.scope_collection_status,
+        scope_matches_collected_count: Number(row.scope_matches_collected_count || 0),
         scope_player_id: row.scope_player_id,
         scope_player_key: row.scope_player_key,
       };
       byPlayerId.set(row.scope_player_id, playerRecord);
     }
 
-    playerRecord.accounts.push(row);
+    playerRecord.accounts.push({
+      ...row,
+      mapping_sources: JSON.parse(row.mapping_sources_json || '[]'),
+    });
   }
 
-  const eligiblePlayers = [...byPlayerId.values()].filter((player) =>
-    player.accounts.some((account) => shouldProcessAccount(account.collection_status)),
-  );
+  const priorityContext = buildPriorityContext(database, scopePlayers);
+  const eligiblePlayers = [...byPlayerId.values()]
+    .filter((player) =>
+      player.accounts.some((account) => shouldProcessAccount(account.collection_status)),
+    )
+    .map((player) => {
+      const metadata = priorityContext.metadataByScopePlayerKey.get(player.scope_player_key) || null;
+      const priority = scorePlayerPriority(player, metadata, priorityContext);
+      return {
+        ...player,
+        priority_reason: priority.reason,
+        priority_score: priority.score,
+      };
+    })
+    .sort((left, right) => {
+      if (right.priority_score !== left.priority_score) {
+        return right.priority_score - left.priority_score;
+      }
+
+      if (right.scope_matches_collected_count !== left.scope_matches_collected_count) {
+        return right.scope_matches_collected_count - left.scope_matches_collected_count;
+      }
+
+      return left.canonical_handle.localeCompare(right.canonical_handle);
+    });
 
   if (maxPlayers === null) {
     return eligiblePlayers;
@@ -1977,7 +2169,7 @@ async function main() {
     pruneInvalidPracticeMatches(database);
     refreshAllScopePlayers(database);
 
-    const playersToProcess = selectPlayersToProcess(database, options.maxPlayers);
+    const playersToProcess = selectPlayersToProcess(database, options.maxPlayers, scopePlayers);
     const scopePlayerRecordsById = new Map(
       loadScopePlayerRecords(database).map((row) => [row.scope_player_id, row]),
     );
