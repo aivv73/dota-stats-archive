@@ -3,7 +3,14 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
-const { DatabaseSync } = require('node:sqlite');
+let DatabaseSync;
+
+try {
+  ({ DatabaseSync } = require('node:sqlite'));
+} catch (error) {
+  ({ Database: DatabaseSync } = require('bun:sqlite'));
+}
+
 const { chromium, firefox, webkit } = require('playwright');
 
 const STAGE_ROOT = path.resolve(__dirname, '..');
