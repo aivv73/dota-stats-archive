@@ -43,6 +43,7 @@ const DEFAULT_USER_AGENT =
   'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36';
 const STRICT_LOBBY_TYPE_LABEL_KEYS = new Set(['practice', 'тренировочный']);
 const STRICT_GAME_MODE_LABEL_KEYS = new Set(['none', 'нет']);
+const DEFAULT_VERIFY_MATCH_PAGES = false;
 const SCHEMA_VERSION = 4;
 const matchVerificationCache = new Map();
 
@@ -65,6 +66,7 @@ function parseArguments(argv) {
     statePath: DEFAULT_STATE_PATH,
     summaryPath: DEFAULT_SUMMARY_PATH,
     useState: false,
+    verifyMatchPages: DEFAULT_VERIFY_MATCH_PAGES,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -135,6 +137,9 @@ function parseArguments(argv) {
         break;
       case '--use-state':
         options.useState = true;
+        break;
+      case '--verify-match-pages':
+        options.verifyMatchPages = true;
         break;
       default:
         throw new Error(`Unknown argument: ${token}`);
@@ -1866,6 +1871,18 @@ async function collectAccountHistory(database, page, scopePlayer, accountRow, cu
     const strictRows = [];
 
     for (const row of candidateRows) {
+      if (!options.verifyMatchPages) {
+        strictRows.push({
+          ...row,
+          collection_source: 'dotabuff_history_row_strict_labels',
+          game_mode_label: row.game_mode_label || null,
+          match_type_label: row.match_type_label || null,
+          match_url: row.match_url,
+          row_confidence: 'history_row_strict_labels',
+        });
+        continue;
+      }
+
       const verification = await inspectMatchDetail(page, row.match_id, options);
 
       if (verification.state === 'cloudflare_interstitial' || verification.state === 'timeout') {
@@ -2110,6 +2127,7 @@ function buildSummary(database, options, runId, startedAt, completedAt, scopePla
       reset: options.reset,
       strict_game_mode_label: 'None',
       strict_lobby_type_label: 'Practice',
+      verify_match_pages: options.verifyMatchPages,
     },
     counts: {
       accounts_total: Number(accountsTotalRow?.count || 0),
@@ -2132,7 +2150,9 @@ function buildSummary(database, options, runId, startedAt, completedAt, scopePla
     caveats: [
       'The stage is Dotabuff-only by design. No alternate provider is treated as equivalent for this dataset.',
       'Candidate rows come from the ordinary Dotabuff player matches history, not from lobby_type=custom.',
-      'Rows are discovered from strict Practice + None player-history labels; match-page verification is applied when readable, but history-row labels remain admissible if Dotabuff blocks a detail-page follow-up.',
+      options.verifyMatchPages
+        ? 'Rows are discovered from strict Practice + None player-history labels and are match-page verified when readable; history-row labels remain admissible if Dotabuff blocks a detail-page follow-up.'
+        : 'Rows are admitted directly from strict Practice + None player-history labels; per-match detail verification is disabled in this run to avoid Dotabuff detail-page bottlenecks.',
       'Strict label matching accepts both English and Russian Dotabuff labels (Practice/None and Тренировочный/Нет).',
       'D2SC README mappings are only applied when alias matching resolves to exactly one stage-2 player.',
       practiceRows > 0
