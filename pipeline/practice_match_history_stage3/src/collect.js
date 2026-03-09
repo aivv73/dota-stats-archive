@@ -1300,7 +1300,7 @@ function insertPracticeMatches(database, scopePlayerId, scopePlayer, accountId, 
 }
 
 function shouldProcessAccount(collectionStatus) {
-  return !['collected', 'no_rows'].includes(collectionStatus);
+  return !['collected', 'no_rows', 'skipped'].includes(collectionStatus);
 }
 
 function getAccountMatchCount(database, accountId) {
