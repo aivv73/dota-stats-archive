@@ -139,9 +139,12 @@ These should **not** be treated as solved yet from the current stage-3 DB alone.
 - status: **partial / unresolved**
 
 ### Lower Bracket Round 1: Dignitas vs Ariana Gaming (2-1)
-- current best cross-team candidate: `5400314`
-- current issue: only one strong cross-team candidate is visible right now
-- status: **weak / unresolved**
+- visible public cross-team candidates: `5337494`, `5400314`
+- current reading:
+  - `5337494` — probable Ariana win map
+  - `5400314` — probable Dignitas win map
+- current issue: the deciding third map is still not visible in public DB coverage
+- status: **partial / unresolved (2 visible maps, 1 missing)**
 
 ---
 

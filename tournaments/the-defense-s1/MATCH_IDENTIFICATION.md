@@ -793,13 +793,23 @@ Working status: **partial / unresolved**.
 
 ### Lower Bracket Round 1 — Dignitas vs Ariana Gaming — 2012-02-13
 
-Current best cross-team candidate:
+Visible public cross-team candidates:
 
+- `5337494`
 - `5400314`
+
+Current reading:
+
+- `5337494` (`2012-02-12T18:09:01Z`) is a strong visible map where the current
+  DB rows favor **Ariana Gaming**
+- `5400314` (`2012-02-13T20:13:09Z`) is a strong visible map where the current
+  DB rows favor **Dignitas**
 
 Current issue:
 
-- only one strong cross-team candidate is currently visible in the DB
-- that is not enough to confidently map a full best-of-3 series
+- this gives a visible public `1:1` split, which is consistent with the known
+  best-of-3 shape
+- but the deciding third map is still not visible in the current public DB
+  coverage
 
-Working status: **weak / unresolved**.
+Working status: **partial / unresolved (2 visible maps, 1 missing)**.
