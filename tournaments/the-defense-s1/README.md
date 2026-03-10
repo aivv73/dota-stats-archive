@@ -29,6 +29,22 @@ stage-3 practice-match DB evidence only.
 - **mousesports** *(aka mouz)*
 - **Western Wolves** *(Team Shakira lineage)*
 
+**Liquipedia roster-lineage notes used for this tournament**:
+1. **Fail Micro** renamed to **roots** in December 2011.
+2. **New French Order** renamed to **Team Shakira** in December 2011.
+3. The players of **The Elder Gods** left the organization and continued as **Poor Happy Guys** in December 2011.
+4. **Mortal Teamwork** signed **Wild Honey Badgers** on December 5, 2011.
+5. **mousesports** signed **EBIN** on December 5, 2011.
+6. **LowLandLions** signed **Gods of DOTA** on December 15, 2011.
+7. **It's Gosu eSports** signed **Team EZ Style** on December 19, 2011.
+8. **Team Infused** signed **EmoCore** on December 21, 2011.
+9. **Western Wolves** signed **Team Shakira** on December 21, 2011.
+10. **Team Dignitas** signed **Poor Happy Guys** on December 23, 2011.
+11. **Absolute Legends** signed **Natural 9** on January 21, 2012.
+12. **SK Gaming** dropped their squad, which continued as **Team DD**, on January 30, 2012.
+13. **Ariana Gaming** signed **PANZER** on February 8, 2012.
+14. **Quantic Gaming** signed **Team DD** on February 21, 2012.
+
 ## 🏆 Tournament Overview
 
 The Defense Season 1 was one of the largest early Dota 2 online tournaments,
