@@ -381,6 +381,11 @@ Main result of the re-check:
 - **Muga_Riptide**: `86739254`
 - **Dutch_Freak**: `86767617`
 
+**MUFC**
+- **Net**: `89249333`
+- **Ling**: `89268488`
+- **kYxY**: `91644707`
+
 **Dignitas**
 - **freezer**: `39226957`
 - **ComeWithMe**: `85375207`
