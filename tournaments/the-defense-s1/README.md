@@ -243,6 +243,13 @@ not a fully finalized group-stage reconstruction.
 - **moods** *(mds)*: `88282736`
 - **Kebap** *(RainerZufall)*: `34552614`
 
+**Mortal Teamwork**
+- **Grunt**: `64048945`
+- **syndereN**: `4281729`
+- **Pepp3** *(pepp)*: `17374868`
+- **Kuronity**: `236517`
+- **Matrim** *(Pirate#2)*: `75555146`
+
 **mousesports**
 - **SingSing**: `19757254`
 - **SexyBamboe**: `20321748`
