@@ -111,6 +111,127 @@ hero evidence.
 
 ---
 
+## Upper Bracket Final (EG vs Na`Vi)
+
+### Series metadata
+
+- **Series:** Evil Geniuses vs Natus Vincere
+- **Date:** 2012-02-26 19:00 CET
+- **Liquipedia score:** EG 0:2 Na`Vi
+- **Source note:** Liquipedia bracket confirms the series date and score, but
+  does **not** expose direct `matchid` anchors here, so this section relies on
+  stage-3 DB clustering and timing.
+
+### Strong DB shortlist on 2012-02-26
+
+The strongest same-day candidates around the scheduled match time are:
+
+- `6311827`
+- `6313249`
+- `6316051`
+
+The core recurring player set is:
+
+- Na`Vi-side anchors: `Dendi`, `Puppey`, `XBOCT`
+- EG-side anchors: `DeMoN`, `Fear`, `Maelk`
+- additional EG-side support anchors when present: `Lacoste`, `MISERY`
+
+This already forms a clean two-map progression with one likely false-start /
+partial duplicate candidate before the second played map.
+
+### Game 1
+
+- **leading candidate:** `6311827`
+- **match_datetime_utc:** `2012-02-26T18:47:12Z`
+- **verdict:** `probable` (very high)
+
+Observed DB-side heroes:
+
+- Na`Vi-side cluster
+  - Dendi — Invoker
+  - Puppey — Earthshaker
+  - XBOCT — Vengeful Spirit
+- EG-side cluster
+  - DeMoN — Beastmaster
+  - Fear — Lifestealer
+  - Lacoste — Windranger
+  - MISERY — Mirana
+  - Maelk — Chen
+
+Why this is the lead:
+
+- timestamp lands cleanly before the scheduled 19:00 CET series start
+- strong two-sided roster overlap
+- full hero profile is coherent for a real played map
+- clear result split in the DB rows: Na`Vi-side rows show wins, EG-side rows
+  show losses
+
+### Game 2
+
+- **leading candidate:** `6316051`
+- **match_datetime_utc:** `2012-02-26T19:54:25Z`
+- **verdict:** `probable` (very high)
+
+Observed DB-side heroes:
+
+- Na`Vi-side cluster
+  - Dendi — Sand King
+  - Puppey — Chen
+  - XBOCT — Night Stalker
+- EG-side cluster
+  - DeMoN — Shadow Shaman
+  - Fear — Wraith King
+  - Lacoste — Venomancer
+  - MISERY — Ancient Apparition
+  - Maelk — Enchantress
+
+Why this is the lead:
+
+- timing fits a second map after `6311827`
+- strong two-sided roster overlap
+- full hero profile is coherent for a real played map
+- same directional result split again favors Na`Vi over EG, matching the known
+  2:0 series score
+
+### Non-primary nearby candidate
+
+#### `6313249`
+
+- **verdict:** `possible` / `reject as primary played map`
+- **reason:** likely false-start, recreated lobby, or partial duplicate before
+  the real Game 2
+
+Evidence:
+
+- it occurs only about **21 minutes** after `6311827`, which is too tight for a
+  clean first-map finish plus draft/loading plus full second map
+- its overlapping hero assignments are **identical** to `6316051` for the
+  shared players:
+  - DeMoN — Shadow Shaman
+  - Dendi — Sand King
+  - Fear — Wraith King
+  - Maelk — Enchantress
+  - Puppey — Chen
+- compared with `6316051`, it is only a **partial** cluster and lacks the more
+  complete two-sided player coverage
+
+That makes `6313249` much more consistent with an aborted / restarted / partial
+capture of the eventual second map than with a distinct played map.
+
+### Series verdict
+
+- **Upper Bracket Final verdict:** `probable` (very high)
+- **Map-level state:**
+  - Game 1 → `6311827` — `probable` (very high)
+  - Game 2 → `6316051` — `probable` (very high)
+- **Non-primary nearby candidate:** `6313249`
+
+This is not as hard-anchored as the Lower Bracket Final because Liquipedia does
+not expose direct match IDs here, but the DB-side timing, roster overlap, hero
+coherence, and duplicate-pattern evidence make this a strong working mapping.
+
+---
+
 ## Grand Final (Na`Vi vs Quantic)
 
 ### Series metadata
@@ -262,12 +383,11 @@ understood to be the short-lived `6825615` restart lobby.
 
 Continue backward from the finals:
 
-1. Upper Bracket Final — EG vs Na`Vi — 2012-02-26
-2. Lower Bracket Semifinal — Quantic vs Absolute Legends — 2012-02-25
-3. Lower Bracket Quarterfinals
+1. Lower Bracket Semifinal — Quantic vs Absolute Legends — 2012-02-25
+2. Lower Bracket Quarterfinals
    - Quantic vs Western Wolves — 2012-02-23
    - Absolute Legends vs Dignitas — 2012-02-24
-4. Lower Bracket Round 1
+3. Lower Bracket Round 1
    - Western Wolves vs mouz — 2012-02-22
    - Dignitas vs Ariana Gaming — 2012-02-13
 
