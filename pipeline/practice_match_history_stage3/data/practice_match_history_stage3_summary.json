@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-03-10T07:03:48.207Z",
-  "started_at": "2026-03-10T06:29:37.993Z",
-  "run_id": "dc8bb089-8a1f-4295-9f39-1d75b8f7d343",
+  "generated_at": "2026-03-10T11:48:01.228Z",
+  "started_at": "2026-03-10T11:47:38.271Z",
+  "run_id": "21947c31-2603-4513-b41b-a93693b84532",
   "source_provider": "dotabuff_match_detail_verified",
   "dataset_status": "dotabuff_derived",
   "is_truly_dotabuff_derived": true,
   "input_files": {
     "d2sc_readme": "tournaments/d2sc/README.md",
     "persistent_profile_dir": "pipeline/practice_match_history_stage3/cache/playwright/persistent/chromium",
-    "player_inventory": "pipeline/liquipedia_pre2014_ticketless_players/data/pre2014_ticketless_players.json",
+    "player_inventory": "../../../../../tmp/stage3-b-only.json",
     "state_path": "pipeline/practice_match_history_stage3/cache/playwright/dotabuff-storage-state.json"
   },
   "cutoff_datetime_utc": "2012-09-30T23:59:59Z",
@@ -16,7 +16,7 @@
     "browser_engine": "chromium",
     "concurrency": 1,
     "headful": false,
-    "max_players": 25,
+    "max_players": 1,
     "page_delay_ms": 1000,
     "probe_wait_ms": 20000,
     "refresh_state": false,
@@ -29,56 +29,44 @@
     "accounts_total": 147,
     "account_statuses": [
       {
-        "collection_status": "pending",
-        "count": 89
-      },
-      {
         "collection_status": "collected",
-        "count": 48
-      },
-      {
-        "collection_status": "blocked",
-        "count": 5
+        "count": 128
       },
       {
         "collection_status": "no_rows",
-        "count": 4
+        "count": 10
       },
       {
-        "collection_status": "skipped",
-        "count": 1
+        "collection_status": "blocked",
+        "count": 9
       }
     ],
     "d2sc_verified_mappings_loaded": 54,
-    "distinct_accounts_collected": 49,
-    "distinct_match_ids_collected": 13356,
-    "players_processed_this_run": 25,
-    "players_selected_this_run": 25,
-    "players_total": 276,
-    "players_with_accounts": 144,
-    "players_with_d2sc_auxiliary_accounts": 24,
-    "players_without_accounts": 132,
-    "practice_match_rows_collected": 25714,
+    "distinct_accounts_collected": 128,
+    "distinct_match_ids_collected": 27391,
+    "players_processed_this_run": 1,
+    "players_selected_this_run": 1,
+    "players_total": 1,
+    "players_with_accounts": 1,
+    "players_with_d2sc_auxiliary_accounts": 0,
+    "players_without_accounts": 0,
+    "practice_match_rows_collected": 66318,
     "scope_player_statuses": [
       {
         "collection_status": "unresolved",
         "count": 132
       },
       {
-        "collection_status": "pending",
-        "count": 87
-      },
-      {
         "collection_status": "collected",
-        "count": 48
-      },
-      {
-        "collection_status": "blocked",
-        "count": 4
+        "count": 127
       },
       {
         "collection_status": "no_rows",
-        "count": 4
+        "count": 9
+      },
+      {
+        "collection_status": "blocked",
+        "count": 7
       },
       {
         "collection_status": "partial",
@@ -101,8 +89,20 @@
       "matches_collected_count": 1617
     },
     {
+      "canonical_handle": "ixmike88",
+      "matches_collected_count": 1493
+    },
+    {
+      "canonical_handle": "Buugi",
+      "matches_collected_count": 1284
+    },
+    {
       "canonical_handle": "Sockshka",
       "matches_collected_count": 1242
+    },
+    {
+      "canonical_handle": "BuLba",
+      "matches_collected_count": 1093
     },
     {
       "canonical_handle": "Ryze",
@@ -113,8 +113,32 @@
       "matches_collected_count": 1010
     },
     {
+      "canonical_handle": "Jeyo",
+      "matches_collected_count": 962
+    },
+    {
+      "canonical_handle": "Universe",
+      "matches_collected_count": 939
+    },
+    {
+      "canonical_handle": "Funn1k",
+      "matches_collected_count": 931
+    },
+    {
+      "canonical_handle": "craNich",
+      "matches_collected_count": 924
+    },
+    {
       "canonical_handle": "SingSing",
       "matches_collected_count": 924
+    },
+    {
+      "canonical_handle": "Crydasia",
+      "matches_collected_count": 911
+    },
+    {
+      "canonical_handle": "syndereN",
+      "matches_collected_count": 909
     },
     {
       "canonical_handle": "Ph0eNiiX",
@@ -125,76 +149,40 @@
       "matches_collected_count": 845
     },
     {
+      "canonical_handle": "FLUFFNSTUFF",
+      "matches_collected_count": 797
+    },
+    {
       "canonical_handle": "Snoopy",
       "matches_collected_count": 789
     },
     {
-      "canonical_handle": "Link",
-      "matches_collected_count": 726
+      "canonical_handle": "smulgullig",
+      "matches_collected_count": 783
     },
     {
-      "canonical_handle": "Atze",
-      "matches_collected_count": 721
+      "canonical_handle": "Ville",
+      "matches_collected_count": 782
     },
     {
-      "canonical_handle": "G",
-      "matches_collected_count": 713
+      "canonical_handle": "Waytosexy",
+      "matches_collected_count": 772
     },
     {
-      "canonical_handle": "shatan",
-      "matches_collected_count": 703
+      "canonical_handle": "SexyBamboe",
+      "matches_collected_count": 763
+    },
+    {
+      "canonical_handle": "Lapiz",
+      "matches_collected_count": 748
     },
     {
       "canonical_handle": "B",
-      "matches_collected_count": 695
+      "matches_collected_count": 745
     },
     {
-      "canonical_handle": "1437",
-      "matches_collected_count": 689
-    },
-    {
-      "canonical_handle": "xMusiCa",
-      "matches_collected_count": 686
-    },
-    {
-      "canonical_handle": "NS",
-      "matches_collected_count": 656
-    },
-    {
-      "canonical_handle": "ComeWithMe",
-      "matches_collected_count": 639
-    },
-    {
-      "canonical_handle": "WinteR",
-      "matches_collected_count": 634
-    },
-    {
-      "canonical_handle": "Pajkatt",
-      "matches_collected_count": 631
-    },
-    {
-      "canonical_handle": "QQQ",
-      "matches_collected_count": 625
-    },
-    {
-      "canonical_handle": "Dendi",
-      "matches_collected_count": 577
-    },
-    {
-      "canonical_handle": "MaNia",
-      "matches_collected_count": 536
-    },
-    {
-      "canonical_handle": "Mirakel",
-      "matches_collected_count": 535
-    },
-    {
-      "canonical_handle": "miGGel",
-      "matches_collected_count": 534
-    },
-    {
-      "canonical_handle": "XtiNcT",
-      "matches_collected_count": 521
+      "canonical_handle": "HANNAH MONTANA",
+      "matches_collected_count": 731
     }
   ]
 }
