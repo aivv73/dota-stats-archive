@@ -1,85 +1,200 @@
 {
-  "generated_at": "2026-03-08T09:00:31.034Z",
-  "started_at": "2026-03-08T08:59:24.261Z",
-  "run_id": "e77a9aec-6f29-4012-9f7e-90d104422e58",
-  "source_provider": "dotabuff_player_history",
-  "dataset_status": "blocked_noncanonical_wip",
-  "is_truly_dotabuff_derived": false,
+  "generated_at": "2026-03-09T20:13:21.523Z",
+  "started_at": "2026-03-09T19:31:56.225Z",
+  "run_id": "c0f357b2-aa16-42fc-85c6-54163b44b80c",
+  "source_provider": "dotabuff_match_detail_verified",
+  "dataset_status": "dotabuff_derived",
+  "is_truly_dotabuff_derived": true,
   "input_files": {
     "d2sc_readme": "tournaments/d2sc/README.md",
     "persistent_profile_dir": "pipeline/practice_match_history_stage3/cache/playwright/persistent/chromium",
     "player_inventory": "pipeline/liquipedia_pre2014_ticketless_players/data/pre2014_ticketless_players.json",
     "state_path": "pipeline/practice_match_history_stage3/cache/playwright/dotabuff-storage-state.json"
   },
-  "cutoff_datetime_utc": "2014-12-31T23:59:59Z",
+  "cutoff_datetime_utc": "2012-09-30T23:59:59Z",
   "config": {
     "browser_engine": "chromium",
     "concurrency": 1,
-    "headful": true,
-    "max_players": null,
+    "headful": false,
+    "max_players": 25,
     "page_delay_ms": 1000,
     "probe_wait_ms": 20000,
     "refresh_state": false,
-    "reset": true,
+    "reset": false,
     "strict_game_mode_label": "None",
-    "strict_lobby_type_label": "Practice"
+    "strict_lobby_type_label": "Practice",
+    "verify_match_pages": false
   },
   "counts": {
     "accounts_total": 147,
     "account_statuses": [
       {
+        "collection_status": "pending",
+        "count": 111
+      },
+      {
+        "collection_status": "collected",
+        "count": 30
+      },
+      {
         "collection_status": "blocked",
-        "count": 147
+        "count": 4
+      },
+      {
+        "collection_status": "no_rows",
+        "count": 1
+      },
+      {
+        "collection_status": "skipped",
+        "count": 1
       }
     ],
     "d2sc_verified_mappings_loaded": 54,
-    "distinct_accounts_collected": 0,
-    "distinct_match_ids_collected": 0,
-    "players_processed_this_run": 0,
-    "players_selected_this_run": 144,
+    "distinct_accounts_collected": 31,
+    "distinct_match_ids_collected": 9237,
+    "players_processed_this_run": 25,
+    "players_selected_this_run": 25,
     "players_total": 276,
     "players_with_accounts": 144,
     "players_with_d2sc_auxiliary_accounts": 24,
     "players_without_accounts": 132,
-    "practice_match_rows_collected": 0,
+    "practice_match_rows_collected": 15498,
     "scope_player_statuses": [
-      {
-        "collection_status": "blocked",
-        "count": 144
-      },
       {
         "collection_status": "unresolved",
         "count": 132
+      },
+      {
+        "collection_status": "pending",
+        "count": 109
+      },
+      {
+        "collection_status": "collected",
+        "count": 30
+      },
+      {
+        "collection_status": "blocked",
+        "count": 3
+      },
+      {
+        "collection_status": "no_rows",
+        "count": 1
+      },
+      {
+        "collection_status": "partial",
+        "count": 1
       }
     ]
   },
-  "blocker_report": {
-    "blocked": true,
-    "browser_engine": "chromium",
-    "headful": true,
-    "home": {
-      "body_excerpt": "www.dotabuff.com Performing security verification This website uses a security service to protect against malicious bots. This page is displayed while the website verifies you are not a bot. Ray ID: 9d90a51e6bab0cf2 Performance and Security by Cloudflare Priva",
-      "ray_id": "9d90a51e6bab0cf2",
-      "row_count": 0,
-      "state": "cloudflare_interstitial",
-      "title": "Just a moment...",
-      "url": "https://www.dotabuff.com/"
-    },
-    "history": {
-      "body_excerpt": "www.dotabuff.com Performing security verification This website uses a security service to protect against malicious bots. This page is displayed while the website verifies you are not a bot. Ray ID: 9d90a59d2e690cf2 Performance and Security by Cloudflare Priva",
-      "ray_id": "9d90a59d2e690cf2",
-      "row_count": 0,
-      "state": "cloudflare_interstitial",
-      "title": "Just a moment...",
-      "url": "https://www.dotabuff.com/players/87196890/matches?enhance=overview&lobby_type=practice"
-    },
-    "state_path": "pipeline/practice_match_history_stage3/cache/playwright/dotabuff-storage-state.json"
-  },
+  "blocker_report": null,
   "caveats": [
     "The stage is Dotabuff-only by design. No alternate provider is treated as equivalent for this dataset.",
-    "Rows are only inserted when Dotabuff history rows explicitly show Lobby Type = Practice and Game Mode = None.",
+    "Candidate rows come from the ordinary Dotabuff player matches history, not from lobby_type=custom.",
+    "Rows are admitted directly from strict Practice + None player-history labels; per-match detail verification is disabled in this run to avoid Dotabuff detail-page bottlenecks.",
+    "Strict label matching accepts both English and Russian Dotabuff labels (Practice/None and Тренировочный/Нет).",
     "D2SC README mappings are only applied when alias matching resolves to exactly one stage-2 player.",
-    "The current artifact is non-canonical/WIP because Dotabuff access was blocked before row extraction."
+    "The current artifact contains true Dotabuff-derived rows."
   ],
-  "top_players_by_rows": []
+  "top_players_by_rows": [
+    {
+      "canonical_handle": "Sockshka",
+      "matches_collected_count": 1242
+    },
+    {
+      "canonical_handle": "Ryze",
+      "matches_collected_count": 1023
+    },
+    {
+      "canonical_handle": "Godot",
+      "matches_collected_count": 845
+    },
+    {
+      "canonical_handle": "Snoopy",
+      "matches_collected_count": 789
+    },
+    {
+      "canonical_handle": "Link",
+      "matches_collected_count": 726
+    },
+    {
+      "canonical_handle": "Atze",
+      "matches_collected_count": 721
+    },
+    {
+      "canonical_handle": "shatan",
+      "matches_collected_count": 703
+    },
+    {
+      "canonical_handle": "B",
+      "matches_collected_count": 695
+    },
+    {
+      "canonical_handle": "1437",
+      "matches_collected_count": 689
+    },
+    {
+      "canonical_handle": "xMusiCa",
+      "matches_collected_count": 686
+    },
+    {
+      "canonical_handle": "ComeWithMe",
+      "matches_collected_count": 639
+    },
+    {
+      "canonical_handle": "Pajkatt",
+      "matches_collected_count": 631
+    },
+    {
+      "canonical_handle": "QQQ",
+      "matches_collected_count": 625
+    },
+    {
+      "canonical_handle": "Dendi",
+      "matches_collected_count": 577
+    },
+    {
+      "canonical_handle": "Mirakel",
+      "matches_collected_count": 535
+    },
+    {
+      "canonical_handle": "miGGel",
+      "matches_collected_count": 534
+    },
+    {
+      "canonical_handle": "XBOCT",
+      "matches_collected_count": 512
+    },
+    {
+      "canonical_handle": "PiNoY",
+      "matches_collected_count": 498
+    },
+    {
+      "canonical_handle": "r1sk",
+      "matches_collected_count": 496
+    },
+    {
+      "canonical_handle": "Puppey",
+      "matches_collected_count": 490
+    },
+    {
+      "canonical_handle": "Akke",
+      "matches_collected_count": 487
+    },
+    {
+      "canonical_handle": "Alex",
+      "matches_collected_count": 385
+    },
+    {
+      "canonical_handle": "Awoke",
+      "matches_collected_count": 268
+    },
+    {
+      "canonical_handle": "kYxY",
+      "matches_collected_count": 238
+    },
+    {
+      "canonical_handle": "TnK",
+      "matches_collected_count": 102
+    }
+  ]
 }
