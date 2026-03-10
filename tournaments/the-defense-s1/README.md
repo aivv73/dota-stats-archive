@@ -164,6 +164,35 @@ These should **not** be treated as solved yet from the current stage-3 DB alone.
 
 ---
 
+## 🎮 Group Stage #1 — Group D (DB-first shortlist)
+
+The following table records the current **best stage-3 DB candidate** for each
+Liquipedia-listed Group Stage #1 / Group D match. Compared with the later
+playoff work, coverage here is more uneven: some matchups are strong and
+naturally two-sided, while others are still visible mostly through one team's
+public Dotabuff leakage.
+
+| Date (UTC) | Matchup | Best candidate | Confidence | Note |
+|---|---|---:|---|---|
+| 2011-11-17 | Storm Games Clan vs mousesports | **[267402](https://www.dotabuff.com/matches/267402)** | **Possible / probable lead** | `craNich` + 4 mouz anchors. |
+| 2011-11-20 | Team Infused vs Panzer | **[366309](https://www.dotabuff.com/matches/366309)** | **Probable (high)** | 4 Infused anchors + 3 Panzer anchors. |
+| 2011-12-18 | Storm Games Clan vs Panzer | **[1821506](https://www.dotabuff.com/matches/1821506)** | **Probable** | `craNich` + 4 Panzer anchors. |
+| 2011-12-22 | MiTH.Trust vs Panzer | **[2053488](https://www.dotabuff.com/matches/2053488)** | **Probable (high)** | 3 MiTH.Trust anchors + 4 Panzer anchors. |
+| 2011-12-22 | Evil Geniuses vs Storm Games Clan | **[2058934](https://www.dotabuff.com/matches/2058934)** | **Probable** | 3 EG anchors + `craNich`. |
+| 2011-12-22 | Evil Geniuses vs mousesports | **[2062467](https://www.dotabuff.com/matches/2062467)** | **Probable** | 3 EG anchors + 3 mouz anchors. |
+| 2011-12-23 | mousesports vs Team Infused | **[2111635](https://www.dotabuff.com/matches/2111635)** | **Probable (high)** | 4 mouz anchors + 4 Infused anchors. |
+| 2011-12-28 | Team Infused vs MiTH.Trust | **[2395891](https://www.dotabuff.com/matches/2395891)** | **Probable** | 4 Infused anchors + 2 MiTH.Trust anchors. |
+| 2011-12-28 | Team Infused vs Evil Geniuses | **[2399800](https://www.dotabuff.com/matches/2399800)** | **Probable (high)** | 4 Infused anchors + 3 EG anchors. |
+| 2011-12-29 | MiTH.Trust vs Storm Games Clan | **[2448812](https://www.dotabuff.com/matches/2448812)** | **Possible / probable lead** | 2 MiTH.Trust anchors + `craNich`. |
+| 2012-01-04 | Evil Geniuses vs MiTH.Trust | **[2749538](https://www.dotabuff.com/matches/2749538)** | **Possible / probable lead** | 3 EG anchors + `LaKelz`. |
+| 2012-01-05 | Evil Geniuses vs Panzer | **[2803289](https://www.dotabuff.com/matches/2803289)** | **Probable (high)** | 3 EG anchors + full 5-player Panzer cluster. |
+| 2012-01-07 | Panzer vs mousesports | **[2899237](https://www.dotabuff.com/matches/2899237)** | **Probable (high)** | Full 5-player Panzer cluster + 4 mouz anchors. |
+| 2012-01-07 | Team Infused vs Storm Games Clan | **[2907652](https://www.dotabuff.com/matches/2907652)** | **Possible / probable lead** | 4 Infused anchors + `craNich`. |
+| 2012-01-08 | MiTH.Trust vs mousesports | **[2952033](https://www.dotabuff.com/matches/2952033)** | **Probable** | 3 MiTH.Trust anchors + 4 mouz anchors. |
+| 2012-01-12 | Tiebreaker: Panzer vs Evil Geniuses | **[3155842](https://www.dotabuff.com/matches/3155842)** | **Probable (high)** | Full 5-player Panzer cluster + 4 EG anchors. |
+
+---
+
 ## 🎮 Group Stage #2 — Group 1 (DB-first shortlist)
 
 The following table records the current **best stage-3 DB candidate** for each
