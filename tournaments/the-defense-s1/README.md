@@ -562,6 +562,20 @@ Main result of the re-check:
 | **GS2 Group 2 — Team Dignitas vs Natus Vincere** | <https://www.youtube.com/watch?v=1qVl_VTJTnA> | Search-discovered archive link |
 | **GS2 Group 2 — Evil Geniuses vs Problem???** | <https://www.youtube.com/watch?v=qJJqBhL0Rbk> | Search-discovered archive link |
 | **GS2 Group 2 — Fnatic vs mousesports** | <https://www.youtube.com/watch?v=GpyxU2zqmcM> | Search-discovered archive link |
+| **GS1 Group D — Evil Geniuses vs mousesports** | <https://www.youtube.com/watch?v=6Pdwny6hmLU> | Search-discovered archive link; explicitly labeled Group Stages |
+| **GS1 Group D — MiTH.Trust vs Panzer** | <https://www.youtube.com/watch?v=9pJF6MnKslE> | Search-discovered archive link: "[The Defense] Mith vs Panzer" |
+| **GS1 Group D — MiTH.Trust vs Panzer (alt cast)** | <https://www.youtube.com/watch?v=koPV97uHTYE> | Search-discovered archive link: "MiTH vs PANZER The Defense: Casted by Purge and GoDz" |
+| **GS1 Group D — Panzer vs mousesports (part 1)** | <https://www.youtube.com/watch?v=wIMIgwstB94> | Search-discovered archive link |
+| **GS1 Group D — Panzer vs mousesports (part 2)** | <https://www.youtube.com/watch?v=N-4Citi-7J0> | Search-discovered archive link |
+| **GS1 Group C — Team EZ Style vs New French Order** | <https://www.youtube.com/watch?v=56_VJIy-dBk> | Search-discovered archive link |
+| **GS1 Group C — EHOME vs Fnatic** | <https://www.youtube.com/watch?v=d3xSlXM0ttI> | Search-discovered archive link |
+| **GS1 Group C — EHOME vs Fnatic (part 1/2)** | <https://www.youtube.com/watch?v=aTeyH6JT0y0> | Search-discovered archive link |
+| **GS1 Group C — Dignitas/TeG vs Shakira** | <https://www.youtube.com/watch?v=-4sLi1g0NSc> | Search-discovered archive link: "TeamShakira vs Dignitas :The Defense casted by Purge" |
+| **GS1 Group C — It's Gosu / Team EZ Style vs Dignitas/TeG** | <https://www.youtube.com/watch?v=rNEusBBDXcc> | Search-discovered archive link: "Dignitas vs GoSu The Defense casted by Purge" |
+| **GS1 Group C — Dignitas/TeG vs Fnatic** | <https://www.youtube.com/watch?v=skWUl-HT9ZU> | Search-discovered archive link |
+| **GS1 Group B — Natural 9 vs Na`Vi** | <https://www.youtube.com/watch?v=459VrYiUoIg> | Search-discovered archive link |
+| **GS1 Group B — youBoat vs Natural 9** | <https://www.youtube.com/watch?v=808-FnKFNvo> | Search-discovered archive link |
+| **GS1 Group B — Na`Vi vs Just 4 the Tournament / SK vs J4T** | <https://www.youtube.com/watch?v=XdCwMdWVOIo> | Search-discovered archive link; uploader title uses SK/J4T shorthand |
 
 ---
 
