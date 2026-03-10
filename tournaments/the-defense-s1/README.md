@@ -320,6 +320,11 @@ Main result of the re-check:
 **Storm Games Clan**
 - **craNich**: `7932121`
 
+**MiTH.Trust**
+- **TnK**: `45614257`
+- **LaKelz**: `91191397`
+- **aabBAA**: `91191651`
+
 **Problem???**
 - **Buugi**: `24009418`
 - **noertti**: `54662003`
