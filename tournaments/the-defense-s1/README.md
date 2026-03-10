@@ -169,29 +169,31 @@ These should **not** be treated as solved yet from the current stage-3 DB alone.
 The following table records the current **best stage-3 DB candidate** for each
 Liquipedia-listed Group Stage #2 / Group 1 match. This is still a working
 shortlist, not a fully finalized group-stage reconstruction, but it was
-re-checked after adding fuller roster/account mappings for **Just 4 the
-Tournament**, **Mortal Teamwork**, **Panzer/Ariana**, and related lineups.
+re-checked again after the updated stage-2/stage-3 passes with newly supplied
+player IDs.
 
 Main result of the re-check:
-- the shortlist itself did **not** materially change
-- the **Just 4 the Tournament** matches now read with better confidence
-- the weakest rows are still the ones involving **mTw**, because stage-3 most
-  often exposes only `syndereN` from that side
+- the shortlist itself still holds up
+- **Just 4 the Tournament** matchups became much stronger
+- several rows that previously had only 2-3 visible anchors now show 4-5 player
+  overlaps on each side
+- the weakest rows are still the ones involving **mTw**, but even there the
+  shape is now clearer than before
 
 | Date (UTC) | Matchup | Best candidate | Confidence | Note |
 |---|---|---:|---|---|
 | 2012-01-15 | Team DD vs Absolute Legends | **[3380274](https://www.dotabuff.com/matches/3380274)** | **Probable (high)** | Strong two-sided overlap: 4 DD + 4 AL anchors. |
-| 2012-01-17 | mTw vs Panzer | **[3499689](https://www.dotabuff.com/matches/3499689)** | **Probable** | syndereN plus 4 Panzer-side anchors. |
-| 2012-01-18 | Western Wolves vs Just 4 the Tournament | **[3557757](https://www.dotabuff.com/matches/3557757)** | **Probable lead** | 4 Western Wolves anchors + 2 J4TT anchors (`Fire`, `rmN-`). |
-| 2012-01-21 | mTw vs Just 4 the Tournament | **[3784147](https://www.dotabuff.com/matches/3784147)** | **Probable lead** | `syndereN` plus 3 J4TT anchors (`Fire`, `Kebap`, `rmN-`). |
-| 2012-01-24 | Team DD vs Just 4 the Tournament | **[3977993](https://www.dotabuff.com/matches/3977993)** | **Probable (high)** | 4 DD anchors + 3 J4TT anchors (`Fire`, `Kebap`, `rmN-`). |
+| 2012-01-17 | mTw vs Panzer | **[3499689](https://www.dotabuff.com/matches/3499689)** | **Probable** | 4 Panzer anchors + `syndereN`; still one-sided on the mTw side. |
+| 2012-01-18 | Western Wolves vs Just 4 the Tournament | **[3557757](https://www.dotabuff.com/matches/3557757)** | **Probable (high)** | 4 Western Wolves anchors + 5 J4TT anchors (`Fire`, `Kebap`, `Kev-`, `moods`, `rmN-`). |
+| 2012-01-21 | mTw vs Just 4 the Tournament | **[3784147](https://www.dotabuff.com/matches/3784147)** | **Probable (high)** | 4 mTw anchors + 4 J4TT anchors (`Fire`, `Kebap`, `Kev-`, `rmN-`). |
+| 2012-01-24 | Team DD vs Just 4 the Tournament | **[3977993](https://www.dotabuff.com/matches/3977993)** | **Probable (very high)** | 5 DD anchors + 4 J4TT anchors (`Fire`, `Kebap`, `Kev-`, `rmN-`). |
 | 2012-01-24 | Panzer vs Team DD | **[3982285](https://www.dotabuff.com/matches/3982285)** | **Probable (high)** | Strong two-sided overlap: 4 Panzer + 4 DD anchors. |
-| 2012-01-29 | Panzer vs Just 4 the Tournament | **[4350955](https://www.dotabuff.com/matches/4350955)** | **Probable lead** | 4 Panzer anchors + 2 J4TT anchors (`Fire`, `rmN-`). |
-| 2012-01-31 | Western Wolves vs Panzer | **[4497897](https://www.dotabuff.com/matches/4497897)** | **Probable (high)** | Strong two-sided overlap: 5 Western Wolves + 4 Panzer anchors. |
-| 2012-02-01 | mTw vs Team DD | **[4557075](https://www.dotabuff.com/matches/4557075)** | **Probable lead** | syndereN plus 4 DD anchors. |
-| 2012-02-01 | mTw vs Western Wolves | **[4561283](https://www.dotabuff.com/matches/4561283)** | **Probable lead** | syndereN plus 4 Western Wolves anchors. |
-| 2012-02-02 | Absolute Legends vs Panzer | **[4618477](https://www.dotabuff.com/matches/4618477)** | **Probable (high)** | Strong two-sided overlap: 5 AL + 4 Panzer anchors. |
-| 2012-02-02 | mTw vs Absolute Legends | **[4621583](https://www.dotabuff.com/matches/4621583)** | **Probable lead** | syndereN plus 5 AL anchors. |
+| 2012-01-29 | Panzer vs Just 4 the Tournament | **[4350955](https://www.dotabuff.com/matches/4350955)** | **Probable (very high)** | 5 Panzer anchors + 5 J4TT anchors. |
+| 2012-01-31 | Western Wolves vs Panzer | **[4497897](https://www.dotabuff.com/matches/4497897)** | **Probable (very high)** | Strong two-sided overlap: 5 Western Wolves + 4 Panzer anchors. |
+| 2012-02-01 | mTw vs Team DD | **[4557075](https://www.dotabuff.com/matches/4557075)** | **Probable lead** | 4 DD anchors + `syndereN`; still limited on the mTw side. |
+| 2012-02-01 | mTw vs Western Wolves | **[4561283](https://www.dotabuff.com/matches/4561283)** | **Probable lead** | 4 Western Wolves anchors + `syndereN`; still limited on the mTw side. |
+| 2012-02-02 | Absolute Legends vs Panzer | **[4618477](https://www.dotabuff.com/matches/4618477)** | **Probable (very high)** | Strong two-sided overlap: 5 AL + 4 Panzer anchors. |
+| 2012-02-02 | mTw vs Absolute Legends | **[4621583](https://www.dotabuff.com/matches/4621583)** | **Probable lead** | 5 AL anchors + `syndereN`; still limited on the mTw side. |
 | 2012-02-02 | Western Wolves vs Team DD | **[4629510](https://www.dotabuff.com/matches/4629510)** | **Probable (high)** | Strong two-sided overlap: 4 Western Wolves + 4 DD anchors. |
 | 2012-02-04 | Absolute Legends vs Just 4 the Tournament | **[4758228](https://www.dotabuff.com/matches/4758228)** | **Probable (high)** | 5 AL anchors + 3 J4TT anchors (`Fire`, `Kebap`, `rmN-`). |
 | 2012-02-04 | Western Wolves vs Absolute Legends | **[4762363](https://www.dotabuff.com/matches/4762363)** | **Probable (high)** | Strong two-sided overlap: 4 Western Wolves + 5 AL anchors. |
@@ -201,25 +203,33 @@ Main result of the re-check:
 ## 🎮 Group Stage #2 — Group 2 (DB-first shortlist)
 
 The following table records the current **best stage-3 DB candidate** for each
-Liquipedia-listed Group Stage #2 / Group 2 match. Compared with Group 1, this
-block is generally **weaker**, because several matchups only expose one team
-cleanly in the current DB slice.
+Liquipedia-listed Group Stage #2 / Group 2 match. This block was also re-checked
+against the refreshed stage-3 DB after the new manual account-ID pass.
+
+Main result of the re-check:
+- the shortlist itself still holds up
+- **Dignitas** matchups improved the most, because `freezer` and `S0ny` now
+  join `ComeWithMe` / `Zizou` in visible DB rows
+- **Fnatic** rows also improved slightly because `BAJA-` is now recognized in
+  the DB alongside `Mitch`, `g0g1`, and `grizine`
+- the weakest rows are still the ones where one side remains only partially
+  visible in public Dotabuff coverage
 
 | Date (UTC) | Matchup | Best candidate | Confidence | Note |
 |---|---|---:|---|---|
-| 2012-01-16 | Team Dignitas vs Problem??? | **[3444977](https://www.dotabuff.com/matches/3444977)** | **Possible lead** | Weak two-sided visibility: `Zizou` + `Buugi/Lapiz`. |
+| 2012-01-16 | Team Dignitas vs Problem??? | **[3444977](https://www.dotabuff.com/matches/3444977)** | **Probable** | 3 Dignitas anchors (`freezer`, `S0ny`, `Zizou`) + full 5-player Problem??? cluster. |
 | 2012-01-17 | Evil Geniuses vs Fnatic | **[3503635](https://www.dotabuff.com/matches/3503635)** | **Probable (high)** | Strong two-sided overlap: 4 EG + 3 Fnatic anchors. |
 | 2012-01-18 | Natus Vincere vs mousesports | **[3553764](https://www.dotabuff.com/matches/3553764)** | **Probable (high)** | 3 Na`Vi anchors + 4 mouz anchors. |
 | 2012-01-20 | Fnatic vs Problem??? | **[3695875](https://www.dotabuff.com/matches/3695875)** | **Probable** | 3 Fnatic anchors + `Buugi/Lapiz`. |
-| 2012-01-21 | Team Dignitas vs mousesports | **[3788916](https://www.dotabuff.com/matches/3788916)** | **Possible lead** | Weak two-sided visibility: `Zizou` + 4 mouz anchors. |
+| 2012-01-21 | Team Dignitas vs mousesports | **[3788916](https://www.dotabuff.com/matches/3788916)** | **Probable** | 3 Dignitas anchors (`freezer`, `S0ny`, `Zizou`) + full 5-player mouz cluster. |
 | 2012-01-22 | Evil Geniuses vs Natus Vincere | **[3854754](https://www.dotabuff.com/matches/3854754)** | **Probable (high)** | 4 EG anchors + 3 Na`Vi anchors. |
 | 2012-01-23 | Evil Geniuses vs mousesports | **[3925215](https://www.dotabuff.com/matches/3925215)** | **Probable (high)** | Strong two-sided overlap: 4 EG + 4 mouz anchors. |
 | 2012-01-24 | Problem??? vs Natus Vincere | **[3973228](https://www.dotabuff.com/matches/3973228)** | **Probable** | `Buugi/Lapiz` + 3 Na`Vi anchors. |
-| 2012-01-26 | Team Dignitas vs Fnatic | **[4091042](https://www.dotabuff.com/matches/4091042)** | **Possible / probable lead** | `ComeWithMe` + 3 Fnatic anchors. |
+| 2012-01-26 | Team Dignitas vs Fnatic | **[4091042](https://www.dotabuff.com/matches/4091042)** | **Probable** | 3 Dignitas anchors (`freezer`, `S0ny`, `ComeWithMe`) + 4 Fnatic anchors (`BAJA-`, `Mitch`, `g0g1`, `grizine`). |
 | 2012-01-27 | Problem??? vs mousesports | **[4181631](https://www.dotabuff.com/matches/4181631)** | **Probable** | `Buugi/Lapiz` + 4 mouz anchors. |
 | 2012-01-29 | Natus Vincere vs Fnatic | **[4346328](https://www.dotabuff.com/matches/4346328)** | **Probable** | 3 Na`Vi anchors + 3 Fnatic anchors. |
-| 2012-01-31 | Team Dignitas vs Evil Geniuses | **[4492245](https://www.dotabuff.com/matches/4492245)** | **Possible / probable lead** | `ComeWithMe/Zizou` + 4 EG anchors. |
-| 2012-02-03 | Team Dignitas vs Natus Vincere | **[4693642](https://www.dotabuff.com/matches/4693642)** | **Possible / probable lead** | `ComeWithMe/Zizou` + 3 Na`Vi anchors. |
+| 2012-01-31 | Team Dignitas vs Evil Geniuses | **[4492245](https://www.dotabuff.com/matches/4492245)** | **Probable** | 3 Dignitas anchors (`freezer`, `ComeWithMe`, `Zizou`) + 4 EG anchors. |
+| 2012-02-03 | Team Dignitas vs Natus Vincere | **[4693642](https://www.dotabuff.com/matches/4693642)** | **Probable** | 3 Dignitas anchors (`freezer`, `ComeWithMe`, `Zizou`) + 3 Na`Vi anchors. |
 | 2012-02-03 | Evil Geniuses vs Problem??? | **[4698712](https://www.dotabuff.com/matches/4698712)** | **Probable** | 4 EG anchors + `Buugi/Lapiz`. |
 | 2012-02-08 | Fnatic vs mousesports | **[5056156](https://www.dotabuff.com/matches/5056156)** | **Probable (high)** | 3 Fnatic anchors + 4 mouz anchors. |
 
