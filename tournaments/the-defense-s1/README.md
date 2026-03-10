@@ -190,6 +190,8 @@ These should **not** be treated as solved yet from the current stage-3 DB alone.
 - **SingSing**: `19757254`
 - **SexyBamboe**: `20321748`
 - **Rexi**: `4211480`
+- **DeMeNt**: `86561084`
+- **Trixi** *(probable `black beatles` account; needs confirmation because this account has conflicting older attribution elsewhere)*: `90793520`
 
 ---
 
