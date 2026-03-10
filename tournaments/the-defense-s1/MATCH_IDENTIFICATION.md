@@ -780,16 +780,23 @@ Working status: **partial / unresolved**.
 Strong candidate cluster:
 
 - `5639961`
+- `5621499` (DD-side only)
+- `5630186` (EG-side only)
 
 Current issue:
 
 - Team DD and Quantic Gaming should be treated here as the **same team / roster
   lineage**, because Quantic signed Team DD during the tournament
-- `5639961` looks like a real played map with strong EG-side and DD/Quantic-side
-  overlap (`Link`, `MaNia`, `Ryze`, `miGGel`), but the second map is not yet
-  cleanly pinned from the current DB evidence alone
+- `5639961` is now a **very strong one-map public anchor** with full EG-side and
+  full DD-side visibility:
+  - EG: `DeMoN`, `Fear`, `Lacoste`, `MISERY`, `Maelk`
+  - DD/Quantic: `AngeL`, `Link`, `MaNia`, `Ryze`, `miGGel`
+- this makes `5639961` a much stronger public map candidate than before
+- however, the second map still does **not** appear as a clean public two-sided
+  match ID in the current DB; nearby rows such as `5621499` and `5630186` only
+  show one side clearly
 
-Working status: **partial / unresolved**.
+Working status: **partial / unresolved, with one very strong public map anchor (`5639961`) and one still-missing public map**.
 
 ### Lower Bracket Round 1 — Dignitas vs Ariana Gaming — 2012-02-13
 

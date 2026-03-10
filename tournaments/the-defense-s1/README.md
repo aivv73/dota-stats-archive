@@ -184,9 +184,9 @@ Main result of the re-check:
 |---|---|---:|---|---|
 | 2012-01-15 | Team DD vs Absolute Legends | **[3380274](https://www.dotabuff.com/matches/3380274)** | **Probable (high)** | Strong two-sided overlap: 4 DD + 4 AL anchors. |
 | 2012-01-17 | mTw vs Panzer | **[3499689](https://www.dotabuff.com/matches/3499689)** | **Probable** | 4 Panzer anchors + `syndereN`; still one-sided on the mTw side. |
-| 2012-01-18 | Western Wolves vs Just 4 the Tournament | **[3557757](https://www.dotabuff.com/matches/3557757)** | **Probable (high)** | 4 Western Wolves anchors + 5 J4TT anchors (`Fire`, `Kebap`, `Kev-`, `moods`, `rmN-`). |
-| 2012-01-21 | mTw vs Just 4 the Tournament | **[3784147](https://www.dotabuff.com/matches/3784147)** | **Probable (high)** | 4 mTw anchors + 4 J4TT anchors (`Fire`, `Kebap`, `Kev-`, `rmN-`). |
-| 2012-01-24 | Team DD vs Just 4 the Tournament | **[3977993](https://www.dotabuff.com/matches/3977993)** | **Probable (very high)** | 5 DD anchors + 4 J4TT anchors (`Fire`, `Kebap`, `Kev-`, `rmN-`). |
+| 2012-01-18 | Western Wolves vs Just 4 the Tournament | **[3557757](https://www.dotabuff.com/matches/3557757)** | **Probable (very high)** | 4 Western Wolves anchors + full 5-player J4TT cluster (`Fire`, `Kebap`, `Kev-`, `moods`, `rmN-`). |
+| 2012-01-21 | mTw vs Just 4 the Tournament | **[3784147](https://www.dotabuff.com/matches/3784147)** | **Probable (very high)** | 4 mTw anchors + 4 J4TT anchors (`Fire`, `Kebap`, `Kev-`, `rmN-`). |
+| 2012-01-24 | Team DD vs Just 4 the Tournament | **[3977993](https://www.dotabuff.com/matches/3977993)** | **Probable (very high)** | Full 5-player DD cluster + 4 J4TT anchors (`Fire`, `Kebap`, `Kev-`, `rmN-`). |
 | 2012-01-24 | Panzer vs Team DD | **[3982285](https://www.dotabuff.com/matches/3982285)** | **Probable (high)** | Strong two-sided overlap: 4 Panzer + 4 DD anchors. |
 | 2012-01-29 | Panzer vs Just 4 the Tournament | **[4350955](https://www.dotabuff.com/matches/4350955)** | **Probable (very high)** | 5 Panzer anchors + 5 J4TT anchors. |
 | 2012-01-31 | Western Wolves vs Panzer | **[4497897](https://www.dotabuff.com/matches/4497897)** | **Probable (very high)** | Strong two-sided overlap: 5 Western Wolves + 4 Panzer anchors. |
@@ -217,19 +217,19 @@ Main result of the re-check:
 
 | Date (UTC) | Matchup | Best candidate | Confidence | Note |
 |---|---|---:|---|---|
-| 2012-01-16 | Team Dignitas vs Problem??? | **[3444977](https://www.dotabuff.com/matches/3444977)** | **Probable** | 3 Dignitas anchors (`freezer`, `S0ny`, `Zizou`) + full 5-player Problem??? cluster. |
+| 2012-01-16 | Team Dignitas vs Problem??? | **[3444977](https://www.dotabuff.com/matches/3444977)** | **Probable (high)** | 3 Dignitas anchors (`freezer`, `S0ny`, `Zizou`) + full 5-player Problem??? cluster. |
 | 2012-01-17 | Evil Geniuses vs Fnatic | **[3503635](https://www.dotabuff.com/matches/3503635)** | **Probable (high)** | Strong two-sided overlap: 4 EG + 3 Fnatic anchors. |
 | 2012-01-18 | Natus Vincere vs mousesports | **[3553764](https://www.dotabuff.com/matches/3553764)** | **Probable (high)** | 3 Na`Vi anchors + 4 mouz anchors. |
 | 2012-01-20 | Fnatic vs Problem??? | **[3695875](https://www.dotabuff.com/matches/3695875)** | **Probable** | 3 Fnatic anchors + `Buugi/Lapiz`. |
-| 2012-01-21 | Team Dignitas vs mousesports | **[3788916](https://www.dotabuff.com/matches/3788916)** | **Probable** | 3 Dignitas anchors (`freezer`, `S0ny`, `Zizou`) + full 5-player mouz cluster. |
+| 2012-01-21 | Team Dignitas vs mousesports | **[3788916](https://www.dotabuff.com/matches/3788916)** | **Probable (high)** | 3 Dignitas anchors (`freezer`, `S0ny`, `Zizou`) + full 5-player mouz cluster. |
 | 2012-01-22 | Evil Geniuses vs Natus Vincere | **[3854754](https://www.dotabuff.com/matches/3854754)** | **Probable (high)** | 4 EG anchors + 3 Na`Vi anchors. |
 | 2012-01-23 | Evil Geniuses vs mousesports | **[3925215](https://www.dotabuff.com/matches/3925215)** | **Probable (high)** | Strong two-sided overlap: 4 EG + 4 mouz anchors. |
 | 2012-01-24 | Problem??? vs Natus Vincere | **[3973228](https://www.dotabuff.com/matches/3973228)** | **Probable** | `Buugi/Lapiz` + 3 Na`Vi anchors. |
-| 2012-01-26 | Team Dignitas vs Fnatic | **[4091042](https://www.dotabuff.com/matches/4091042)** | **Probable** | 3 Dignitas anchors (`freezer`, `S0ny`, `ComeWithMe`) + 4 Fnatic anchors (`BAJA-`, `Mitch`, `g0g1`, `grizine`). |
+| 2012-01-26 | Team Dignitas vs Fnatic | **[4091042](https://www.dotabuff.com/matches/4091042)** | **Probable (high)** | 3 Dignitas anchors (`freezer`, `S0ny`, `ComeWithMe`) + 4 Fnatic anchors (`BAJA-`, `Mitch`, `g0g1`, `grizine`). |
 | 2012-01-27 | Problem??? vs mousesports | **[4181631](https://www.dotabuff.com/matches/4181631)** | **Probable** | `Buugi/Lapiz` + 4 mouz anchors. |
 | 2012-01-29 | Natus Vincere vs Fnatic | **[4346328](https://www.dotabuff.com/matches/4346328)** | **Probable** | 3 Na`Vi anchors + 3 Fnatic anchors. |
-| 2012-01-31 | Team Dignitas vs Evil Geniuses | **[4492245](https://www.dotabuff.com/matches/4492245)** | **Probable** | 3 Dignitas anchors (`freezer`, `ComeWithMe`, `Zizou`) + 4 EG anchors. |
-| 2012-02-03 | Team Dignitas vs Natus Vincere | **[4693642](https://www.dotabuff.com/matches/4693642)** | **Probable** | 3 Dignitas anchors (`freezer`, `ComeWithMe`, `Zizou`) + 3 Na`Vi anchors. |
+| 2012-01-31 | Team Dignitas vs Evil Geniuses | **[4492245](https://www.dotabuff.com/matches/4492245)** | **Probable (high)** | 3 Dignitas anchors (`freezer`, `ComeWithMe`, `Zizou`) + 4 EG anchors. |
+| 2012-02-03 | Team Dignitas vs Natus Vincere | **[4693642](https://www.dotabuff.com/matches/4693642)** | **Probable (high)** | 3 Dignitas anchors (`freezer`, `ComeWithMe`, `Zizou`) + 3 Na`Vi anchors. |
 | 2012-02-03 | Evil Geniuses vs Problem??? | **[4698712](https://www.dotabuff.com/matches/4698712)** | **Probable** | 4 EG anchors + `Buugi/Lapiz`. |
 | 2012-02-08 | Fnatic vs mousesports | **[5056156](https://www.dotabuff.com/matches/5056156)** | **Probable (high)** | 3 Fnatic anchors + 4 mouz anchors. |
 
