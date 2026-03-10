@@ -25,7 +25,7 @@ stage-3 practice-match DB evidence only.
 - **Natus Vincere** *(aka Na`Vi)*
 - **Quantic Gaming** *(Team DD / dd.Dota signed by Quantic Gaming during the tournament; treat this as the same team / roster lineage for playoff reconstruction)*
 - **Evil Geniuses** *(aka EG)*
-- **Absolute Legends** *(aka AL)*
+- **Absolute Legends** *(aka AL; treat Natural 9 / later Absolute Legends as the same roster lineage in this tournament once the signing happens)*
 - **mousesports** *(aka mouz)*
 - **Western Wolves** *(Team Shakira lineage)*
 
@@ -40,7 +40,7 @@ stage-3 practice-match DB evidence only.
 8. **Team Infused** signed **EmoCore** on December 21, 2011.
 9. **Western Wolves** signed **Team Shakira** on December 21, 2011.
 10. **Team Dignitas** signed **Poor Happy Guys** on December 23, 2011.
-11. **Absolute Legends** signed **Natural 9** on January 21, 2012.
+11. **Absolute Legends** signed **Natural 9** on January 21, 2012; for this tournament, treat early **Natural 9** and later **Absolute Legends** as the same competitive roster lineage.
 12. **SK Gaming** dropped their squad, which continued as **Team DD**, on January 30, 2012.
 13. **Ariana Gaming** signed **PANZER** on February 8, 2012.
 14. **Quantic Gaming** signed **Team DD** on February 21, 2012.
