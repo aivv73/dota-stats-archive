@@ -271,6 +271,13 @@ cleanly in the current DB slice.
 - **Zizou** *(10kabs5kdota)*: `27005611`
 - **Ly0n** *(d.intel Ly0n)*: `97170605`
 
+**Problem???**
+- **Buugi**: `24009418`
+- **noertti**: `54662003`
+- **marge**: `47294378`
+- **Lapiz**: `4330802`
+- **Laged**: `41246809`
+
 **Just 4 the Tournament**
 - **Kev-**: `87409544`
 - **rmN-** *(`01`)*: `87197791`
