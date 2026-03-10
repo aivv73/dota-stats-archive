@@ -193,6 +193,13 @@ These should **not** be treated as solved yet from the current stage-3 DB alone.
 - **DeMeNt**: `86561084`
 - **Trixi** *(probable `black beatles` account; needs confirmation because this account has conflicting older attribution elsewhere)*: `90793520`
 
+**Ariana Gaming**
+- **Alex**: `37105332`
+- **leaf**: `24106261` *(reported here for Ariana, but this account currently conflicts with an earlier Dhany attribution elsewhere in notes; needs confirmation)*
+- **KuroKy**: `82262664`
+- **Saga** *(seen as `sezer salad`, `flankin'`)*: `83431381`
+- **paS** *(`-----`)*: `31078647`
+
 ---
 
 ## 📺 Video Archive (known series VODs)
