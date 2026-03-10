@@ -167,25 +167,33 @@ These should **not** be treated as solved yet from the current stage-3 DB alone.
 ## 🎮 Group Stage #2 — Group 1 (DB-first shortlist)
 
 The following table records the current **best stage-3 DB candidate** for each
-Liquipedia-listed Group Stage #2 / Group 1 match. This is a working shortlist,
-not a fully finalized group-stage reconstruction.
+Liquipedia-listed Group Stage #2 / Group 1 match. This is still a working
+shortlist, not a fully finalized group-stage reconstruction, but it was
+re-checked after adding fuller roster/account mappings for **Just 4 the
+Tournament**, **Mortal Teamwork**, **Panzer/Ariana**, and related lineups.
+
+Main result of the re-check:
+- the shortlist itself did **not** materially change
+- the **Just 4 the Tournament** matches now read with better confidence
+- the weakest rows are still the ones involving **mTw**, because stage-3 most
+  often exposes only `syndereN` from that side
 
 | Date (UTC) | Matchup | Best candidate | Confidence | Note |
 |---|---|---:|---|---|
 | 2012-01-15 | Team DD vs Absolute Legends | **[3380274](https://www.dotabuff.com/matches/3380274)** | **Probable (high)** | Strong two-sided overlap: 4 DD + 4 AL anchors. |
 | 2012-01-17 | mTw vs Panzer | **[3499689](https://www.dotabuff.com/matches/3499689)** | **Probable** | syndereN plus 4 Panzer-side anchors. |
-| 2012-01-18 | Western Wolves vs Just 4 the Tournament | **[3557757](https://www.dotabuff.com/matches/3557757)** | **Possible / probable lead** | 4 Western Wolves anchors + 2 J4TT anchors. |
-| 2012-01-21 | mTw vs Just 4 the Tournament | **[3784147](https://www.dotabuff.com/matches/3784147)** | **Possible / probable lead** | syndereN plus 3 J4TT anchors. |
-| 2012-01-24 | Team DD vs Just 4 the Tournament | **[3977993](https://www.dotabuff.com/matches/3977993)** | **Probable** | 4 DD anchors + 3 J4TT anchors. |
+| 2012-01-18 | Western Wolves vs Just 4 the Tournament | **[3557757](https://www.dotabuff.com/matches/3557757)** | **Probable lead** | 4 Western Wolves anchors + 2 J4TT anchors (`Fire`, `rmN-`). |
+| 2012-01-21 | mTw vs Just 4 the Tournament | **[3784147](https://www.dotabuff.com/matches/3784147)** | **Probable lead** | `syndereN` plus 3 J4TT anchors (`Fire`, `Kebap`, `rmN-`). |
+| 2012-01-24 | Team DD vs Just 4 the Tournament | **[3977993](https://www.dotabuff.com/matches/3977993)** | **Probable (high)** | 4 DD anchors + 3 J4TT anchors (`Fire`, `Kebap`, `rmN-`). |
 | 2012-01-24 | Panzer vs Team DD | **[3982285](https://www.dotabuff.com/matches/3982285)** | **Probable (high)** | Strong two-sided overlap: 4 Panzer + 4 DD anchors. |
-| 2012-01-29 | Panzer vs Just 4 the Tournament | **[4350955](https://www.dotabuff.com/matches/4350955)** | **Probable** | 4 Panzer anchors + 2 J4TT anchors. |
+| 2012-01-29 | Panzer vs Just 4 the Tournament | **[4350955](https://www.dotabuff.com/matches/4350955)** | **Probable lead** | 4 Panzer anchors + 2 J4TT anchors (`Fire`, `rmN-`). |
 | 2012-01-31 | Western Wolves vs Panzer | **[4497897](https://www.dotabuff.com/matches/4497897)** | **Probable (high)** | Strong two-sided overlap: 5 Western Wolves + 4 Panzer anchors. |
 | 2012-02-01 | mTw vs Team DD | **[4557075](https://www.dotabuff.com/matches/4557075)** | **Probable lead** | syndereN plus 4 DD anchors. |
 | 2012-02-01 | mTw vs Western Wolves | **[4561283](https://www.dotabuff.com/matches/4561283)** | **Probable lead** | syndereN plus 4 Western Wolves anchors. |
 | 2012-02-02 | Absolute Legends vs Panzer | **[4618477](https://www.dotabuff.com/matches/4618477)** | **Probable (high)** | Strong two-sided overlap: 5 AL + 4 Panzer anchors. |
 | 2012-02-02 | mTw vs Absolute Legends | **[4621583](https://www.dotabuff.com/matches/4621583)** | **Probable lead** | syndereN plus 5 AL anchors. |
 | 2012-02-02 | Western Wolves vs Team DD | **[4629510](https://www.dotabuff.com/matches/4629510)** | **Probable (high)** | Strong two-sided overlap: 4 Western Wolves + 4 DD anchors. |
-| 2012-02-04 | Absolute Legends vs Just 4 the Tournament | **[4758228](https://www.dotabuff.com/matches/4758228)** | **Probable** | 5 AL anchors + 3 J4TT anchors. |
+| 2012-02-04 | Absolute Legends vs Just 4 the Tournament | **[4758228](https://www.dotabuff.com/matches/4758228)** | **Probable (high)** | 5 AL anchors + 3 J4TT anchors (`Fire`, `Kebap`, `rmN-`). |
 | 2012-02-04 | Western Wolves vs Absolute Legends | **[4762363](https://www.dotabuff.com/matches/4762363)** | **Probable (high)** | Strong two-sided overlap: 4 Western Wolves + 5 AL anchors. |
 
 ---
