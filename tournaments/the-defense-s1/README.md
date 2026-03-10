@@ -236,6 +236,13 @@ not a fully finalized group-stage reconstruction.
 - **Zizou** *(10kabs5kdota)*: `27005611`
 - **Ly0n** *(d.intel Ly0n)*: `97170605`
 
+**Just 4 the Tournament**
+- **Kev-**: `87409544`
+- **rmN-** *(`01`)*: `87197791`
+- **Fire**: `11603325`
+- **moods** *(mds)*: `88282736`
+- **Kebap** *(RainerZufall)*: `34552614`
+
 **mousesports**
 - **SingSing**: `19757254`
 - **SexyBamboe**: `20321748`
