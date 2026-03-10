@@ -184,7 +184,15 @@ These should **not** be treated as solved yet from the current stage-3 DB alone.
 - **Sockshka** *(causalité)*: `16769223`
 - **Funzii** *(TMTC)*: `29337472`
 - **7ckngMad / Ceb**: `88271237`
-- **Ph0eNiiX**: `87291311`
+- **Dhany**: `24106261` *(historical note: user reports this account is actually leaf's main account; Dhany may have played on it / used it as a stand-in account in this tournament context)*
+- **Ph0eNiiX / Ph0enix**: `87291311`
+
+**Dignitas**
+- **freezer**: `39226957`
+- **ComeWithMe**: `85375207`
+- **S0ny** *(Ro-Coco)*: `45316897`
+- **Zizou** *(10kabs5kdota)*: `27005611`
+- **Ly0n** *(d.intel Ly0n)*: `97170605`
 
 **mousesports**
 - **SingSing**: `19757254`
@@ -195,7 +203,7 @@ These should **not** be treated as solved yet from the current stage-3 DB alone.
 
 **Ariana Gaming**
 - **Alex**: `37105332`
-- **leaf**: `24106261` *(reported here for Ariana, but this account currently conflicts with an earlier Dhany attribution elsewhere in notes; needs confirmation)*
+- **leaf**: `24106261` *(confirmed by user as leaf's account; if Dhany appears on this account in some historical rows, treat that as a likely stand-in / account-sharing artifact rather than the primary identity)*
 - **KuroKy**: `82262664`
 - **Saga** *(seen as `sezer salad`, `flankin'`)*: `83431381`
 - **paS** *(`-----`)*: `31078647`
