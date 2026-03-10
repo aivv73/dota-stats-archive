@@ -10,8 +10,12 @@ currently labeled `likely_ticketless`.
 - The tournament scope is inherited from the stage-1 candidate list.
 - That stage keeps **Liquipedia canonical** for the ticket heuristic and uses
   **Dota 2 Fandom only as secondary tournament backfill/cross-check**.
-- This player stage uses **Liquipedia only** for roster extraction and player ID
-  resolution.
+- This player stage uses **Liquipedia only** for roster extraction and base
+  player-page / TeamCard ID resolution.
+- After that base pass, it can also apply a local
+  `data/manual_player_overrides.json` file to enrich unresolved player handles
+  with manually verified Dotabuff account IDs while preserving explicit source
+  provenance.
 
 It does **not** re-decide whether a tournament was really ticketless. It only
 collects the players that appear in that already-integrated scope.
@@ -63,6 +67,10 @@ The JSON keeps:
   - `account_ids[].sources`
   - `steam_ids[].sources`
   - `steam_ids[].confidence`
+- optional manual enrichment provenance:
+  - `resolution_evidence` may include `manual_override_account_id`
+  - `provenance.manual_overrides_file`
+  - `provenance.manual_overrides_applied`
 - resolution status / confidence:
   - `resolved_with_player_page_and_ids`
   - `resolved_with_player_page_without_ids`
@@ -108,5 +116,6 @@ Optional flags:
 - `--csv /custom/path/pre2014_ticketless_players.csv`
 - `--cache-dir /custom/path/http-cache`
 - `--stage1-cache-dir /custom/path/stage1-cache`
+- `--manual-overrides /custom/path/manual_player_overrides.json`
 - `--refresh-cache`
 - `--user-agent "custom user agent"`

@@ -5,14 +5,15 @@
       "prefer explicit TeamCard linked-page hints as grouping keys before name-only fallback",
       "merge unresolved name-only groups into a uniquely matching resolved/id-backed entity when the normalized observed handle matches",
       "preserve numeric-looking handles unless other parse evidence is clearly broken",
-      "exclude players seen only in supplemental tournaments while keeping supplemental observations for mixed-scope players"
+      "exclude players seen only in supplemental tournaments while keeping supplemental observations for mixed-scope players",
+      "apply optional manual player-account overrides after Liquipedia-only grouping so unresolved roster names can be enriched reproducibly"
     ],
     "supplemental_only_tournaments": [
       "The International 2011",
       "Dota2 Star Championship"
     ]
   },
-  "generated_at": "2026-03-07T22:07:45.313Z",
+  "generated_at": "2026-03-10T19:23:14.114Z",
   "scope": {
     "candidate_tournament_count": 20,
     "rule": "The player scope is inherited from the integrated pre-2014 likely-ticketless tournament list. This stage does not re-decide ticket status, and it excludes players who appear only in supplemental tournaments.",
@@ -42,6 +43,8 @@
       "TeamCard.pXlink",
       "TeamCard.pXid"
     ],
+    "manual_overrides_file": "pipeline/liquipedia_pre2014_ticketless_players/data/manual_player_overrides.json",
+    "manual_overrides_applied": 19,
     "user_agent": "dota-stats-archive-liquipedia-ticketless-players/1.0 (local workspace; contact: local)",
     "wiki": "Liquipedia Dota 2"
   },
@@ -53,21 +56,22 @@
   "summary": {
     "cleanup_group_merges": 2,
     "players_after_cleanup_before_scope_filter": 358,
-    "players_with_account_ids": 138,
-    "players_with_any_numeric_id": 138,
-    "players_with_derived_steam_ids": 138,
-    "players_with_explicit_account_ids": 138,
+    "players_with_account_ids": 154,
+    "players_with_any_numeric_id": 154,
+    "players_with_derived_steam_ids": 154,
+    "players_with_explicit_account_ids": 154,
     "players_with_explicit_steam_ids": 0,
     "players_with_liquipedia_player_page": 121,
-    "players_with_steam_ids": 138,
+    "players_with_steam_ids": 154,
     "players_excluded_as_supplemental_only": 82,
-    "players_without_numeric_id": 138,
+    "players_with_manual_override_account_ids": 19,
+    "players_without_numeric_id": 122,
     "roster_observations": 695,
     "tournaments_loaded_from_stage1_cache": 20,
     "tournaments_missing_from_stage1_cache": 0,
     "tournaments_fetched_live": 0,
     "unique_players": 276,
-    "unresolved_name_only_players": 138
+    "unresolved_name_only_players": 122
   },
   "players": [
     {
@@ -926,7 +930,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.AngeL"
+          ],
+          "value": "8517055"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [],
@@ -1028,17 +1040,26 @@
         "The Premier League Season 1",
         "D2E Challenge"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_with_supplemental",
       "supplemental_source_appearances": 1,
       "supplemental_source_tournaments": [
         "The International 2011"
       ],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561197968782783"
+        }
+      ],
       "tournaments": [
         "The International 2011",
         "Electronic Sports World Cup 2011",
@@ -1847,7 +1868,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.BAJA-"
+          ],
+          "value": "58675374"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [],
@@ -1923,15 +1952,24 @@
         "DreamHack Winter 2011",
         "The Premier League Season 1"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_only",
       "supplemental_source_appearances": 0,
       "supplemental_source_tournaments": [],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198018941102"
+        }
+      ],
       "tournaments": [
         "Electronic Sports World Cup 2011",
         "The Defense Season 1",
@@ -3682,7 +3720,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.DeMenT"
+          ],
+          "value": "86561084"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [],
@@ -3744,15 +3790,24 @@
         "Dota2Replays Brawl",
         "joinDOTA Masters I"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_only",
       "supplemental_source_appearances": 0,
       "supplemental_source_tournaments": [],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198046826812"
+        }
+      ],
       "tournaments": [
         "The Defense Season 1",
         "Dota2Replays Brawl",
@@ -5026,7 +5081,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.Fire"
+          ],
+          "value": "11603325"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [
@@ -5061,16 +5124,25 @@
       "primary_target_tournaments": [
         "The Defense Season 1"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
         "teamcard_link",
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_only",
       "supplemental_source_appearances": 0,
       "supplemental_source_tournaments": [],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561197971869053"
+        }
+      ],
       "tournaments": [
         "The Defense Season 1"
       ]
@@ -5429,7 +5501,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.freezer"
+          ],
+          "value": "39226957"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [],
@@ -5504,15 +5584,24 @@
         "Infused Cup",
         "joinDOTA Masters I"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_only",
       "supplemental_source_appearances": 0,
       "supplemental_source_tournaments": [],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561197999492685"
+        }
+      ],
       "tournaments": [
         "The Defense Season 1",
         "The Premier League Season 1",
@@ -6532,7 +6621,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.Grunt"
+          ],
+          "value": "64048945"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [],
@@ -6579,15 +6676,24 @@
         "The Defense Season 1",
         "DreamHack Winter 2011"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_only",
       "supplemental_source_appearances": 0,
       "supplemental_source_tournaments": [],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198024314673"
+        }
+      ],
       "tournaments": [
         "The Defense Season 1",
         "DreamHack Winter 2011"
@@ -7910,6 +8016,13 @@
         {
           "confidence": "explicit",
           "sources": [
+            "manual_override.Kebap"
+          ],
+          "value": "34552614"
+        },
+        {
+          "confidence": "explicit",
+          "sources": [
             "liquipedia_player_infobox.playerid"
           ],
           "value": "96873088"
@@ -7967,7 +8080,8 @@
       "resolution_confidence": "high",
       "resolution_evidence": [
         "player_page_infobox",
-        "player_page_account_id"
+        "player_page_account_id",
+        "manual_override_account_id"
       ],
       "resolution_status": "resolved_with_player_page_and_ids",
       "scope_role": "primary_with_supplemental",
@@ -7976,6 +8090,13 @@
         "The International 2011"
       ],
       "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561197994818342"
+        },
         {
           "confidence": "derived",
           "sources": [
@@ -8099,7 +8220,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.Kev-"
+          ],
+          "value": "87409544"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [],
@@ -8145,17 +8274,26 @@
       "primary_target_tournaments": [
         "The Defense Season 1"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_with_supplemental",
       "supplemental_source_appearances": 1,
       "supplemental_source_tournaments": [
         "The International 2011"
       ],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198047675272"
+        }
+      ],
       "tournaments": [
         "The International 2011",
         "The Defense Season 1"
@@ -8567,7 +8705,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.Kuronity"
+          ],
+          "value": "236517"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [],
@@ -8615,15 +8761,24 @@
         "The Defense Season 1",
         "DreamHack Winter 2011"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_only",
       "supplemental_source_appearances": 0,
       "supplemental_source_tournaments": [],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561197960502245"
+        }
+      ],
       "tournaments": [
         "The Defense Season 1",
         "DreamHack Winter 2011"
@@ -8877,7 +9032,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.Laged"
+          ],
+          "value": "41246809"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [],
@@ -8910,15 +9073,24 @@
       "primary_target_tournaments": [
         "The Defense Season 1"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_only",
       "supplemental_source_appearances": 0,
       "supplemental_source_tournaments": [],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198001512537"
+        }
+      ],
       "tournaments": [
         "The Defense Season 1"
       ]
@@ -10270,7 +10442,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.Ly0n"
+          ],
+          "value": "97170605"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [],
@@ -10331,15 +10511,24 @@
         "Infused Cup",
         "joinDOTA Masters I"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_only",
       "supplemental_source_appearances": 0,
       "supplemental_source_tournaments": [],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198057436333"
+        }
+      ],
       "tournaments": [
         "The Defense Season 1",
         "Infused Cup",
@@ -10846,7 +11035,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.marge"
+          ],
+          "value": "47294378"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [],
@@ -10879,15 +11076,24 @@
       "primary_target_tournaments": [
         "The Defense Season 1"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_only",
       "supplemental_source_appearances": 0,
       "supplemental_source_tournaments": [],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198007560106"
+        }
+      ],
       "tournaments": [
         "The Defense Season 1"
       ]
@@ -11038,6 +11244,13 @@
         {
           "confidence": "explicit",
           "sources": [
+            "manual_override.Matrim"
+          ],
+          "value": "75555146"
+        },
+        {
+          "confidence": "explicit",
+          "sources": [
             "liquipedia_player_infobox.playerid"
           ],
           "value": "102336540"
@@ -11096,13 +11309,21 @@
       "resolution_confidence": "high",
       "resolution_evidence": [
         "player_page_infobox",
-        "player_page_account_id"
+        "player_page_account_id",
+        "manual_override_account_id"
       ],
       "resolution_status": "resolved_with_player_page_and_ids",
       "scope_role": "primary_only",
       "supplemental_source_appearances": 0,
       "supplemental_source_tournaments": [],
       "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198035820874"
+        },
         {
           "confidence": "derived",
           "sources": [
@@ -12103,7 +12324,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.moods"
+          ],
+          "value": "88282736"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [],
@@ -12136,15 +12365,24 @@
       "primary_target_tournaments": [
         "The Defense Season 1"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_only",
       "supplemental_source_appearances": 0,
       "supplemental_source_tournaments": [],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198048548464"
+        }
+      ],
       "tournaments": [
         "The Defense Season 1"
       ]
@@ -12936,7 +13174,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.noertti"
+          ],
+          "value": "54662003"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [],
@@ -12969,15 +13215,24 @@
       "primary_target_tournaments": [
         "The Defense Season 1"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_only",
       "supplemental_source_appearances": 0,
       "supplemental_source_tournaments": [],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198014927731"
+        }
+      ],
       "tournaments": [
         "The Defense Season 1"
       ]
@@ -13714,7 +13969,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.Pepp3"
+          ],
+          "value": "17374868"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [],
@@ -13762,15 +14025,24 @@
         "The Defense Season 1",
         "DreamHack Winter 2011"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_only",
       "supplemental_source_appearances": 0,
       "supplemental_source_tournaments": [],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561197977640596"
+        }
+      ],
       "tournaments": [
         "The Defense Season 1",
         "DreamHack Winter 2011"
@@ -15831,7 +16103,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.S0ny"
+          ],
+          "value": "45316897"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [],
@@ -15893,15 +16173,24 @@
         "The Premier League Season 1",
         "Infused Cup"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_only",
       "supplemental_source_appearances": 0,
       "supplemental_source_tournaments": [],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198005582625"
+        }
+      ],
       "tournaments": [
         "The Defense Season 1",
         "The Premier League Season 1",
@@ -15909,7 +16198,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.Saga"
+          ],
+          "value": "83431381"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [],
@@ -15942,15 +16239,24 @@
       "primary_target_tournaments": [
         "The Defense Season 1"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_only",
       "supplemental_source_appearances": 0,
       "supplemental_source_tournaments": [],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198043697109"
+        }
+      ],
       "tournaments": [
         "The Defense Season 1"
       ]
@@ -17142,6 +17448,13 @@
         {
           "confidence": "explicit",
           "sources": [
+            "manual_override.Smile"
+          ],
+          "value": "89713365"
+        },
+        {
+          "confidence": "explicit",
+          "sources": [
             "liquipedia_player_infobox.playerid"
           ],
           "value": "107644273"
@@ -17260,7 +17573,8 @@
       "resolution_confidence": "high",
       "resolution_evidence": [
         "player_page_infobox",
-        "player_page_account_id"
+        "player_page_account_id",
+        "manual_override_account_id"
       ],
       "resolution_status": "resolved_with_player_page_and_ids",
       "scope_role": "primary_with_supplemental",
@@ -17270,6 +17584,13 @@
         "Dota2 Star Championship"
       ],
       "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198049979093"
+        },
         {
           "confidence": "derived",
           "sources": [

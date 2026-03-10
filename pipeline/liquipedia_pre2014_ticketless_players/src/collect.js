@@ -17,6 +17,7 @@ const DEFAULT_DATA_DIR = path.join(STAGE_ROOT, 'data');
 const DEFAULT_CACHE_DIR = path.join(STAGE_ROOT, 'cache', 'http');
 const DEFAULT_JSON_PATH = path.join(DEFAULT_DATA_DIR, 'pre2014_ticketless_players.json');
 const DEFAULT_CSV_PATH = path.join(DEFAULT_DATA_DIR, 'pre2014_ticketless_players.csv');
+const DEFAULT_MANUAL_OVERRIDES_PATH = path.join(DEFAULT_DATA_DIR, 'manual_player_overrides.json');
 const DEFAULT_SCOPE_PATH = path.resolve(
   __dirname,
   '../../liquipedia_pre2014_stage1/data/pre2014_ticketless_candidates.json',
@@ -145,6 +146,7 @@ function parseArguments(argv) {
     cacheDir: DEFAULT_CACHE_DIR,
     csvPath: DEFAULT_CSV_PATH,
     jsonPath: DEFAULT_JSON_PATH,
+    manualOverridesPath: DEFAULT_MANUAL_OVERRIDES_PATH,
     minIntervalMs: DEFAULT_MIN_INTERVAL_MS,
     refreshCache: false,
     scopePath: DEFAULT_SCOPE_PATH,
@@ -171,6 +173,10 @@ function parseArguments(argv) {
         break;
       case '--json':
         options.jsonPath = path.resolve(nextToken);
+        index += 1;
+        break;
+      case '--manual-overrides':
+        options.manualOverridesPath = path.resolve(nextToken);
         index += 1;
         break;
       case '--refresh-cache':
@@ -817,6 +823,111 @@ function mergeObservationGroups(groups) {
   };
 }
 
+function loadManualOverrides(filePath) {
+  if (!filePath || !fs.existsSync(filePath)) {
+    return new Map();
+  }
+
+  const raw = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  const players = raw.players || raw;
+  const overrides = new Map();
+
+  for (const [canonicalHandle, override] of Object.entries(players)) {
+    if (!canonicalHandle || !override || typeof override !== 'object') {
+      continue;
+    }
+
+    overrides.set(canonicalHandle, override);
+  }
+
+  return overrides;
+}
+
+function buildManualIdEntries(override, canonicalHandle) {
+  return (override.account_ids || []).map((entry) => {
+    if (typeof entry === 'string' || typeof entry === 'number') {
+      return {
+        confidence: 'explicit',
+        source: `manual_override.${canonicalHandle}`,
+        value: String(entry),
+      };
+    }
+
+    return {
+      confidence: entry.confidence || 'explicit',
+      sources: unique(
+        (entry.sources || [entry.source].filter(Boolean)).concat(`manual_override.${canonicalHandle}`),
+      ),
+      value: String(entry.value || ''),
+    };
+  });
+}
+
+function applyManualOverrides(players, overrides) {
+  let appliedCount = 0;
+
+  for (const player of players) {
+    const override = overrides.get(player.canonical_handle);
+
+    if (!override) {
+      continue;
+    }
+
+    let touched = false;
+
+    const manualAccountEntries = buildManualIdEntries(override, player.canonical_handle);
+
+    if (manualAccountEntries.length > 0) {
+      player.account_ids = mergeIdEntries(player.account_ids.concat(manualAccountEntries));
+      touched = true;
+    }
+
+    if (override.aliases && typeof override.aliases === 'object') {
+      for (const [aliasKey, values] of Object.entries(override.aliases)) {
+        if (!Array.isArray(values)) {
+          continue;
+        }
+
+        player.aliases[aliasKey] = unique((player.aliases[aliasKey] || []).concat(values));
+        touched = true;
+      }
+    }
+
+    if (!touched) {
+      continue;
+    }
+
+    player.steam_ids = mergeIdEntries(
+      player.steam_ids.concat(
+        player.account_ids
+          .map((entry) => deriveSteamId64(entry.value))
+          .filter(Boolean)
+          .map((value) => ({
+            confidence: 'derived',
+            source: 'derived_from_account_id',
+            value,
+          })),
+      ),
+    );
+
+    player.resolution_evidence = unique(
+      (player.resolution_evidence || []).concat('manual_override_account_id'),
+    );
+
+    if (player.liquipedia_page_title && player.account_ids.length > 0) {
+      player.resolution_status = 'resolved_with_player_page_and_ids';
+      player.resolution_confidence = 'high';
+    } else if (player.account_ids.length > 0) {
+      player.resolution_status = 'resolved_with_teamcard_account_id_only';
+      player.resolution_confidence = 'medium';
+    }
+
+    appliedCount += 1;
+  }
+
+  return appliedCount;
+}
+
 function joinPlayerRecord(groupKey, observations) {
   const page = observations.find((observation) => observation.resolved_player_page)?.resolved_player_page;
   const observedNames = unique(observations.map((observation) => observation.observed_name));
@@ -968,6 +1079,9 @@ function summarizePlayers(players, observations, tournamentPageStats, cleanupSta
     ).length,
     players_with_steam_ids: players.filter((player) => player.steam_ids.length > 0).length,
     players_excluded_as_supplemental_only: cleanupStats.supplementalOnlyExcluded,
+    players_with_manual_override_account_ids: players.filter((player) =>
+      player.resolution_evidence.includes('manual_override_account_id'),
+    ).length,
     players_without_numeric_id: players.filter(
       (player) => player.account_ids.length === 0 && player.steam_ids.length === 0,
     ).length,
@@ -1082,6 +1196,9 @@ async function main() {
     observation.resolved_player_page = requestedToPlayerPage.get(requestedTitle) || null;
   }
 
+  const manualOverrides = loadManualOverrides(options.manualOverridesPath);
+  console.log(`[stage2] manual overrides loaded: ${manualOverrides.size}`);
+
   const groups = new Map();
 
   for (const observation of observations) {
@@ -1100,6 +1217,7 @@ async function main() {
     .map(([groupKey, groupObservations]) => joinPlayerRecord(groupKey, groupObservations))
     .sort((left, right) => left.canonical_handle.localeCompare(right.canonical_handle));
   const players = allPlayers.filter((player) => player.scope_role !== 'supplemental_only');
+  const manualOverridesApplied = applyManualOverrides(players, manualOverrides);
 
   const summary = summarizePlayers(players, observations, {
     fetchedLive: fetchedTournamentPages,
@@ -1119,6 +1237,7 @@ async function main() {
         'merge unresolved name-only groups into a uniquely matching resolved/id-backed entity when the normalized observed handle matches',
         'preserve numeric-looking handles unless other parse evidence is clearly broken',
         'exclude players seen only in supplemental tournaments while keeping supplemental observations for mixed-scope players',
+        'apply optional manual player-account overrides after Liquipedia-only grouping so unresolved roster names can be enriched reproducibly',
       ],
       supplemental_only_tournaments: [...SUPPLEMENTAL_ONLY_TOURNAMENTS],
     },
@@ -1140,6 +1259,11 @@ async function main() {
         'Infobox player.steamid/steamid64',
       ],
       tournament_page_signals: ['TeamCard.pX', 'TeamCard.pXlink', 'TeamCard.pXid'],
+      manual_overrides_file:
+        manualOverrides.size > 0
+          ? path.relative(path.resolve(STAGE_ROOT, '..', '..'), options.manualOverridesPath)
+          : null,
+      manual_overrides_applied: manualOverridesApplied,
       user_agent: options.userAgent,
       wiki: 'Liquipedia Dota 2',
     },
@@ -1161,6 +1285,7 @@ async function main() {
   console.log(`[stage2] wrote JSON: ${options.jsonPath}`);
   console.log(`[stage2] wrote CSV: ${options.csvPath}`);
   console.log(`[stage2] cleanup group merges: ${summary.cleanup_group_merges}`);
+  console.log(`[stage2] manual overrides applied: ${manualOverridesApplied}`);
   console.log(
     `[stage2] supplemental-only players excluded: ${summary.players_excluded_as_supplemental_only}`,
   );
