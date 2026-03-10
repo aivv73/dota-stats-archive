@@ -12,7 +12,7 @@ To reconstruct the history of tournaments like **Dota 2 Star Championship**, **E
 |---|---|---|---|---|
 | **[Dota 2 Star Championship](tournaments/d2sc/)** | 2011 | 🟢 **Recovered** | 46 | Playoffs + all Liquipedia-listed group stage matches recovered. |
 | **ESWC 2011** | 2011 | 🟢 **Recovered** | 300+ | Large dataset preserved in DB |
-| **[The Defense Season 1](tournaments/the-defense-s1/)** | 2011 | 🟡 **In Progress** | Grand Final identified | Evidence-backed finals mapping complete; broader playoff reconstruction continues. |
+| **[The Defense Season 1](tournaments/the-defense-s1/)** | 2011 | 🟡 **In Progress** | Playoffs mapped + GS shortlist | DB-first playoff reconstruction is largely mapped, and Group Stage #1/#2 shortlist work is now documented in the tournament README. |
 
 See **[Lost Tournaments List](Lost_Tournaments_List.md)** for the full roadmap and recovery queue.
 
@@ -48,16 +48,18 @@ A follow-on player stage now lives in
 It turns that scoped tournament set into a unique player inventory using
 Liquipedia `TeamCard` roster fields plus Liquipedia player-page infobox data for
 aliases and account/Steam IDs where available. Missing IDs stay explicit as
-unresolved rather than guessed.
+unresolved rather than guessed, and the stage now also supports a reproducible
+`manual_player_overrides.json` layer for verified Dotabuff account IDs that are
+not present directly in Liquipedia.
 
 A first practice-history stage now lives in
 [`pipeline/practice_match_history_stage3/`](pipeline/practice_match_history_stage3/).
 It uses the cleaned stage-2 player inventory plus verified D2SC profile
-mapping notes to build a small SQLite database of Dotabuff practice-history
-rows. The current first pass is intentionally explicit about limits: it keeps
-full scope-player/account provenance, but deeper Dotabuff pagination is
-currently Cloudflare-blocked in this environment, so multi-page histories are
-marked as partial/limited rather than silently treated as complete.
+mapping notes to build a local SQLite database of strict Dotabuff
+`Practice + None` history rows. The refreshed reverse-scan collector is now the
+main working path for extending 2011-2012 match recovery, and the committed DB
+artifacts are actively used to drive the tournament-specific README and match
+identification work.
 
 ### Key Tables
 

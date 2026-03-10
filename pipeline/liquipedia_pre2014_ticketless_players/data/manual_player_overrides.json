@@ -55,5 +55,32 @@
   },
   "BAJA-": {
     "account_ids": ["58675374"]
+  },
+  "BABARR": {
+    "account_ids": ["86895585"]
+  },
+  "ET": {
+    "account_ids": ["86815089"]
+  },
+  "inphinity": {
+    "account_ids": ["3246092"]
+  },
+  "PowerNet": {
+    "account_ids": ["14429114"]
+  },
+  "Evilsnear": {
+    "account_ids": ["86736858"]
+  },
+  "Muga Riptide": {
+    "account_ids": ["86739254"]
+  },
+  "Matori": {
+    "account_ids": ["86742226"]
+  },
+  "Tzar": {
+    "account_ids": ["32895399"]
+  },
+  "Mini": {
+    "account_ids": ["34128052"]
   }
 }
