@@ -39,6 +39,7 @@ const DEFAULT_CUTOFF_DATETIME_UTC = '2012-09-30T23:59:59Z';
 const MIN_REASONABLE_MATCH_DATETIME_UTC = '2011-01-01T00:00:00Z';
 const DEFAULT_PROBE_WAIT_MS = 20000;
 const DEFAULT_PAGE_DELAY_MS = 1000;
+const DEFAULT_ACCOUNT_TIMEOUT_MS = 15 * 60 * 1000;
 const DEFAULT_USER_AGENT =
   'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36';
 const STRICT_LOBBY_TYPE_LABEL_KEYS = new Set(['practice', 'тренировочный']);
@@ -694,6 +695,27 @@ async function closeBrowserContext(context) {
   }
 }
 
+async function safePageWait(page, delayMs) {
+  if (!page || !Number.isFinite(delayMs) || delayMs <= 0) {
+    return false;
+  }
+
+  try {
+    if (typeof page.isClosed === 'function' && page.isClosed()) {
+      return false;
+    }
+  } catch (error) {
+    return false;
+  }
+
+  try {
+    await page.waitForTimeout(delayMs);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
 function analyzeDotabuffBody(title, bodyText) {
   const normalizedTitle = String(title || '').trim();
   const normalizedBody = String(bodyText || '');
@@ -756,7 +778,9 @@ async function waitForDotabuffContent(page, probeWaitMs) {
       return inspection;
     }
 
-    await page.waitForTimeout(1000);
+    if (!(await safePageWait(page, 1000))) {
+      break;
+    }
   }
 
   if (lastInspection?.state === 'cloudflare_interstitial') {
@@ -1954,7 +1978,7 @@ async function collectAccountHistory(database, page, scopePlayer, accountRow, cu
     });
 
     if (options.pageDelayMs > 0) {
-      await page.waitForTimeout(options.pageDelayMs);
+      await safePageWait(page, options.pageDelayMs);
     }
   }
 }
@@ -2004,7 +2028,7 @@ async function collectScopePlayer(database, context, scopePlayer, cutoffTimestam
       scope_player_id: scopePlayer.scope_player_id,
     };
   } finally {
-    await page.close();
+    await page.close().catch(() => null);
   }
 }
 
