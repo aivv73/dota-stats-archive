@@ -349,6 +349,13 @@ Main result of the re-check:
 **Storm Games Clan**
 - **craNich**: `7932121`
 
+**It's Gosu eSports / Team EZ Style**
+- **1437**: `87196890`
+- **BuLba**: `30237211`
+- **UNiVeRsE**: `87276347`
+- **inphinity**: `3246092`
+- **PowerNet**: `14429114`
+
 **MiTH.Trust**
 - **TnK**: `45614257`
 - **LaKelz**: `91191397`
