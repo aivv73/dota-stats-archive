@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-03-09T20:13:21.523Z",
-  "started_at": "2026-03-09T19:31:56.225Z",
-  "run_id": "c0f357b2-aa16-42fc-85c6-54163b44b80c",
+  "generated_at": "2026-03-10T07:03:48.207Z",
+  "started_at": "2026-03-10T06:29:37.993Z",
+  "run_id": "dc8bb089-8a1f-4295-9f39-1d75b8f7d343",
   "source_provider": "dotabuff_match_detail_verified",
   "dataset_status": "dotabuff_derived",
   "is_truly_dotabuff_derived": true,
@@ -30,19 +30,19 @@
     "account_statuses": [
       {
         "collection_status": "pending",
-        "count": 111
+        "count": 89
       },
       {
         "collection_status": "collected",
-        "count": 30
+        "count": 48
       },
       {
         "collection_status": "blocked",
-        "count": 4
+        "count": 5
       },
       {
         "collection_status": "no_rows",
-        "count": 1
+        "count": 4
       },
       {
         "collection_status": "skipped",
@@ -50,15 +50,15 @@
       }
     ],
     "d2sc_verified_mappings_loaded": 54,
-    "distinct_accounts_collected": 31,
-    "distinct_match_ids_collected": 9237,
+    "distinct_accounts_collected": 49,
+    "distinct_match_ids_collected": 13356,
     "players_processed_this_run": 25,
     "players_selected_this_run": 25,
     "players_total": 276,
     "players_with_accounts": 144,
     "players_with_d2sc_auxiliary_accounts": 24,
     "players_without_accounts": 132,
-    "practice_match_rows_collected": 15498,
+    "practice_match_rows_collected": 25714,
     "scope_player_statuses": [
       {
         "collection_status": "unresolved",
@@ -66,19 +66,19 @@
       },
       {
         "collection_status": "pending",
-        "count": 109
+        "count": 87
       },
       {
         "collection_status": "collected",
-        "count": 30
+        "count": 48
       },
       {
         "collection_status": "blocked",
-        "count": 3
+        "count": 4
       },
       {
         "collection_status": "no_rows",
-        "count": 1
+        "count": 4
       },
       {
         "collection_status": "partial",
@@ -97,12 +97,28 @@
   ],
   "top_players_by_rows": [
     {
+      "canonical_handle": "Ceb",
+      "matches_collected_count": 1617
+    },
+    {
       "canonical_handle": "Sockshka",
       "matches_collected_count": 1242
     },
     {
       "canonical_handle": "Ryze",
       "matches_collected_count": 1023
+    },
+    {
+      "canonical_handle": "Funzii",
+      "matches_collected_count": 1010
+    },
+    {
+      "canonical_handle": "SingSing",
+      "matches_collected_count": 924
+    },
+    {
+      "canonical_handle": "Ph0eNiiX",
+      "matches_collected_count": 888
     },
     {
       "canonical_handle": "Godot",
@@ -121,6 +137,10 @@
       "matches_collected_count": 721
     },
     {
+      "canonical_handle": "G",
+      "matches_collected_count": 713
+    },
+    {
       "canonical_handle": "shatan",
       "matches_collected_count": 703
     },
@@ -137,8 +157,16 @@
       "matches_collected_count": 686
     },
     {
+      "canonical_handle": "NS",
+      "matches_collected_count": 656
+    },
+    {
       "canonical_handle": "ComeWithMe",
       "matches_collected_count": 639
+    },
+    {
+      "canonical_handle": "WinteR",
+      "matches_collected_count": 634
     },
     {
       "canonical_handle": "Pajkatt",
@@ -153,6 +181,10 @@
       "matches_collected_count": 577
     },
     {
+      "canonical_handle": "MaNia",
+      "matches_collected_count": 536
+    },
+    {
       "canonical_handle": "Mirakel",
       "matches_collected_count": 535
     },
@@ -161,40 +193,8 @@
       "matches_collected_count": 534
     },
     {
-      "canonical_handle": "XBOCT",
-      "matches_collected_count": 512
-    },
-    {
-      "canonical_handle": "PiNoY",
-      "matches_collected_count": 498
-    },
-    {
-      "canonical_handle": "r1sk",
-      "matches_collected_count": 496
-    },
-    {
-      "canonical_handle": "Puppey",
-      "matches_collected_count": 490
-    },
-    {
-      "canonical_handle": "Akke",
-      "matches_collected_count": 487
-    },
-    {
-      "canonical_handle": "Alex",
-      "matches_collected_count": 385
-    },
-    {
-      "canonical_handle": "Awoke",
-      "matches_collected_count": 268
-    },
-    {
-      "canonical_handle": "kYxY",
-      "matches_collected_count": 238
-    },
-    {
-      "canonical_handle": "TnK",
-      "matches_collected_count": 102
+      "canonical_handle": "XtiNcT",
+      "matches_collected_count": 521
     }
   ]
 }
