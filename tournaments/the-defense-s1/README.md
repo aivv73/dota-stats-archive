@@ -356,6 +356,13 @@ Main result of the re-check:
 - **inphinity**: `3246092`
 - **PowerNet**: `14429114`
 
+**EHOME**
+- **MMY!**: `89407113`
+- **QQQ**: `89399750`
+- **PCT**: `89427480`
+- **LaNm**: `89423756`
+- **KingJ**: `89230834`
+
 **PAORS**
 - **Matori**: `86742226`
 - **Tzar**: `32895399`
