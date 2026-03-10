@@ -210,16 +210,32 @@ These should **not** be treated as solved yet from the current stage-3 DB alone.
 
 ---
 
-## 📺 Video Archive (known series VODs)
+## 📺 Video Archive (known + discovered archive links)
+
+> Titles below are preserved close to the uploader naming. Some older uploads are clearly relevant to The Defense Season 1 but may use slightly inaccurate round labels or legacy naming.
 
 | Match | URL | Description |
 |---|---|---|
-| **Lower Bracket Final G1** | <https://www.youtube.com/watch?v=yQLtblCGPcQ> | EG vs Quantic |
-| **Lower Bracket Final G2** | <https://www.youtube.com/watch?v=FYuTjiwpzPE> | EG vs Quantic |
-| **Grand Final G1** | <https://www.youtube.com/watch?v=FAntUgZWqFk> | Na`Vi vs Quantic |
-| **Grand Final G2** | <https://www.youtube.com/watch?v=dwwdYO289aw> | Na`Vi vs Quantic |
-| **Grand Final G3** | <https://www.youtube.com/watch?v=pAqADjcqskM> | Na`Vi vs Quantic |
-| **Grand Final G4** | <https://www.youtube.com/watch?v=-O_Tv3RxrRk> | Na`Vi vs Quantic |
+| **Lower Bracket Final G1** | <https://www.youtube.com/watch?v=yQLtblCGPcQ> | EG vs Quantic (existing known link) |
+| **Lower Bracket Final G2** | <https://www.youtube.com/watch?v=FYuTjiwpzPE> | EG vs Quantic (existing known link) |
+| **Lower Bracket Final G1 (alt upload)** | <https://www.youtube.com/watch?v=ZOvox4ad228> | joinDOTA upload: "The Defense - Evil Geniuses vs Quantic Gaming - LB Playoffs - Game 1" |
+| **Lower Bracket Final G2 (alt upload)** | <https://www.youtube.com/watch?v=qqLCQMi8MMw> | joinDOTA upload: "The Defense - Evil Geniuses vs Quantic Gaming - LB Playoffs - Game 2" |
+| **Grand Final G1** | <https://www.youtube.com/watch?v=FAntUgZWqFk> | Na`Vi vs Quantic (existing known link) |
+| **Grand Final G2** | <https://www.youtube.com/watch?v=dwwdYO289aw> | Na`Vi vs Quantic (existing known link) |
+| **Grand Final G3** | <https://www.youtube.com/watch?v=pAqADjcqskM> | Na`Vi vs Quantic (existing known link) |
+| **Grand Final G4** | <https://www.youtube.com/watch?v=-O_Tv3RxrRk> | Na`Vi vs Quantic (existing known link) |
+| **Grand Final highlights** | <https://www.youtube.com/watch?v=TH4enJJVUXQ> | NAVI upload: "Na`Vi.DotA Highlights @ The Defense Grand Finals" |
+| **Grand Final G2 (alt cast/upload)** | <https://www.youtube.com/watch?v=5fszePXnw48> | LuminousInverse upload: "Navi vs Quantic Gaming (Defense Final) 2" |
+| **Grand Final G4 (alt cast/upload)** | <https://www.youtube.com/watch?v=t8z6AC1MZ6M> | LuminousInverse upload: "Navi vs Quantic Gaming (Defense Final) 4" |
+| **Upper Bracket Semifinal G1?** | <https://www.youtube.com/watch?v=Qcmm76X6XeI> | cyberarenaTV upload: "DD vs EG @The Defense 1/2 WB final #1" — likely Team DD vs EG Game 1 |
+| **Upper Bracket Semifinal G2** | <https://www.youtube.com/watch?v=mkRM7TCzf9E> | joinDOTA upload: "EG vs DD - The Defense Semi Final WB - Game 2" |
+| **Lower Bracket Round 1 G2** | <https://www.youtube.com/watch?v=haRYaED9kPI> | cyberarenaTV upload: "WW vs Mouz @ The Defence LB Round 1 Game 2" |
+| **Lower Bracket Quarterfinal AL vs Dignitas G1** | <https://www.youtube.com/watch?v=w5HKjgqbCoA> | joinDOTA upload: title says "LB Semi Final - Game 1", but matchup fits AL vs Dignitas playoff series |
+| **Lower Bracket Quarterfinal AL vs Dignitas G2 / Part 2** | <https://www.youtube.com/watch?v=9QtynECXw0U> | Maelstorm One upload: "The Defence. Lbr Ro2. Dignitas vs Al.Part 2" |
+| **Lower Bracket Quarterfinal AL vs Dignitas G3** | <https://www.youtube.com/watch?v=ajPZP0jfKVo> | joinDOTA upload: title says "LB Semi Final - Game 3", but matchup fits AL vs Dignitas playoff series |
+| **Lower Bracket Semifinal Quantic vs AL G1** | <https://www.youtube.com/watch?v=Q987Sq1FD3s> | joinDOTA upload: title says "LB Final 1st - Game 1" |
+| **Lower Bracket Semifinal Quantic vs AL G2** | <https://www.youtube.com/watch?v=l3Mx_zg30pc> | joinDOTA upload: title says "LB Final 1st - Game 2" |
+| **Lower Bracket Semifinal Quantic vs AL G3** | <https://www.youtube.com/watch?v=GNuAWJOVbUE> | joinDOTA upload: title says "LB Final 1st - Game 3" |
 
 ---
 
