@@ -171,27 +171,21 @@ map.
 
 ### Game 2
 
-- **leading candidate:** `6825615`
-- **match_datetime_utc:** `2012-03-04T19:44:21Z`
+- **leading candidate:** `6828244`
+- **match_datetime_utc:** `2012-03-04T20:18:57Z`
 - **verdict:** `probable` (high)
 
-DB-side observed heroes:
+Current correction:
 
-- Dendi — Tiny
-- Puppey — Storm Spirit
-- XBOCT — Anti-Mage
-- Link — Mirana
-- MaNia — Windranger
-- Ryze — Enchantress
-- miGGel — Shadow Shaman
+- `6828244` is now treated as the **actual played Game 2**.
+- `6825615` is now treated as the **false-start / recreated lobby** that
+  happened immediately before it.
+- The decisive practical signal is duration: `6825615` lasted only about
+  **30 seconds**, while `6828244` lasted about **33 minutes**, which is
+  consistent with a real played finals map.
 
-Alternative nearby candidate:
-
-- `6828244` (`2012-03-04T20:18:57Z`)
-
-`6828244` looks very close to `6825615` in both player composition and hero
-profile and is currently treated as a likely remake / duplicate / non-primary
-candidate rather than a distinct played finals map.
+This updates the earlier interpretation that had temporarily favored `6825615`
+as the primary mapping.
 
 ### Game 3
 
@@ -231,16 +225,16 @@ DB-side observed heroes:
 - Ryze — Nature's Prophet
 - miGGel — Leshrac
 
-This is the best remaining late-series candidate once `6828244` is treated as a
-likely duplicate/remake and `6829300` is rejected as too incomplete.
+This is the best remaining late-series candidate once the false-start lobby
+`6825615` is demoted and `6829300` is rejected as too incomplete.
 
 ### Non-primary leftover candidates
 
-#### `6828244`
+#### `6825615`
 
-- **verdict:** `possible` / `reject as primary finals map`
-- **reason:** near-duplicate timing and very similar player / hero profile to
-  `6825615`; likely remake, rehost, or duplicate capture.
+- **verdict:** `reject as primary finals map`
+- **reason:** short false-start / recreated lobby immediately before the real
+  Game 2; duration only about **30 seconds**.
 
 #### `6829300`
 
@@ -253,13 +247,14 @@ likely duplicate/remake and `6829300` is rejected as too incomplete.
 - **Series verdict:** `confirmed`
 - **Map-level state:**
   - Game 1 → `6820537` — `confirmed`
-  - Game 2 → `6825615` — `probable` (high)
+  - Game 2 → `6828244` — `probable` (high)
   - Game 3 → `6833198` — `probable` (very high)
   - Game 4 → `6835370` — `probable`
 
 This is strong enough for working tournament reconstruction, with the remaining
-uncertainty concentrated mostly around exact map-by-map disambiguation between
-Games 2–4 and the handling of `6828244` as a duplicate/remake suspect.
+uncertainty concentrated mostly around conservative labeling of Games 2–4 rather
+than the overall series identity. The main nearby false-positive is now
+understood to be the short-lived `6825615` restart lobby.
 
 ---
 

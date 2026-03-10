@@ -49,9 +49,9 @@ These four videos align with the played-map count implied by the upper-bracket a
 | Played map | Best DB candidate | Match time (UTC) | Confidence | Notes |
 |---|---:|---|---|---|
 | Game 1 | `6820537` | 2012-03-04 18:27:11Z | **Confirmed** | Strong roster cluster + VOD hero fit from extracted draft frame. |
-| Game 2 | `6825615` | 2012-03-04 19:44:21Z | **Probable (high)** | Best fit for series order and recurring player cluster. |
+| Game 2 | `6828244` | 2012-03-04 20:18:57Z | **Probable (high)** | Real played map (~33 min); `6825615` is now treated as the short false-start lobby recreated before it. |
 | Game 3 | `6833198` | 2012-03-04 21:45:59Z | **Probable (very high)** | Excellent temporal fit; effectively near-confirmed. |
-| Game 4 | `6835370` | 2012-03-04 22:15:19Z | **Probable** | Best remaining late-series candidate after duplicate/reject filtering. |
+| Game 4 | `6835370` | 2012-03-04 22:15:19Z | **Probable** | Best remaining late-series candidate after false-start/reject filtering. |
 
 ### Main recurring finals player anchors
 
@@ -78,19 +78,15 @@ Observed DB-side heroes include:
 
 A frame extracted from the VOD at **22:52** shows a Captains Mode draft with clear **Na`Vi** and **Quantic** labels plus hero anchors consistent with the unknown slots of `6820537`.
 
-### Game 2 → `6825615` — probable (high)
+### Game 2 → `6828244` — probable (high)
 
-Observed DB-side heroes include:
+Current correction:
 
-- Dendi — Tiny
-- Puppey — Storm Spirit
-- XBOCT — Anti-Mage
-- Link — Mirana
-- MaNia — Windranger
-- Ryze — Enchantress
-- miGGel — Shadow Shaman
+- `6828244` is treated as the **real played map**.
+- `6825615` is treated as the **false-start / recreated lobby** immediately before it.
+- Practical reason: `6825615` lasted only about **30 seconds**, while `6828244` lasted about **33 minutes**, which matches an actual played finals game rather than a restart artifact.
 
-The closest nearby alternative is `6828244`, but it is currently treated as a likely remake / duplicate / non-primary capture rather than a distinct played finals map.
+This correction resolves the earlier ambiguity between the two nearby Game 2 candidates and promotes `6828244` into the primary series mapping.
 
 ### Game 3 → `6833198` — probable (very high)
 
@@ -126,7 +122,7 @@ This is the best remaining late-series candidate once weaker leftovers are remov
 
 | Match ID | Status | Why it is not the main mapping |
 |---:|---|---|
-| `6828244` | Possible, but rejected as primary | Near-duplicate timing and very similar player/hero profile to `6825615`; likely remake, rehost, or duplicate capture. |
+| `6825615` | Rejected as primary | Short false-start / recreated lobby before the actual Game 2; duration only about 30 seconds. |
 | `6829300` | Rejected | Too incomplete; only partial player overlap and much weaker identity than the accepted finals cluster. |
 
 ---
