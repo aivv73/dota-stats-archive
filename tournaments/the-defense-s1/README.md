@@ -419,6 +419,10 @@ Main result of the re-check:
 - **Sharky**: `89251386`
 - **TooFuckingGood**: `91143798`
 
+**Global Domination Time**
+- **Sneyking**: `10366616`
+- **waytosexy**: `38515149`
+
 **Dignitas**
 - **freezer**: `39226957`
 - **ComeWithMe**: `85375207`
