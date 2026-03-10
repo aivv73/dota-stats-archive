@@ -164,6 +164,43 @@ These should **not** be treated as solved yet from the current stage-3 DB alone.
 
 ---
 
+## 🎮 Group Stage #1 — Group B (DB-first shortlist)
+
+The following table records the current **best stage-3 DB candidate** for each
+Liquipedia-listed Group Stage #1 / Group B match. This is currently the
+**weakest** group-stage block in public Dotabuff coverage: several matchups are
+forfeit wins, and several playable matches are still only visible from one side
+(or through a very partial overlap).
+
+For this tournament context, keep in mind:
+- **Natural 9 / later Absolute Legends** should be treated as the same roster
+  lineage at the tournament-note level
+- **MUFC** and **youBoat** remain especially patchy in public DB visibility
+- several late-December rows around Na`Vi overlap in time and remain harder to
+  disambiguate cleanly than the stronger playoff cases
+
+| Date (UTC) | Matchup | Best candidate | Confidence | Note |
+|---|---|---:|---|---|
+| 2011-11-20 | Natural 9 vs youBoat | **No confident public two-sided candidate yet** | **Unresolved** | youBoat is only weakly visible through `Fishbone`; Natural 9 side is missing in the same rows. |
+| 2011-12-10 | MUFC vs Just 4 the Tournament | **[1358407](https://www.dotabuff.com/matches/1358407)** | **Probable** | 4 MUFC anchors + 3 J4TT anchors (`Kev-`, `moods`, `rmN-`). |
+| 2011-12-18 | Just 4 the Tournament vs youBoat | **[1835155](https://www.dotabuff.com/matches/1835155)** | **Possible lead** | J4TT-side anchors visible; youBoat side still missing. |
+| 2011-12-18 | LowLandLions vs Just 4 the Tournament | **[1835155](https://www.dotabuff.com/matches/1835155)** | **Possible / probable lead** | `Dutch Freak` + `Kev-` / `moods`; still partial on both sides. |
+| 2011-12-20 | Na`Vi vs Natural 9 | **[1919317](https://www.dotabuff.com/matches/1919317)** | **Probable lead** | Clear Na`Vi-side anchor set (`Dendi`, `Puppey`, `XBOCT`), but Natural 9 side is not visible in the same row. |
+| 2011-12-27 | MUFC vs youBoat | **No playable match expected** | **Forfeit** | Liquipedia marks this as an FF result. |
+| 2011-12-27 | Na`Vi vs MUFC | **No playable match expected** | **Forfeit** | Liquipedia marks this as an FF result. |
+| 2011-12-27 | MUFC vs Natural 9 | **No playable match expected** | **Forfeit** | Liquipedia marks this as an FF result. |
+| 2011-12-27 | LowLandLions vs MUFC | **No playable match expected** | **Forfeit** | Liquipedia marks this as an FF result. |
+| 2011-12-27 | LowLandLions vs Na`Vi | **[2342028](https://www.dotabuff.com/matches/2342028)** | **Probable** | `Dutch Freak` + `Dendi`, `Puppey`, `XBOCT`. |
+| 2011-12-28 | Na`Vi vs youBoat | **No confident public two-sided candidate yet** | **Unresolved** | Na`Vi-side rows exist, but the youBoat side is not cleanly visible in the same candidate. |
+| 2012-01-08 | LowLandLions vs youBoat | **No confident public two-sided candidate yet** | **Unresolved** | `Dutch Freak` and `Fishbone` appear separately in the time window, but no convincing combined row is visible yet. |
+| 2012-01-08 | Natural 9 vs Just 4 the Tournament | **[2954196](https://www.dotabuff.com/matches/2954196)** | **Possible lead** | Natural 9-side anchors (`Net`, `Sharky`, `TooFuckingGood`) visible; J4TT side missing in the same row. |
+| 2012-01-08 | LowLandLions vs Natural 9 | **No confident public two-sided candidate yet** | **Unresolved** | Natural 9 side is visible, but LowLandLions side is not cleanly present in the same candidate. |
+| 2012-01-08 | Na`Vi vs Just 4 the Tournament | **[2966518](https://www.dotabuff.com/matches/2966518)** | **Possible / probable lead** | `Dendi`, `Puppey` + `Fire`, `Kev-`, `moods`; still missing the fuller Na`Vi/J4TT overlap. |
+| 2012-01-10 | Tiebreaker: Na`Vi vs Natural 9 | **[3046039](https://www.dotabuff.com/matches/3046039)** | **Probable lead** | Strong Na`Vi-side anchor set; Natural 9 side remains weak in public DB. |
+| 2012-01-15 | Tiebreaker: youBoat vs Just 4 the Tournament | **[3384748](https://www.dotabuff.com/matches/3384748)** | **Possible lead** | Full J4TT cluster visible; youBoat side still mostly absent in the same row. |
+
+---
+
 ## 🎮 Group Stage #1 — Group C (DB-first shortlist)
 
 The following table records the current **best stage-3 DB candidate** for each
