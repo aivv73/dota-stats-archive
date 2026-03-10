@@ -1,22 +1,22 @@
 {
-  "generated_at": "2026-03-10T11:48:01.228Z",
-  "started_at": "2026-03-10T11:47:38.271Z",
-  "run_id": "21947c31-2603-4513-b41b-a93693b84532",
+  "generated_at": "2026-03-10T19:55:46.755Z",
+  "started_at": "2026-03-10T19:25:03.259Z",
+  "run_id": "36c961df-dd64-4259-8b6a-541bb3c6ad75",
   "source_provider": "dotabuff_match_detail_verified",
   "dataset_status": "dotabuff_derived",
   "is_truly_dotabuff_derived": true,
   "input_files": {
     "d2sc_readme": "tournaments/d2sc/README.md",
     "persistent_profile_dir": "pipeline/practice_match_history_stage3/cache/playwright/persistent/chromium",
-    "player_inventory": "../../../../../tmp/stage3-b-only.json",
+    "player_inventory": "pipeline/liquipedia_pre2014_ticketless_players/data/pre2014_ticketless_players.json",
     "state_path": "pipeline/practice_match_history_stage3/cache/playwright/dotabuff-storage-state.json"
   },
   "cutoff_datetime_utc": "2012-09-30T23:59:59Z",
   "config": {
     "browser_engine": "chromium",
     "concurrency": 1,
-    "headful": false,
-    "max_players": 1,
+    "headful": true,
+    "max_players": null,
     "page_delay_ms": 1000,
     "probe_wait_ms": 20000,
     "refresh_state": false,
@@ -26,11 +26,39 @@
     "verify_match_pages": false
   },
   "counts": {
-    "accounts_total": 147,
+    "accounts_total": 164,
     "account_statuses": [
       {
         "collection_status": "collected",
-        "count": 128
+        "count": 143
+      },
+      {
+        "collection_status": "blocked",
+        "count": 11
+      },
+      {
+        "collection_status": "no_rows",
+        "count": 10
+      }
+    ],
+    "d2sc_verified_mappings_loaded": 54,
+    "distinct_accounts_collected": 143,
+    "distinct_match_ids_collected": 28278,
+    "players_processed_this_run": 25,
+    "players_selected_this_run": 25,
+    "players_total": 276,
+    "players_with_accounts": 159,
+    "players_with_d2sc_auxiliary_accounts": 24,
+    "players_without_accounts": 117,
+    "practice_match_rows_collected": 71775,
+    "scope_player_statuses": [
+      {
+        "collection_status": "collected",
+        "count": 139
+      },
+      {
+        "collection_status": "unresolved",
+        "count": 135
       },
       {
         "collection_status": "no_rows",
@@ -39,34 +67,6 @@
       {
         "collection_status": "blocked",
         "count": 9
-      }
-    ],
-    "d2sc_verified_mappings_loaded": 54,
-    "distinct_accounts_collected": 128,
-    "distinct_match_ids_collected": 27391,
-    "players_processed_this_run": 1,
-    "players_selected_this_run": 1,
-    "players_total": 1,
-    "players_with_accounts": 1,
-    "players_with_d2sc_auxiliary_accounts": 0,
-    "players_without_accounts": 0,
-    "practice_match_rows_collected": 66318,
-    "scope_player_statuses": [
-      {
-        "collection_status": "unresolved",
-        "count": 132
-      },
-      {
-        "collection_status": "collected",
-        "count": 127
-      },
-      {
-        "collection_status": "no_rows",
-        "count": 9
-      },
-      {
-        "collection_status": "blocked",
-        "count": 7
       },
       {
         "collection_status": "partial",
