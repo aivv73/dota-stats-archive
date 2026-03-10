@@ -167,28 +167,38 @@ These should **not** be treated as solved yet from the current stage-3 DB alone.
 ## 🎮 Group Stage #1 — Group A (DB-first shortlist)
 
 The following table records the current **best stage-3 DB candidate** for each
-Liquipedia-listed Group Stage #1 / Group A match. This block is currently very
-mixed in quality: a few **SK/DD** matchups are usable, but several rows remain
-one-sided or weak because **roots**, **MYM**, and **Global Domination Time** do
-not expose consistently complete public Dotabuff coverage.
+Liquipedia-listed Group Stage #1 / Group A match. This block is still mixed in
+quality, but it improved after the newer IDs for **roots** and **Global
+Domination Time**.
+
+Main result of the re-check:
+- **SK/DD vs roots** is no longer purely one-sided, because `BABARR` and `ET`
+  now show up against the stronger DD cluster
+- **Global Domination Time vs roots** is now at least partially visible on both
+  sides
+- **Global Domination Time vs SK/DD** remains one of the strongest anchors in
+  the whole group
+- **MYM** is still the biggest source of weakness in public DB coverage
 
 | Date (UTC) | Matchup | Best candidate | Confidence | Note |
 |---|---|---:|---|---|
-| 2011-11-16 | SK/DD vs roots | **[249896](https://www.dotabuff.com/matches/249896)** | **Probable lead** | Strong SK/DD-side cluster (`AngeL`, `Link`, `Ryze`, `miGGel`); roots side still missing. |
+| 2011-11-16 | SK/DD vs roots | **[249896](https://www.dotabuff.com/matches/249896)** | **Probable** | 4 DD anchors (`AngeL`, `Link`, `Ryze`, `miGGel`) + 2 roots anchors (`BABARR`, `ET`). |
 | 2011-11-19 | MYM vs mTw | **No confident public two-sided candidate yet** | **Unresolved** | mTw side is visible repeatedly, but MYM side is not cleanly present in the same rows. |
 | 2011-11-19 | Global Domination Time vs mTw | **[331543](https://www.dotabuff.com/matches/331543)** | **Possible / probable lead** | `Waytosexy` + 4 mTw anchors. |
 | 2011-11-20 | Problem??? vs Global Domination Time | **No confident public two-sided candidate yet** | **Unresolved** | Problem??? and GDT appear in the time window, but not in a convincing shared candidate. |
 | 2011-12-18 | SK/DD vs mTw | **[1827094](https://www.dotabuff.com/matches/1827094)** | **Probable lead** | `AngeL`, `Ryze` + 3 mTw anchors. |
-| 2011-12-18 | Global Domination Time vs roots | **No confident public two-sided candidate yet** | **Unresolved** | GDT side is visible, but roots does not appear cleanly in the same row. |
-| 2011-12-21 | Problem??? vs roots | **No confident public two-sided candidate yet** | **Unresolved** | Problem??? side visible; roots remains effectively absent from the public DB slice. |
+| 2011-12-18 | Global Domination Time vs roots | **[1839930](https://www.dotabuff.com/matches/1839930)** | **Possible / probable lead** | `Sneyking`, `Waytosexy` + `BABARR`, `ET`. |
+| 2011-12-21 | Problem??? vs roots | **No confident public two-sided candidate yet** | **Unresolved** | Problem??? side visible, but roots remains weak even after the new IDs. |
 | 2011-12-21 | Global Domination Time vs MYM | **No confident public two-sided candidate yet** | **Unresolved** | GDT side is visible, but MYM is not cleanly present in the same rows. |
-| 2011-12-28 | SK/DD vs MYM | **No confident public two-sided candidate yet** | **Unresolved** | SK/DD side visible, but MYM remains weak in public DB. |
-| 2011-12-29 | SK/DD vs Global Domination Time | **[2457123](https://www.dotabuff.com/matches/2457123)** | **Possible / probable lead** | `Sneyking`, `Waytosexy` visible against partial DD-side coverage. |
-| 2011-12-29 | Problem??? vs MYM | **No confident public two-sided candidate yet** | **Unresolved** | Problem??? side visible, but MYM remains weak in public DB coverage. |
-| 2011-12-30 | Problem??? vs SK/DD | **[2511041](https://www.dotabuff.com/matches/2511041)** | **Possible / probable lead** | `Buugi`, `Lapiz`, `noertti` + `MaNia`; still partial, but best visible lead. |
-| 2012-01-05 | Problem??? vs mTw | **No confident public two-sided candidate yet** | **Unresolved** | mTw is visible strongly, but Problem??? does not cleanly join the same row. |
-| 2012-01-06 | MYM vs roots | **No confident public two-sided candidate yet** | **Unresolved** | MYM only weakly visible; roots effectively absent. |
-| 2012-01-07 | Global Domination Time vs SK/DD | **[2903056](https://www.dotabuff.com/matches/2903056)** | **Probable** | `Sneyking`, `Waytosexy` + `AngeL`, `Link`, `Ryze`, `miGGel`. |
+| 2011-12-21 | SK/DD vs MYM | **No confident public two-sided candidate yet** | **Unresolved** | SK/DD side visible, but MYM remains weak in public DB. |
+| 2011-12-24 | MYM vs roots | **No playable match expected** | **Forfeit** | Liquipedia marks this roots result as an FF win for MYM. |
+| 2011-12-24 | mTw vs roots | **No playable match expected** | **Forfeit** | Liquipedia marks this roots result as an FF win for mTw. |
+| 2011-12-24 | Problem??? vs roots | **No playable match expected** | **Forfeit** | Liquipedia marks this roots result as an FF win for Problem???. |
+| 2012-01-03 | Problem??? vs SK/DD | **[2705508](https://www.dotabuff.com/matches/2705508)** | **Probable lead** | `Lapiz`, `noertti` + full 5-player DD cluster (`AngeL`, `Link`, `MaNia`, `Ryze`, `miGGel`). |
+| 2012-01-06 | Problem??? vs mTw | **[2843539](https://www.dotabuff.com/matches/2843539)** | **Possible / probable lead** | `Lapiz` + 4 mTw anchors. |
+| 2012-01-07 | MYM vs Problem??? | **No confident public two-sided candidate yet** | **Unresolved** | Both sides flicker in the window, but not in a convincing shared candidate. |
+| 2012-01-07 | MYM vs Global Domination Time | **No confident public two-sided candidate yet** | **Unresolved** | GDT side is visible, but MYM remains weak in public DB. |
+| 2012-01-07 | Global Domination Time vs SK/DD | **[2903056](https://www.dotabuff.com/matches/2903056)** | **Probable (high)** | `Sneyking`, `Waytosexy` + `AngeL`, `Link`, `Ryze`, `miGGel`. |
 | 2012-01-12 | Tiebreaker: SK/DD vs Problem??? | **No playable match expected** | **Forfeit** | Liquipedia marks this tiebreaker as an FF result. |
 
 ---
