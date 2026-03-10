@@ -23,7 +23,7 @@ stage-3 practice-match DB evidence only.
 
 **Team name canonicalization (Liquipedia/Fandom-style)**:
 - **Natus Vincere** *(aka Na`Vi)*
-- **Quantic Gaming** *(earlier roster lineage overlaps with Team DD / dd.Dota in some historical contexts)*
+- **Quantic Gaming** *(Team DD / dd.Dota signed by Quantic Gaming during the tournament; treat this as the same team / roster lineage for playoff reconstruction)*
 - **Evil Geniuses** *(aka EG)*
 - **Absolute Legends** *(aka AL)*
 - **mousesports** *(aka mouz)*
@@ -149,9 +149,10 @@ These should **not** be treated as solved yet from the current stage-3 DB alone.
 - **LighTofHeaveN** *(L)*: `89326318`
 - **ARS-ART** *(© / canonical handle often normalized as Smile elsewhere)*: `89713365`
 
-**Quantic Gaming**
+**Quantic Gaming** *(same competitive roster lineage as Team DD / dd.Dota after the signing during the tournament)*
 - **Link**: `20237599`
 - **MaNia** *(Kalderoun)*: `85783343`
+- **AngeL**: `8517055`
 - **Ryze**: `26682464`
 - **miGGel**: `74432222`
 

@@ -665,7 +665,7 @@ Current issue:
 
 Working status: **partial / unresolved**.
 
-### Upper Bracket Semifinal — EG vs DD — 2012-02-17
+### Upper Bracket Semifinal — EG vs Team DD / later Quantic Gaming — 2012-02-17
 
 Strong candidate cluster:
 
@@ -673,7 +673,9 @@ Strong candidate cluster:
 
 Current issue:
 
-- `5639961` looks like a real played map with strong EG-side and Quantic/DD-side
+- Team DD and Quantic Gaming should be treated here as the **same team / roster
+  lineage**, because Quantic signed Team DD during the tournament
+- `5639961` looks like a real played map with strong EG-side and DD/Quantic-side
   overlap (`Link`, `MaNia`, `Ryze`, `miGGel`), but the second map is not yet
   cleanly pinned from the current DB evidence alone
 
