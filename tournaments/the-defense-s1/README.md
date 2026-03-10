@@ -356,6 +356,10 @@ Main result of the re-check:
 - **inphinity**: `3246092`
 - **PowerNet**: `14429114`
 
+**PAORS**
+- **Matori**: `86742226`
+- **Tzar**: `32895399`
+
 **MiTH.Trust**
 - **TnK**: `45614257`
 - **LaKelz**: `91191397`
