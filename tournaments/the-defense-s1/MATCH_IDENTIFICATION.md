@@ -44,6 +44,271 @@ Short rule of thumb:
 
 ---
 
+## Lower Bracket Round 1 (Western Wolves vs mouz)
+
+### Series metadata
+
+- **Series:** Western Wolves vs mousesports
+- **Date:** 2012-02-22 21:00 CET
+- **Liquipedia score:** Western Wolves 2:0 mouz
+- **Source note:** no direct Liquipedia `matchid` anchors exposed; mapping is
+  DB-first.
+
+### Strong DB shortlist on 2012-02-22
+
+- `6016937`
+- `6020611`
+
+Recurring player anchors:
+
+- Western Wolves-side: `Sockshka`, `Funzii`, `Ceb`, `Ph0eNiiX`
+- mouz-side: `SingSing`, `SexyBamboe`, `Rexi`
+
+### Game 1
+
+- **leading candidate:** `6016937`
+- **match_datetime_utc:** `2012-02-22T21:04:21Z`
+- **verdict:** `probable` (very high)
+
+Observed DB-side heroes:
+
+- Western Wolves-side
+  - Sockshka — Weaver
+  - Funzii — Windranger
+  - Ceb — Enigma
+  - Ph0eNiiX — Vengeful Spirit
+- mouz-side
+  - SingSing — Queen of Pain
+  - SexyBamboe — Nature's Prophet
+  - Rexi — Mirana
+
+### Game 2
+
+- **leading candidate:** `6020611`
+- **match_datetime_utc:** `2012-02-22T22:05:52Z`
+- **verdict:** `probable` (very high)
+
+Observed DB-side heroes:
+
+- Western Wolves-side
+  - Sockshka — Anti-Mage
+  - Funzii — Beastmaster
+  - Ceb — Enigma
+  - Ph0eNiiX — Lich
+- mouz-side
+  - SingSing — Huskar
+  - SexyBamboe — Windranger
+  - Rexi — Dazzle
+
+### Series verdict
+
+- **Lower Bracket Round 1 verdict:** `probable` (very high)
+- **Map-level state:**
+  - Game 1 → `6016937` — `probable` (very high)
+  - Game 2 → `6020611` — `probable` (very high)
+
+This is a clean DB-side 2-map sweep with stable timing and strong roster
+coherence.
+
+---
+
+## Lower Bracket Quarterfinal (Quantic vs Western Wolves)
+
+### Series metadata
+
+- **Series:** Quantic Gaming vs Western Wolves
+- **Date:** 2012-02-23 20:00 CET
+- **Liquipedia score:** Quantic 2:0 Western Wolves
+- **Source note:** no direct Liquipedia `matchid` anchors exposed; mapping is
+  DB-first.
+
+### Strong DB shortlist on 2012-02-23
+
+- `6082849`
+- `6086876`
+
+Recurring player anchors:
+
+- Quantic-side: `Link`, `MaNia`, `Ryze`, `miGGel`
+- Western Wolves-side: `Sockshka`, `Funzii`, `Ceb`, `Ph0eNiiX`
+
+### Game 1
+
+- **leading candidate:** `6082849`
+- **match_datetime_utc:** `2012-02-23T19:48:13Z`
+- **verdict:** `probable` (very high)
+
+Observed DB-side heroes:
+
+- Quantic-side
+  - Link — Dark Seer
+  - MaNia — Tiny
+  - Ryze — Enchantress
+  - miGGel — Nature's Prophet
+- Western Wolves-side
+  - Sockshka — Night Stalker
+  - Funzii — Windranger
+  - Ceb — Vengeful Spirit
+  - Ph0eNiiX — Venomancer
+
+### Game 2
+
+- **leading candidate:** `6086876`
+- **match_datetime_utc:** `2012-02-23T21:00:05Z`
+- **verdict:** `probable` (very high)
+
+Observed DB-side heroes:
+
+- Quantic-side
+  - Link — Riki
+  - MaNia — Vengeful Spirit
+  - Ryze — Enchantress
+  - miGGel — Nature's Prophet
+- Western Wolves-side
+  - Sockshka — Anti-Mage
+  - Funzii — Windranger
+  - Ceb — Tidehunter
+  - Ph0eNiiX — Lich
+
+### Series verdict
+
+- **Lower Bracket Quarterfinal verdict:** `probable` (very high)
+- **Map-level state:**
+  - Game 1 → `6082849` — `probable` (very high)
+  - Game 2 → `6086876` — `probable` (very high)
+
+This is another clean DB-side 2-map sweep with strong two-sided clustering.
+
+---
+
+## Lower Bracket Semifinal (Quantic vs Absolute Legends)
+
+### Series metadata
+
+- **Series:** Quantic Gaming vs Absolute Legends
+- **Date:** 2012-02-25 20:00 CET
+- **Liquipedia score:** Quantic 2:1 Absolute Legends
+- **Source note:** no direct Liquipedia `matchid` anchors exposed; mapping is
+  DB-first.
+
+### Strong DB shortlist on 2012-02-25
+
+The meaningful same-day series cluster is:
+
+- `6233532`
+- `6236004`
+- `6237104`
+- `6239681`
+- `6242438`
+
+Recurring player anchors:
+
+- Quantic-side: `Link`, `MaNia`, `Ryze`, `miGGel`
+- Absolute Legends-side: `B`, `Godot`, `Snoopy`, `shatan`, `xMusiCa`
+
+The cluster shows two close same-draft pairs that are best interpreted as
+false-start / duplicate / recreated-lobby behavior before the final played-map
+selection for Games 1 and 2.
+
+### Game 1
+
+- **leading candidate:** `6236004`
+- **match_datetime_utc:** `2012-02-25T19:52:01Z`
+- **verdict:** `probable`
+
+Observed DB-side heroes:
+
+- AL-side
+  - B — Silencer
+  - Godot — Vengeful Spirit
+  - Snoopy — Sand King
+  - shatan — Nature's Prophet
+  - xMusiCa — Beastmaster
+- Quantic-side
+  - Link — Lifestealer
+  - MaNia — Enigma
+  - Ryze — Crystal Maiden
+  - miGGel — Windranger
+
+Result direction in DB rows favors **AL**, which is consistent with this being
+Quantic's single map loss in a 2:1 series.
+
+### Non-primary nearby candidate for Game 1
+
+#### `6233532`
+
+- **verdict:** `possible` / `reject as primary played map`
+- **reason:** near-duplicate of `6236004` with the same recurring hero pattern
+  but weaker player coverage (missing `Godot`) and earlier timing.
+
+### Game 2
+
+- **leading candidate:** `6239681`
+- **match_datetime_utc:** `2012-02-25T20:43:50Z`
+- **verdict:** `probable`
+
+Observed DB-side heroes:
+
+- Quantic-side
+  - Link — Invoker
+  - MaNia — Earthshaker
+  - Ryze — Vengeful Spirit
+  - miGGel — Shadow Shaman
+- AL-side
+  - B — Leshrac
+  - Godot — Ancient Apparition
+  - Snoopy — Sand King
+  - shatan — Bounty Hunter
+  - xMusiCa — Windranger
+
+Result direction in DB rows favors **Quantic**, matching the expected comeback
+path in a 2:1 Quantic win.
+
+### Non-primary nearby candidate for Game 2
+
+#### `6237104`
+
+- **verdict:** `possible` / `reject as primary played map`
+- **reason:** near-duplicate of `6239681` with identical hero assignments for
+  the shared recurring player set but earlier timing.
+
+### Game 3
+
+- **leading candidate:** `6242438`
+- **match_datetime_utc:** `2012-02-25T21:24:23Z`
+- **verdict:** `probable` (high)
+
+Observed DB-side heroes:
+
+- Quantic-side
+  - Link — Dark Seer
+  - MaNia — Sand King
+  - Ryze — Chen
+  - miGGel — Nature's Prophet
+- AL-side
+  - B — Clinkz
+  - Godot — Invoker
+  - Snoopy — Crystal Maiden
+  - shatan — Tidehunter
+  - xMusiCa — Venomancer
+
+Result direction in DB rows favors **Quantic**, giving the clean `loss → win →
+win` shape required by the Liquipedia series score.
+
+### Series verdict
+
+- **Lower Bracket Semifinal verdict:** `probable` (high)
+- **Map-level state:**
+  - Game 1 → `6236004` — `probable`
+  - Game 2 → `6239681` — `probable`
+  - Game 3 → `6242438` — `probable` (high)
+- **Non-primary nearby candidates:** `6233532`, `6237104`
+
+This is the strongest DB-only 2:1 playoff mapping currently available for the
+series.
+
+---
+
 ## Confirmed series: Lower Bracket Final
 
 ### Series metadata
@@ -379,17 +644,67 @@ understood to be the short-lived `6825615` restart lobby.
 
 ---
 
-## Next recommended targets in The Defense Season 1 playoffs
+## Remaining unresolved / partial playoff series (DB-only status)
 
-Continue backward from the finals:
+These series should **not** be treated as solved yet from the current stage-3
+DB alone.
 
-1. Lower Bracket Semifinal — Quantic vs Absolute Legends — 2012-02-25
-2. Lower Bracket Quarterfinals
-   - Quantic vs Western Wolves — 2012-02-23
-   - Absolute Legends vs Dignitas — 2012-02-24
-3. Lower Bracket Round 1
-   - Western Wolves vs mouz — 2012-02-22
-   - Dignitas vs Ariana Gaming — 2012-02-13
+### Upper Bracket Semifinal — Na`Vi vs Absolute Legends — 2012-02-16
 
-These should be evaluated with the same DB-first shortlist + evidence scoring +
-optional VOD upgrade path.
+Known same-pattern AL-side loss candidates:
+
+- `5499848`
+- `5501496`
+
+Current issue:
+
+- only the AL-side cluster is visible in the current DB slice (`Godot`,
+  `Snoopy`, `shatan`, `xMusiCa`)
+- Na`Vi-side support is missing from the same match rows, so exact map labeling
+  remains incomplete
+
+Working status: **partial / unresolved**.
+
+### Upper Bracket Semifinal — EG vs DD — 2012-02-17
+
+Strong candidate cluster:
+
+- `5639961`
+
+Current issue:
+
+- `5639961` looks like a real played map with strong EG-side and Quantic/DD-side
+  overlap (`Link`, `MaNia`, `Ryze`, `miGGel`), but the second map is not yet
+  cleanly pinned from the current DB evidence alone
+
+Working status: **partial / unresolved**.
+
+### Lower Bracket Quarterfinal — Absolute Legends vs Dignitas — 2012-02-24
+
+Current same-day cluster:
+
+- `6155477` (early partial)
+- `6157981`
+- `6162320`
+- `6166059`
+
+Current issue:
+
+- the DB strongly suggests a real multi-map series here
+- but Dignitas-side coverage is thinner than the AL-side coverage, so exact map
+  ordering still needs more confidence before canonical linkage
+
+Working status: **medium-confidence cluster, not fully pinned**.
+
+### Lower Bracket Round 1 — Dignitas vs Ariana Gaming — 2012-02-13
+
+Current best cross-team candidate:
+
+- `5400314`
+
+Current issue:
+
+- only one strong cross-team candidate is currently visible in the DB
+- that is not enough to confidently map a full best-of-3 series
+
+Working status: **weak / unresolved**.
