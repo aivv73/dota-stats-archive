@@ -376,6 +376,11 @@ Main result of the re-check:
 - **Dhany**: `24106261` *(historical note: user reports this account is actually leaf's main account; Dhany may have played on it / used it as a stand-in account in this tournament context)*
 - **Ph0eNiiX / Ph0enix**: `87291311`
 
+**LowLandLions**
+- **Evilsnear**: `86736858`
+- **Muga_Riptide**: `86739254`
+- **Dutch_Freak**: `86767617`
+
 **Dignitas**
 - **freezer**: `39226957`
 - **ComeWithMe**: `85375207`
