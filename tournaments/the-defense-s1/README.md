@@ -173,14 +173,21 @@ later stages because it mixes several **historical roster-lineage names**
  eSports**, and **New French Order / Team Shakira**), and several opponents are
 only weakly visible in public Dotabuff leakage.
 
+Main result of the re-check after newer player IDs:
+- **EHOME** rows now read more cleanly through `QQQ` + `PCT`
+- **Team EZ Style / It's Gosu** rows remain stable and useful
+- **Fnatic vs Shakira** and **Dignitas/TeG vs Fnatic/Shakira** remain the
+  strongest Group C mappings
+- **PAORS** still remains the weakest roster in public DB coverage
+
 | Date (UTC) | Matchup | Best candidate | Confidence | Note |
 |---|---|---:|---|---|
 | 2011-11-15 | TeG vs PAORS | **[236008](https://www.dotabuff.com/matches/236008)** | **Possible / probable lead** | Strong TeG-side cluster; PAORS is not clearly visible in the public DB slice. |
 | 2011-11-15 | Team EZ Style vs New French Order | **[236375](https://www.dotabuff.com/matches/236375)** | **Probable (high)** | 3 Team EZ Style anchors + 4 New French Order/Shakira anchors. |
-| 2011-11-19 | TeG vs EHOME | **[328883](https://www.dotabuff.com/matches/328883)** | **Probable** | 4 TeG anchors + 2 EHOME anchors (`PCT`, `QQQ`). |
-| 2011-11-20 | EHOME vs Fnatic | **[362106](https://www.dotabuff.com/matches/362106)** | **Probable (high)** | 2 EHOME anchors + 4 Fnatic anchors. |
-| 2011-12-03 | Team EZ Style vs PAORS | **[927196](https://www.dotabuff.com/matches/927196)** | **Possible lead** | Strong Team EZ Style side; PAORS not clearly visible in the public DB slice. |
-| 2011-12-13 | Team EZ Style vs Fnatic | **[1573511](https://www.dotabuff.com/matches/1573511)** | **Probable** | 3 Team EZ Style anchors + 4 Fnatic anchors. |
+| 2011-11-19 | TeG vs EHOME | **[328883](https://www.dotabuff.com/matches/328883)** | **Probable (high)** | 4 TeG anchors + 2 EHOME anchors (`PCT`, `QQQ`). |
+| 2011-11-20 | EHOME vs Fnatic | **[362106](https://www.dotabuff.com/matches/362106)** | **Probable (high)** | 2 EHOME anchors (`PCT`, `QQQ`) + 4 Fnatic anchors. |
+| 2011-12-03 | Team EZ Style vs PAORS | **[927196](https://www.dotabuff.com/matches/927196)** | **Possible lead** | Strong Team EZ Style side; PAORS still not clearly visible in the public DB slice. |
+| 2011-12-13 | Team EZ Style vs Fnatic | **[1573511](https://www.dotabuff.com/matches/1573511)** | **Probable (high)** | 3 Team EZ Style anchors + 4 Fnatic anchors. |
 | 2011-12-17 | EHOME vs PAORS | **No playable match expected** | **Forfeit** | Liquipedia marks this as a forfeit result. |
 | 2011-12-17 | EHOME vs New French Order / Team Shakira | **No playable match expected** | **Forfeit** | Liquipedia marks this as a forfeit result. |
 | 2011-12-17 | Team EZ Style vs EHOME | **No playable match expected** | **Forfeit** | Liquipedia marks this as a forfeit result. |
