@@ -310,6 +310,16 @@ Main result of the re-check:
 - **Zizou** *(10kabs5kdota)*: `27005611`
 - **Ly0n** *(d.intel Ly0n)*: `97170605`
 
+**Team Infused**
+- **Wagamama**: `32995405`
+- **Mini**: `34128052`
+- **Fishbone**: `88522876`
+- **Reesion**: `40602549`
+- **EGM**: `3916428`
+
+**Storm Games Clan**
+- **craNich**: `7932121`
+
 **Problem???**
 - **Buugi**: `24009418`
 - **noertti**: `54662003`
