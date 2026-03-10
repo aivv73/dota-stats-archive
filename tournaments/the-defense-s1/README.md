@@ -341,6 +341,31 @@ cleanly in the current DB slice.
 | **Lower Bracket Semifinal Quantic vs AL G1** | <https://www.youtube.com/watch?v=Q987Sq1FD3s> | joinDOTA upload: title says "LB Final 1st - Game 1" |
 | **Lower Bracket Semifinal Quantic vs AL G2** | <https://www.youtube.com/watch?v=l3Mx_zg30pc> | joinDOTA upload: title says "LB Final 1st - Game 2" |
 | **Lower Bracket Semifinal Quantic vs AL G3** | <https://www.youtube.com/watch?v=GNuAWJOVbUE> | joinDOTA upload: title says "LB Final 1st - Game 3" |
+| **GS2 Group 1 — Team DD vs Absolute Legends** | <https://www.youtube.com/watch?v=d9B1lAJEKgA> | The Defense 3 archive link surfaced by search; title says DD DOTA vs Absolute Legends Game 1 |
+| **GS2 Group 1 — Team DD vs Absolute Legends (alt)** | <https://www.youtube.com/watch?v=Q4hNAjMtwVA> | The Defense 3 archive link surfaced by search; title says DD DOTA vs Absolute Legends Game 2 |
+| **GS2 Group 1 — mTw vs PANZER** | <https://www.youtube.com/watch?v=mNNhqn1kF1E> | Search-discovered archive link |
+| **GS2 Group 1 — mTw vs Just 4 the Tournament** | <https://www.youtube.com/watch?v=23ZKOr2bSJo> | Search-discovered archive link |
+| **GS2 Group 1 — Western Wolves vs Panzer** | <https://www.youtube.com/watch?v=AzaYuD3GwZg> | Search-discovered archive link |
+| **GS2 Group 1 — mTw vs Team DD** | <https://www.youtube.com/watch?v=OkBek2fVxJI> | Search-discovered archive link; title uses "DeeDee" |
+| **GS2 Group 1 — mTw vs Western Wolves** | <https://www.youtube.com/watch?v=BXYcSVibW64> | Search-discovered archive link |
+| **GS2 Group 1 — Western Wolves vs Team DD** | <https://www.youtube.com/watch?v=Fp-V9Cs0PFo> | Search-discovered archive link; title uses "DeeDee vs Western Wolves" |
+| **GS2 Group 1 — Western Wolves vs Absolute Legends** | <https://www.youtube.com/watch?v=ImSfWku39Uc> | Search-discovered archive link |
+| **GS2 Group 2 — Dignitas vs Problem???** | <https://www.youtube.com/watch?v=TmLZmcVsab0> | Search-discovered archive link: "dignitas vs Problem??? @ The Defence by CaspeRRR" |
+| **GS2 Group 2 — Evil Geniuses vs Fnatic** | <https://www.youtube.com/watch?v=drX3sHo3uYI> | Search-discovered archive link |
+| **GS2 Group 2 — Natus Vincere vs mousesports** | <https://www.youtube.com/watch?v=wkQpbIQX9Jg> | Search-discovered archive link: "Na`Vi vs mouz @The Defense by CaspeRRR" |
+| **GS2 Group 2 — Fnatic vs Problem???** | <https://www.youtube.com/watch?v=telcvwZIHE8> | Search-discovered archive link |
+| **GS2 Group 2 — Team Dignitas vs mousesports** | <https://www.youtube.com/watch?v=ngW8iENxZ08> | Search-discovered archive link; uploader labels it Game 1/3 |
+| **GS2 Group 2 — Evil Geniuses vs Natus Vincere** | <https://www.youtube.com/watch?v=adte4wyxnvs> | Search-discovered archive link; uploader labels it WB Final Game 2 |
+| **GS2 Group 2 — Evil Geniuses vs mousesports** | <https://www.youtube.com/watch?v=6Pdwny6hmLU> | Search-discovered archive link; explicitly labeled Group Stages |
+| **GS2 Group 2 — Problem??? vs Natus Vincere** | <https://www.youtube.com/watch?v=bg0oyZ4BPI4> | Search-discovered archive link |
+| **GS2 Group 2 — Team Dignitas vs Fnatic** | <https://www.youtube.com/watch?v=ZUtrDT4GjiE> | Search-discovered archive link; title says Game 2 |
+| **GS2 Group 2 — Problem??? vs mousesports** | <https://www.youtube.com/watch?v=aLYyQ7tTIhg> | Search-discovered archive link |
+| **GS2 Group 2 — Natus Vincere vs Fnatic** | <https://www.youtube.com/watch?v=xGK6SSg5h7I> | Search-discovered archive link; title explicitly says 2nd GS |
+| **GS2 Group 2 — Team Dignitas vs Evil Geniuses G1** | <https://www.youtube.com/watch?v=SykQE2XcJpc> | Search-discovered archive link |
+| **GS2 Group 2 — Team Dignitas vs Evil Geniuses G2** | <https://www.youtube.com/watch?v=t8QK0BFOx18> | Search-discovered archive link |
+| **GS2 Group 2 — Team Dignitas vs Natus Vincere** | <https://www.youtube.com/watch?v=1qVl_VTJTnA> | Search-discovered archive link |
+| **GS2 Group 2 — Evil Geniuses vs Problem???** | <https://www.youtube.com/watch?v=qJJqBhL0Rbk> | Search-discovered archive link |
+| **GS2 Group 2 — Fnatic vs mousesports** | <https://www.youtube.com/watch?v=GpyxU2zqmcM> | Search-discovered archive link |
 
 ---
 
