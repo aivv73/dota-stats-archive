@@ -385,6 +385,8 @@ Main result of the re-check:
 - **Net**: `89249333`
 - **Ling**: `89268488`
 - **kYxY**: `91644707`
+- **Sharky**: `89251386`
+- **TooFuckingGood**: `91143798`
 
 **Dignitas**
 - **freezer**: `39226957`
