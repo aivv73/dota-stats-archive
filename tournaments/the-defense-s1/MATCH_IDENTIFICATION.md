@@ -309,6 +309,116 @@ series.
 
 ---
 
+## Lower Bracket Quarterfinal (Absolute Legends vs Dignitas)
+
+### Series metadata
+
+- **Series:** Absolute Legends vs Dignitas
+- **Date:** 2012-02-24 21:00 CET
+- **Liquipedia score:** Absolute Legends 2:1 Dignitas
+- **Source note:** no direct Liquipedia `matchid` anchors exposed; mapping is
+  DB-first.
+
+### Strong DB shortlist on 2012-02-24
+
+The current same-day cluster is:
+
+- `6155477`
+- `6157981`
+- `6162320`
+- `6166059`
+
+Recurring player anchors:
+
+- Absolute Legends-side: `B`, `Godot`, `Snoopy`, `shatan`, `xMusiCa`
+- Dignitas-side anchors visible in the DB cluster: `ComeWithMe`, `Zizou`
+
+The three-match sequence `6157981 → 6162320 → 6166059` is now treated as the
+needed best-of-3 series, with `6155477` left as an earlier partial candidate.
+
+### Game 1
+
+- **leading candidate:** `6157981`
+- **match_datetime_utc:** `2012-02-24T20:45:51Z`
+- **verdict:** `probable`
+
+Observed DB-side heroes:
+
+- AL-side
+  - B — Pudge
+  - Godot — Crystal Maiden
+  - Snoopy — Shadow Shaman
+  - shatan — Lifestealer
+  - xMusiCa — Dark Seer
+- Dignitas-side anchors
+  - ComeWithMe — Nature's Prophet
+  - Zizou — Vengeful Spirit
+
+Result direction in DB rows favors **Dignitas**, which fits the required first
+map in an AL 2:1 comeback series.
+
+### Game 2
+
+- **leading candidate:** `6162320`
+- **match_datetime_utc:** `2012-02-24T21:48:26Z`
+- **verdict:** `probable` (high)
+
+Observed DB-side heroes:
+
+- AL-side
+  - B — Leshrac
+  - Godot — Chen
+  - Snoopy — Venomancer
+  - shatan — Tidehunter
+  - xMusiCa — Mirana
+- Dignitas-side anchors
+  - ComeWithMe — Sand King
+  - Zizou — Vengeful Spirit
+
+Result direction in DB rows favors **Absolute Legends**.
+
+### Game 3
+
+- **leading candidate:** `6166059`
+- **match_datetime_utc:** `2012-02-24T22:51:30Z`
+- **verdict:** `probable` (high)
+
+Observed DB-side heroes:
+
+- AL-side
+  - B — Silencer
+  - Godot — Invoker
+  - Snoopy — Sand King
+  - shatan — Beastmaster
+  - xMusiCa — Ancient Apparition
+- Dignitas-side anchors
+  - ComeWithMe — Mirana
+  - Zizou — Vengeful Spirit
+
+Result direction in DB rows again favors **Absolute Legends**, completing the
+2:1 series shape.
+
+### Non-primary nearby candidate
+
+#### `6155477`
+
+- **verdict:** `possible` / `reject as primary played map`
+- **reason:** early partial same-day candidate with weaker two-sided coverage;
+  not needed once the main 3-map sequence is accepted.
+
+### Series verdict
+
+- **Lower Bracket Quarterfinal verdict:** `probable` (high)
+- **Map-level state:**
+  - Game 1 → `6157981` — `probable`
+  - Game 2 → `6162320` — `probable` (high)
+  - Game 3 → `6166059` — `probable` (high)
+- **Non-primary nearby candidate:** `6155477`
+
+This is the current working DB-only mapping for the AL vs Dignitas best-of-3.
+
+---
+
 ## Confirmed series: Lower Bracket Final
 
 ### Series metadata
@@ -680,23 +790,6 @@ Current issue:
   cleanly pinned from the current DB evidence alone
 
 Working status: **partial / unresolved**.
-
-### Lower Bracket Quarterfinal — Absolute Legends vs Dignitas — 2012-02-24
-
-Current same-day cluster:
-
-- `6155477` (early partial)
-- `6157981`
-- `6162320`
-- `6166059`
-
-Current issue:
-
-- the DB strongly suggests a real multi-map series here
-- but Dignitas-side coverage is thinner than the AL-side coverage, so exact map
-  ordering still needs more confidence before canonical linkage
-
-Working status: **medium-confidence cluster, not fully pinned**.
 
 ### Lower Bracket Round 1 — Dignitas vs Ariana Gaming — 2012-02-13
 

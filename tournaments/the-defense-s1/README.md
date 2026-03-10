@@ -102,6 +102,18 @@ best evidence concentrated in the later playoff rounds.
 | **[6082849](https://www.dotabuff.com/matches/6082849)** | 2012-02-23 19:48:13Z | Game 1 | **Quantic Gaming** | **Probable (very high)** | Strong two-sided roster cluster. |
 | **[6086876](https://www.dotabuff.com/matches/6086876)** | 2012-02-23 21:00:05Z | Game 2 | **Quantic Gaming** | **Probable (very high)** | Clean sweep continuation. |
 
+### Lower Bracket Quarterfinal: Absolute Legends vs Dignitas (2-1)
+*DB-first mapping with one earlier partial non-primary candidate.*
+
+| Match ID | Time (UTC) | Game | Winner | Confidence | Note |
+|---|---|---|---|---|---|
+| **[6157981](https://www.dotabuff.com/matches/6157981)** | 2012-02-24 20:45:51Z | Game 1 | **Dignitas** | **Probable** | Earliest strong two-sided map from the confirmed 3-map cluster. |
+| **[6162320](https://www.dotabuff.com/matches/6162320)** | 2012-02-24 21:48:26Z | Game 2 | **Absolute Legends** | **Probable (high)** | Clean comeback map candidate. |
+| **[6166059](https://www.dotabuff.com/matches/6166059)** | 2012-02-24 22:51:30Z | Game 3 | **Absolute Legends** | **Probable (high)** | Best deciding-map candidate in the cluster. |
+
+**Non-primary nearby candidate**:
+- `6155477` — early partial same-day candidate, but not needed for the final 3-map series mapping
+
 ### Lower Bracket Round 1: Western Wolves vs mousesports (2-0)
 *DB-first mapping.*
 
@@ -125,11 +137,6 @@ These should **not** be treated as solved yet from the current stage-3 DB alone.
 - strong candidate cluster includes: `5639961`
 - current issue: one real played map is visible, but the second map is not yet cleanly pinned from DB alone
 - status: **partial / unresolved**
-
-### Lower Bracket Quarterfinal: Absolute Legends vs Dignitas (2-1)
-- current same-day cluster: `6155477` (early partial), `6157981`, `6162320`, `6166059`
-- current issue: DB strongly suggests a real 3-map series, but exact map ordering still needs stronger confidence
-- status: **medium-confidence cluster, not fully pinned**
 
 ### Lower Bracket Round 1: Dignitas vs Ariana Gaming (2-1)
 - current best cross-team candidate: `5400314`
