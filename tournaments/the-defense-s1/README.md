@@ -278,6 +278,13 @@ cleanly in the current DB slice.
 - **Lapiz**: `4330802`
 - **Laged**: `41246809`
 
+**Fnatic**
+- **Baja**: `58675374`
+- **grizine**: `90199779`
+- **g0g1**: `43401453`
+- **Mitch**: `90180366`
+- **Buktop**: `90200219` *(probable stand-in / replacement account for Andre in this tournament context; keep separate from Andre unless confirmed identical)*
+
 **Just 4 the Tournament**
 - **Kev-**: `87409544`
 - **rmN-** *(`01`)*: `87197791`
