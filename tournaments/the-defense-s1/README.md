@@ -198,6 +198,33 @@ Main result of the re-check:
 
 ---
 
+## 🎮 Group Stage #2 — Group 2 (DB-first shortlist)
+
+The following table records the current **best stage-3 DB candidate** for each
+Liquipedia-listed Group Stage #2 / Group 2 match. Compared with Group 1, this
+block is generally **weaker**, because several matchups only expose one team
+cleanly in the current DB slice.
+
+| Date (UTC) | Matchup | Best candidate | Confidence | Note |
+|---|---|---:|---|---|
+| 2012-01-16 | Team Dignitas vs Problem??? | **[3444977](https://www.dotabuff.com/matches/3444977)** | **Possible lead** | Weak two-sided visibility: `Zizou` + `Buugi/Lapiz`. |
+| 2012-01-17 | Evil Geniuses vs Fnatic | **[3503635](https://www.dotabuff.com/matches/3503635)** | **Probable (high)** | Strong two-sided overlap: 4 EG + 3 Fnatic anchors. |
+| 2012-01-18 | Natus Vincere vs mousesports | **[3553764](https://www.dotabuff.com/matches/3553764)** | **Probable (high)** | 3 Na`Vi anchors + 4 mouz anchors. |
+| 2012-01-20 | Fnatic vs Problem??? | **[3695875](https://www.dotabuff.com/matches/3695875)** | **Probable** | 3 Fnatic anchors + `Buugi/Lapiz`. |
+| 2012-01-21 | Team Dignitas vs mousesports | **[3788916](https://www.dotabuff.com/matches/3788916)** | **Possible lead** | Weak two-sided visibility: `Zizou` + 4 mouz anchors. |
+| 2012-01-22 | Evil Geniuses vs Natus Vincere | **[3854754](https://www.dotabuff.com/matches/3854754)** | **Probable (high)** | 4 EG anchors + 3 Na`Vi anchors. |
+| 2012-01-23 | Evil Geniuses vs mousesports | **[3925215](https://www.dotabuff.com/matches/3925215)** | **Probable (high)** | Strong two-sided overlap: 4 EG + 4 mouz anchors. |
+| 2012-01-24 | Problem??? vs Natus Vincere | **[3973228](https://www.dotabuff.com/matches/3973228)** | **Probable** | `Buugi/Lapiz` + 3 Na`Vi anchors. |
+| 2012-01-26 | Team Dignitas vs Fnatic | **[4091042](https://www.dotabuff.com/matches/4091042)** | **Possible / probable lead** | `ComeWithMe` + 3 Fnatic anchors. |
+| 2012-01-27 | Problem??? vs mousesports | **[4181631](https://www.dotabuff.com/matches/4181631)** | **Probable** | `Buugi/Lapiz` + 4 mouz anchors. |
+| 2012-01-29 | Natus Vincere vs Fnatic | **[4346328](https://www.dotabuff.com/matches/4346328)** | **Probable** | 3 Na`Vi anchors + 3 Fnatic anchors. |
+| 2012-01-31 | Team Dignitas vs Evil Geniuses | **[4492245](https://www.dotabuff.com/matches/4492245)** | **Possible / probable lead** | `ComeWithMe/Zizou` + 4 EG anchors. |
+| 2012-02-03 | Team Dignitas vs Natus Vincere | **[4693642](https://www.dotabuff.com/matches/4693642)** | **Possible / probable lead** | `ComeWithMe/Zizou` + 3 Na`Vi anchors. |
+| 2012-02-03 | Evil Geniuses vs Problem??? | **[4698712](https://www.dotabuff.com/matches/4698712)** | **Probable** | 4 EG anchors + `Buugi/Lapiz`. |
+| 2012-02-08 | Fnatic vs mousesports | **[5056156](https://www.dotabuff.com/matches/5056156)** | **Probable (high)** | 3 Fnatic anchors + 4 mouz anchors. |
+
+---
+
 ## 👥 Verified Player IDs (playoff-relevant teams)
 
 > Canonical labels follow Liquipedia/Fandom-style naming where possible. A few notable Dotabuff-era aliases are preserved in parentheses.
