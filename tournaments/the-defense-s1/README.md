@@ -164,6 +164,35 @@ These should **not** be treated as solved yet from the current stage-3 DB alone.
 
 ---
 
+## 🎮 Group Stage #1 — Group C (DB-first shortlist)
+
+The following table records the current **best stage-3 DB candidate** for each
+Liquipedia-listed Group Stage #1 / Group C match. This group is trickier than
+later stages because it mixes several **historical roster-lineage names**
+(especially **The Elder Gods / Team Dignitas**, **Team EZ Style / It's Gosu
+ eSports**, and **New French Order / Team Shakira**), and several opponents are
+only weakly visible in public Dotabuff leakage.
+
+| Date (UTC) | Matchup | Best candidate | Confidence | Note |
+|---|---|---:|---|---|
+| 2011-11-15 | TeG vs PAORS | **[236008](https://www.dotabuff.com/matches/236008)** | **Possible / probable lead** | Strong TeG-side cluster; PAORS is not clearly visible in the public DB slice. |
+| 2011-11-15 | Team EZ Style vs New French Order | **[236375](https://www.dotabuff.com/matches/236375)** | **Probable (high)** | 3 Team EZ Style anchors + 4 New French Order/Shakira anchors. |
+| 2011-11-19 | TeG vs EHOME | **[328883](https://www.dotabuff.com/matches/328883)** | **Probable** | 4 TeG anchors + 2 EHOME anchors (`PCT`, `QQQ`). |
+| 2011-11-20 | EHOME vs Fnatic | **[362106](https://www.dotabuff.com/matches/362106)** | **Probable (high)** | 2 EHOME anchors + 4 Fnatic anchors. |
+| 2011-12-03 | Team EZ Style vs PAORS | **[927196](https://www.dotabuff.com/matches/927196)** | **Possible lead** | Strong Team EZ Style side; PAORS not clearly visible in the public DB slice. |
+| 2011-12-13 | Team EZ Style vs Fnatic | **[1573511](https://www.dotabuff.com/matches/1573511)** | **Probable** | 3 Team EZ Style anchors + 4 Fnatic anchors. |
+| 2011-12-17 | EHOME vs PAORS | **No playable match expected** | **Forfeit** | Liquipedia marks this as a forfeit result. |
+| 2011-12-17 | EHOME vs New French Order / Team Shakira | **No playable match expected** | **Forfeit** | Liquipedia marks this as a forfeit result. |
+| 2011-12-17 | Team EZ Style vs EHOME | **No playable match expected** | **Forfeit** | Liquipedia marks this as a forfeit result. |
+| 2012-01-03 | Fnatic vs PAORS | **[2710262](https://www.dotabuff.com/matches/2710262)** | **Possible lead** | Strong Fnatic-side cluster; PAORS remains effectively invisible in public DB. |
+| 2012-01-04 | Dignitas/TeG vs Shakira | **[2753030](https://www.dotabuff.com/matches/2753030)** | **Probable (high)** | 4 Dignitas/TeG anchors + 4 Shakira anchors. |
+| 2012-01-04 | It's Gosu / Team EZ Style vs Dignitas/TeG | **[2756024](https://www.dotabuff.com/matches/2756024)** | **Probable (high)** | 3 Team EZ Style anchors + 4 Dignitas/TeG anchors. |
+| 2012-01-05 | Dignitas/TeG vs Fnatic | **[2794233](https://www.dotabuff.com/matches/2794233)** | **Probable (high)** | 4 Dignitas/TeG anchors + 4 Fnatic anchors. |
+| 2012-01-05 | Shakira vs PAORS | **[2799894](https://www.dotabuff.com/matches/2799894)** | **Possible lead** | Strong Shakira-side cluster; PAORS is still not clearly visible. |
+| 2012-01-08 | Fnatic vs Shakira | **[2961123](https://www.dotabuff.com/matches/2961123)** | **Probable (high)** | 4 Fnatic anchors + 4 Shakira anchors. |
+
+---
+
 ## 🎮 Group Stage #1 — Group D (DB-first shortlist)
 
 The following table records the current **best stage-3 DB candidate** for each
