@@ -863,8 +863,56 @@ function buildManualIdEntries(override, canonicalHandle) {
   });
 }
 
+function createManualPlayerRecord(canonicalHandle, override) {
+  const aliases = {
+    legal_names: unique(override.aliases?.legal_names || []),
+    linked_page_hints: unique(override.aliases?.linked_page_hints || []),
+    liquipedia_handles: unique(override.aliases?.liquipedia_handles || []),
+    observed_names: unique((override.aliases?.observed_names || []).concat(canonicalHandle)),
+    romanized_names: unique(override.aliases?.romanized_names || []),
+  };
+
+  const accountIds = mergeIdEntries(buildManualIdEntries(override, canonicalHandle));
+  const steamIds = mergeIdEntries(
+    accountIds
+      .map((entry) => deriveSteamId64(entry.value))
+      .filter(Boolean)
+      .map((value) => ({
+        confidence: 'derived',
+        source: 'derived_from_account_id',
+        value,
+      })),
+  );
+
+  const tournaments = unique(override.tournaments || []);
+  const primaryTargetTournaments = unique(override.primary_target_tournaments || tournaments);
+  const supplementalSourceTournaments = unique(override.supplemental_source_tournaments || []);
+
+  return {
+    account_ids: accountIds,
+    aliases,
+    appearances: [],
+    canonical_handle: canonicalHandle,
+    canonical_handle_source: 'manual_override',
+    liquipedia_page_title: override.liquipedia_page_title || null,
+    liquipedia_url: override.liquipedia_url || null,
+    primary_target_appearances: primaryTargetTournaments.length > 0 ? 1 : 0,
+    primary_target_tournaments: primaryTargetTournaments,
+    resolution_confidence: accountIds.length > 0 ? 'medium' : 'low',
+    resolution_evidence: ['manual_override_account_id', 'manual_scope_injection'],
+    resolution_status:
+      accountIds.length > 0 ? 'resolved_with_teamcard_account_id_only' : 'unresolved_name_only',
+    scope_role: primaryTargetTournaments.length > 0 ? 'primary_only' : 'supplemental_only',
+    supplemental_source_appearances: supplementalSourceTournaments.length > 0 ? 1 : 0,
+    supplemental_source_tournaments: supplementalSourceTournaments,
+    steam_ids: steamIds,
+    tournaments: unique(tournaments.concat(primaryTargetTournaments).concat(supplementalSourceTournaments)),
+  };
+}
+
 function applyManualOverrides(players, overrides) {
   let appliedCount = 0;
+  const playersByHandle = new Map(players.map((player) => [player.canonical_handle, player]));
 
   for (const player of players) {
     const override = overrides.get(player.canonical_handle);
@@ -924,6 +972,19 @@ function applyManualOverrides(players, overrides) {
 
     appliedCount += 1;
   }
+
+  for (const [canonicalHandle, override] of overrides.entries()) {
+    if (playersByHandle.has(canonicalHandle) || !override.create_if_missing) {
+      continue;
+    }
+
+    const manualPlayer = createManualPlayerRecord(canonicalHandle, override);
+    players.push(manualPlayer);
+    playersByHandle.set(canonicalHandle, manualPlayer);
+    appliedCount += 1;
+  }
+
+  players.sort((left, right) => left.canonical_handle.localeCompare(right.canonical_handle));
 
   return appliedCount;
 }

@@ -16,6 +16,9 @@ currently labeled `likely_ticketless`.
   `data/manual_player_overrides.json` file to enrich unresolved player handles
   with manually verified Dotabuff account IDs while preserving explicit source
   provenance.
+- That same override file can also inject a **manual player entry** when a
+  tournament-relevant player is missing from the Liquipedia-derived inventory
+  but has been externally confirmed.
 
 It does **not** re-decide whether a tournament was really ticketless. It only
 collects the players that appear in that already-integrated scope.
@@ -69,6 +72,7 @@ The JSON keeps:
   - `steam_ids[].confidence`
 - optional manual enrichment provenance:
   - `resolution_evidence` may include `manual_override_account_id`
+  - `resolution_evidence` may include `manual_scope_injection`
   - `provenance.manual_overrides_file`
   - `provenance.manual_overrides_applied`
 - resolution status / confidence:

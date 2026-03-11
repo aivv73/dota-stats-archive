@@ -91,5 +91,14 @@
   },
   "walleater": {
     "account_ids": ["88502795"]
+  },
+  "Cycnical": {
+    "create_if_missing": true,
+    "account_ids": ["86767849"],
+    "aliases": {
+      "observed_names": ["Cycnical"]
+    },
+    "tournaments": ["The Defense Season 1"],
+    "primary_target_tournaments": ["The Defense Season 1"]
   }
 }
