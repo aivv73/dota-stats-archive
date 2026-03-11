@@ -11,7 +11,7 @@ To reconstruct the history of tournaments like **Dota 2 Star Championship**, **E
 | Tournament | Year | Status | Matches Recovered | Notes |
 |---|---|---|---|---|
 | **[Dota 2 Star Championship](tournaments/d2sc/)** | 2011 | 🟢 **Recovered** | 46 | Playoffs + all Liquipedia-listed group stage matches recovered. |
-| **ESWC 2011** | 2011 | 🟢 **Recovered** | 300+ | Large dataset preserved in DB |
+| **[ESWC 2011](tournaments/eswc-2011/)** | 2011 | 🟢 **Recovered** | 300+ | Large recovered dataset preserved in DB; tournament README is now being formalized from Liquipedia + local DB. |
 | **[The Defense Season 1](tournaments/the-defense-s1/)** | 2011 | 🟡 **In Progress** | Playoffs mapped + GS shortlist | DB-first playoff reconstruction is largely mapped, and Group Stage #1/#2 shortlist work is now documented in the tournament README. |
 
 See **[Lost Tournaments List](Lost_Tournaments_List.md)** for the full roadmap and recovery queue.
