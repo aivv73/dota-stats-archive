@@ -225,7 +225,7 @@ For this tournament context, keep in mind:
 
 | Date (UTC) | Matchup | Best candidate | Confidence | Note |
 |---|---|---:|---|---|
-| 2011-11-20 | Natural 9 vs youBoat | **No confident public two-sided candidate yet** | **Unresolved** | youBoat is only weakly visible through `Fishbone`; Natural 9 side is missing in the same rows. |
+| 2011-11-20 | Natural 9 vs youBoat | **[363951](https://www.dotabuff.com/matches/363951)** | **Probable (video-backed)** | VOD-backed candidate: `Fishbone = Enigma`, with `Wagamama = Ancient Apparition` on the youBoat side and `xMusiCa = Beastmaster`, `r1sk = Windranger`, `Snoopy = Vengeful Spirit`, `shatan = Drow Ranger` on the Natural 9 / later AL side. |
 | 2011-12-10 | MUFC vs Just 4 the Tournament | **[1358407](https://www.dotabuff.com/matches/1358407)** | **Probable (high)** | 4 MUFC anchors (`Net`, `Sharky`, `TooFuckingGood`, `kYxY`) + 3 J4TT anchors (`Kev-`, `moods`, `rmN-`). |
 | 2011-12-18 | Just 4 the Tournament vs youBoat | **[1835155](https://www.dotabuff.com/matches/1835155)** | **Possible lead** | J4TT-side anchors visible; youBoat side still missing. |
 | 2011-12-18 | LowLandLions vs Just 4 the Tournament | **[1835155](https://www.dotabuff.com/matches/1835155)** | **Possible / probable lead** | J4TT anchors visible, but LowLandLions still does not appear cleanly in the same row. |
@@ -486,6 +486,13 @@ Main result of the re-check:
 - **marge**: `47294378`
 - **Lapiz**: `4330802`
 - **Laged**: `41246809`
+
+**youBoat**
+- **bonzajaj**: `71983243`
+- **Sierrar**: `53500487`
+- **Fishbone**: `88522876`
+- **walleater**: `88502795`
+- **Wagamama**: `32995405` *(user notes this may have been a stand-in on the youBoat side for this tournament context / specific match)*
 
 **Fnatic**
 - **Baja**: `58675374`
