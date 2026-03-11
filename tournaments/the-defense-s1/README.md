@@ -412,6 +412,7 @@ Main result of the re-check:
 - **Snoopy**: `87673729`
 - **shatan**: `34547465`
 - **xMusiCa**: `89001276`
+- **Cycnical**: `86767849` *(reported from Fandom squads / roster notes as appearing in some Natural 9 / later Absolute Legends games; treat as a likely stand-in / occasional tournament appearance rather than the default core five)*
 
 **Western Wolves**
 - **Sockshka** *(causalité)*: `16769223`
