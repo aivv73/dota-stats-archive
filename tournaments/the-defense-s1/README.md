@@ -409,11 +409,11 @@ Main result of the re-check:
 
 **Absolute Legends**
 - **B**: `29904110`
-- **Godot**: `34726076`
+- **r1sk**: `86802544`
 - **Snoopy**: `87673729`
 - **shatan**: `34547465`
 - **xMusiCa**: `89001276`
-- **Cycnical**: `86767849` *(reported from Fandom squads / roster notes as appearing in some Natural 9 / later Absolute Legends games; treat as a likely stand-in / occasional tournament appearance rather than the default core five)*
+- **Cycnical**: `86767849` *(reported from Fandom squads / roster notes as replacing **B** in some Natural 9 / later Absolute Legends games)*
 
 **Western Wolves**
 - **Sockshka** *(causalité)*: `16769223`
