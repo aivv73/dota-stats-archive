@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-03-10T22:06:06.469Z",
-  "started_at": "2026-03-10T21:48:17.272Z",
-  "run_id": "f0596d2c-e1e7-4865-b3f9-f7d9ea088485",
+  "generated_at": "2026-03-11T08:42:45.040Z",
+  "started_at": "2026-03-11T08:33:48.522Z",
+  "run_id": "0d497502-efc5-4029-8bfa-a9b24eebcf4c",
   "source_provider": "dotabuff_match_detail_verified",
   "dataset_status": "dotabuff_derived",
   "is_truly_dotabuff_derived": true,
@@ -26,35 +26,39 @@
     "verify_match_pages": false
   },
   "counts": {
-    "accounts_total": 173,
+    "accounts_total": 177,
     "account_statuses": [
       {
         "collection_status": "collected",
-        "count": 152
+        "count": 154
       },
       {
         "collection_status": "blocked",
-        "count": 11
+        "count": 12
       },
       {
         "collection_status": "no_rows",
         "count": 10
+      },
+      {
+        "collection_status": "partial",
+        "count": 1
       }
     ],
     "d2sc_verified_mappings_loaded": 54,
-    "distinct_accounts_collected": 152,
-    "distinct_match_ids_collected": 29172,
-    "players_processed_this_run": 19,
-    "players_selected_this_run": 19,
-    "players_total": 276,
-    "players_with_accounts": 167,
+    "distinct_accounts_collected": 155,
+    "distinct_match_ids_collected": 29369,
+    "players_processed_this_run": 14,
+    "players_selected_this_run": 14,
+    "players_total": 277,
+    "players_with_accounts": 171,
     "players_with_d2sc_auxiliary_accounts": 24,
-    "players_without_accounts": 109,
-    "practice_match_rows_collected": 75233,
+    "players_without_accounts": 106,
+    "practice_match_rows_collected": 76408,
     "scope_player_statuses": [
       {
         "collection_status": "collected",
-        "count": 148
+        "count": 151
       },
       {
         "collection_status": "unresolved",
@@ -62,7 +66,7 @@
       },
       {
         "collection_status": "blocked",
-        "count": 9
+        "count": 10
       },
       {
         "collection_status": "no_rows",
