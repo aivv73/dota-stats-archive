@@ -598,7 +598,7 @@ Main result of the re-check:
 | **GS1 Group C — Dignitas/TeG vs Fnatic** | <https://www.youtube.com/watch?v=skWUl-HT9ZU> | Search-discovered archive link |
 | **GS1 Group B — Tiebreaker: Na`Vi vs Natural 9** | <https://www.youtube.com/watch?v=459VrYiUoIg> | VOD-backed tiebreaker link; draft frames show Na`Vi vs Natural 9 team labels. |
 | **GS1 Group B — youBoat vs Natural 9** | <https://www.youtube.com/watch?v=808-FnKFNvo> | Search-discovered archive link |
-| **GS1 Group B — Na`Vi vs Just 4 the Tournament / SK vs J4T** | <https://www.youtube.com/watch?v=XdCwMdWVOIo> | Search-discovered archive link; uploader title uses SK/J4T shorthand |
+| **GS2 Group 1 — Team DD vs Just 4 the Tournament / SK vs J4T** | <https://www.youtube.com/watch?v=XdCwMdWVOIo> | Search-discovered archive link; user confirmed this video belongs to the second group stage, and the uploader title uses SK/J4T shorthand |
 
 ---
 
