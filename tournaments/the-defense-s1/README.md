@@ -595,7 +595,7 @@ Main result of the re-check:
 | **GS1 Group C — Dignitas/TeG vs Shakira** | <https://www.youtube.com/watch?v=-4sLi1g0NSc> | Search-discovered archive link: "TeamShakira vs Dignitas :The Defense casted by Purge" |
 | **GS1 Group C — It's Gosu / Team EZ Style vs Dignitas/TeG** | <https://www.youtube.com/watch?v=rNEusBBDXcc> | Search-discovered archive link: "Dignitas vs GoSu The Defense casted by Purge" |
 | **GS1 Group C — Dignitas/TeG vs Fnatic** | <https://www.youtube.com/watch?v=skWUl-HT9ZU> | Search-discovered archive link |
-| **GS1 Group B — Natural 9 vs Na`Vi** | <https://www.youtube.com/watch?v=459VrYiUoIg> | Search-discovered archive link |
+| **GS1 Group B — Tiebreaker: Na`Vi vs Natural 9** | <https://www.youtube.com/watch?v=459VrYiUoIg> | VOD-backed tiebreaker link; draft frames show Na`Vi vs Natural 9 team labels. |
 | **GS1 Group B — youBoat vs Natural 9** | <https://www.youtube.com/watch?v=808-FnKFNvo> | Search-discovered archive link |
 | **GS1 Group B — Na`Vi vs Just 4 the Tournament / SK vs J4T** | <https://www.youtube.com/watch?v=XdCwMdWVOIo> | Search-discovered archive link; uploader title uses SK/J4T shorthand |
 
