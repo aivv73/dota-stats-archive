@@ -392,6 +392,7 @@ Main result of the re-check:
 - **Puppey**: `87278757`
 - **LighTofHeaveN** *(L)*: `89326318`
 - **ARS-ART** *(© / canonical handle often normalized as Smile elsewhere)*: `89713365`
+- **NS**: `93712171` *(stand-in / replacement note: user reports NS replaced LighTofHeaveN at least in the Natural 9 replay / tiebreak context)*
 
 **Quantic Gaming** *(same competitive roster lineage as Team DD / dd.Dota after the signing during the tournament)*
 - **Link**: `20237599`
