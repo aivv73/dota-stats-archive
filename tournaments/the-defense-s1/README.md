@@ -221,26 +221,27 @@ For this tournament context, keep in mind:
 - several late-December rows around Na`Vi overlap in time and remain harder to
   disambiguate cleanly than the stronger playoff cases
 - the strongest upgrades after the new ID pass are **MUFC vs J4TT**,
-  **Natural 9 vs J4TT**, and parts of the **Na`Vi vs J4TT** window
+  **Natural 9 vs youBoat**, **Natural 9 vs J4TT**, **LowLandLions vs Natural 9**,
+  and the **Na`Vi vs Natural 9** tiebreaker
 
 | Date (UTC) | Matchup | Best candidate | Confidence | Note |
 |---|---|---:|---|---|
 | 2011-11-20 | Natural 9 vs youBoat | **[363951](https://www.dotabuff.com/matches/363951)** | **Probable (video-backed)** | VOD-backed candidate: `Fishbone = Enigma`, with `Wagamama = Ancient Apparition` on the youBoat side and `xMusiCa = Beastmaster`, `r1sk = Windranger`, `Snoopy = Vengeful Spirit`, `shatan = Drow Ranger` on the Natural 9 / later AL side. |
 | 2011-12-10 | MUFC vs Just 4 the Tournament | **[1358407](https://www.dotabuff.com/matches/1358407)** | **Probable (high)** | 4 MUFC anchors (`Net`, `Sharky`, `TooFuckingGood`, `kYxY`) + 3 J4TT anchors (`Kev-`, `moods`, `rmN-`). |
-| 2011-12-18 | Just 4 the Tournament vs youBoat | **[1835155](https://www.dotabuff.com/matches/1835155)** | **Possible lead** | J4TT-side anchors visible; youBoat side still missing. |
-| 2011-12-18 | LowLandLions vs Just 4 the Tournament | **[1835155](https://www.dotabuff.com/matches/1835155)** | **Possible / probable lead** | J4TT anchors visible, but LowLandLions still does not appear cleanly in the same row. |
-| 2011-12-20 | Na`Vi vs Natural 9 | **[1919317](https://www.dotabuff.com/matches/1919317)** | **Probable lead** | Clear Na`Vi-side anchor set (`Dendi`, `Puppey`, `XBOCT`), but Natural 9 side is not visible in the same row. |
+| 2011-12-18 | Just 4 the Tournament vs youBoat | **[1830509](https://www.dotabuff.com/matches/1830509)** | **Possible / probable lead** | `Kev-`, `moods` + `walleater`; still partial, but now genuinely two-sided. |
+| 2011-12-18 | LowLandLions vs Just 4 the Tournament | **[1835155](https://www.dotabuff.com/matches/1835155)** | **Probable** | `Dutch_Freak`, `Evilsnear`, `Muga_Riptide` + `Kev-`, `moods`. |
+| 2011-12-20 | Na`Vi vs Natural 9 | **[1919317](https://www.dotabuff.com/matches/1919317)** | **Probable** | `Dendi`, `Puppey`, `XBOCT` + `Cycnical`; much stronger after the new N9-side ID work. |
 | 2011-12-27 | MUFC vs youBoat | **No playable match expected** | **Forfeit** | Liquipedia marks this as an FF result. |
 | 2011-12-27 | Na`Vi vs MUFC | **No playable match expected** | **Forfeit** | Liquipedia marks this as an FF result. |
 | 2011-12-27 | MUFC vs Natural 9 | **No playable match expected** | **Forfeit** | Liquipedia marks this as an FF result. |
 | 2011-12-27 | LowLandLions vs MUFC | **No playable match expected** | **Forfeit** | Liquipedia marks this as an FF result. |
-| 2011-12-27 | LowLandLions vs Na`Vi | **[2342028](https://www.dotabuff.com/matches/2342028)** | **Probable** | `Dutch_Freak` + `Dendi`, `Puppey`, `XBOCT`. |
-| 2011-12-28 | Na`Vi vs youBoat | **No confident public two-sided candidate yet** | **Unresolved** | Na`Vi-side rows exist, but the youBoat side is not cleanly visible in the same candidate. |
-| 2012-01-08 | LowLandLions vs youBoat | **No confident public two-sided candidate yet** | **Unresolved** | `Dutch_Freak` and `Fishbone` appear separately in the time window, but no convincing combined row is visible yet. |
-| 2012-01-08 | Natural 9 vs Just 4 the Tournament | **[2954196](https://www.dotabuff.com/matches/2954196)** | **Possible / probable lead** | Natural 9-side anchors (`Net`, `Sharky`, `TooFuckingGood`) are visible more clearly after the MUFC/N9 ID pass; J4TT side is still missing in the same row. |
-| 2012-01-08 | LowLandLions vs Natural 9 | **No confident public two-sided candidate yet** | **Unresolved** | Natural 9 side is visible, but LowLandLions side is not cleanly present in the same candidate. |
-| 2012-01-08 | Na`Vi vs Just 4 the Tournament | **[2966518](https://www.dotabuff.com/matches/2966518)** | **Possible / probable lead** | `Dendi`, `Puppey` + `Fire`, `Kev-`, `moods`; this window now reads a bit better after the J4TT ID updates. |
-| 2012-01-10 | Tiebreaker: Na`Vi vs Natural 9 | **[3046039](https://www.dotabuff.com/matches/3046039)** | **Probable lead** | Strong Na`Vi-side anchor set; Natural 9 side remains weak in public DB. |
+| 2011-12-27 | LowLandLions vs Na`Vi | **[2342028](https://www.dotabuff.com/matches/2342028)** | **Probable (high)** | `Dutch_Freak`, `Evilsnear`, `Muga_Riptide` + `Dendi`, `Puppey`, `XBOCT`. |
+| 2011-12-28 | Na`Vi vs youBoat | **No confident public two-sided candidate yet** | **Unresolved** | Na`Vi-side rows exist, but the youBoat side is still not cleanly visible in the same candidate. |
+| 2012-01-08 | LowLandLions vs youBoat | **[2955779](https://www.dotabuff.com/matches/2955779)** | **Possible / probable lead** | `Dutch_Freak`, `Evilsnear` + `walleater`; still partial, but now genuinely two-sided. |
+| 2012-01-08 | Natural 9 vs Just 4 the Tournament | **[2960928](https://www.dotabuff.com/matches/2960928)** | **Possible / probable lead** | `Cycnical` + `Kev-`, `moods`; cleaner two-sided signal than the older N9-only rows. |
+| 2012-01-08 | LowLandLions vs Natural 9 | **[2963538](https://www.dotabuff.com/matches/2963538)** | **Possible / probable lead** | `Dutch_Freak`, `Evilsnear` + `Cycnical`; still partial, but much better than before. |
+| 2012-01-08 | Na`Vi vs Just 4 the Tournament | **[2966518](https://www.dotabuff.com/matches/2966518)** | **Possible / probable lead** | `Dendi`, `Puppey` + `Fire`, `Kev-`, `moods`; stronger now, but still not a full two-sided lineup. |
+| 2012-01-10 | Tiebreaker: Na`Vi vs Natural 9 | **[3046039](https://www.dotabuff.com/matches/3046039)** | **Probable** | `Dendi`, `Puppey`, `XBOCT` + `Cycnical`; now materially stronger than the older Na`Vi-only reading. |
 | 2012-01-15 | Tiebreaker: youBoat slot vs Just 4 the Tournament | **[3384748](https://www.dotabuff.com/matches/3384748)** | **Possible lead / extra caution** | Full J4TT cluster visible; the opposing side is still weak, and Fandom claims the late `youBoat` tiebreaker slot was actually taken over by **Europe EPIDEMIC** after Sweden youBoat dissolved. |
 
 ---
