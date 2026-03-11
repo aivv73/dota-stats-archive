@@ -242,7 +242,7 @@ For this tournament context, keep in mind:
 | 2012-01-08 | LowLandLions vs Natural 9 | **[2963538](https://www.dotabuff.com/matches/2963538)** | **Possible / probable lead** | `Dutch_Freak`, `Evilsnear` + `Cycnical`; still partial, but much better than before. |
 | 2012-01-08 | Na`Vi vs Just 4 the Tournament | **[2966518](https://www.dotabuff.com/matches/2966518)** | **Possible / probable lead** | `Dendi`, `Puppey` + `Fire`, `Kev-`, `moods`; stronger now, but still not a full two-sided lineup. |
 | 2012-01-10 | Tiebreaker: Na`Vi vs Natural 9 | **[3046039](https://www.dotabuff.com/matches/3046039)** | **Probable** | `Dendi`, `Puppey`, `XBOCT` + `Cycnical`; now materially stronger than the older Na`Vi-only reading. |
-| 2012-01-15 | Tiebreaker: youBoat slot vs Just 4 the Tournament | **[3384748](https://www.dotabuff.com/matches/3384748)** | **Possible lead / extra caution** | Full J4TT cluster visible; the opposing side is still weak, and Fandom claims the late `youBoat` tiebreaker slot was actually taken over by **Europe EPIDEMIC** after Sweden youBoat dissolved. |
+| 2012-01-15 | Tiebreaker: youBoat slot vs Just 4 the Tournament | **[3384748](https://www.dotabuff.com/matches/3384748)** | **Possible lead / extra caution** | Full J4TT cluster visible; nearby same-day rows (`3382030`, `3387226`, `3390823`, `3392571`) show `Fishbone`/`Wagamama` fragments on the opposing side, but Fandom claims the late `youBoat` tiebreaker slot was actually taken over by **Europe EPIDEMIC** after Sweden youBoat dissolved. |
 
 ---
 
