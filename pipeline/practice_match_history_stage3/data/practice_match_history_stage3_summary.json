@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-03-11T08:42:45.040Z",
-  "started_at": "2026-03-11T08:33:48.522Z",
-  "run_id": "0d497502-efc5-4029-8bfa-a9b24eebcf4c",
+  "generated_at": "2026-03-12T12:14:22.757Z",
+  "started_at": "2026-03-12T11:59:14.147Z",
+  "run_id": "63e42f01-45b3-4635-8192-652a019b6678",
   "source_provider": "dotabuff_match_detail_verified",
   "dataset_status": "dotabuff_derived",
   "is_truly_dotabuff_derived": true,
@@ -26,51 +26,47 @@
     "verify_match_pages": false
   },
   "counts": {
-    "accounts_total": 177,
+    "accounts_total": 186,
     "account_statuses": [
       {
         "collection_status": "collected",
-        "count": 154
+        "count": 160
       },
       {
         "collection_status": "blocked",
-        "count": 12
+        "count": 16
       },
       {
         "collection_status": "no_rows",
         "count": 10
-      },
-      {
-        "collection_status": "partial",
-        "count": 1
       }
     ],
     "d2sc_verified_mappings_loaded": 54,
-    "distinct_accounts_collected": 155,
-    "distinct_match_ids_collected": 29369,
-    "players_processed_this_run": 14,
-    "players_selected_this_run": 14,
+    "distinct_accounts_collected": 160,
+    "distinct_match_ids_collected": 29798,
+    "players_processed_this_run": 20,
+    "players_selected_this_run": 20,
     "players_total": 277,
-    "players_with_accounts": 171,
+    "players_with_accounts": 177,
     "players_with_d2sc_auxiliary_accounts": 24,
-    "players_without_accounts": 106,
-    "practice_match_rows_collected": 76408,
+    "players_without_accounts": 100,
+    "practice_match_rows_collected": 79282,
     "scope_player_statuses": [
       {
         "collection_status": "collected",
-        "count": 151
+        "count": 155
       },
       {
         "collection_status": "unresolved",
-        "count": 136
+        "count": 139
       },
       {
         "collection_status": "blocked",
-        "count": 10
+        "count": 13
       },
       {
         "collection_status": "no_rows",
-        "count": 9
+        "count": 8
       },
       {
         "collection_status": "partial",
@@ -185,8 +181,8 @@
       "matches_collected_count": 745
     },
     {
-      "canonical_handle": "HANNAH MONTANA",
-      "matches_collected_count": 731
+      "canonical_handle": "eQual",
+      "matches_collected_count": 739
     }
   ]
 }
