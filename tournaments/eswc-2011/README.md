@@ -1,6 +1,6 @@
 # Electronic Sports World Cup 2011 (ESWC 2011) - Recovery Report
 
-**Status**: Recovered in DB ⚠️ (large tournament dataset is present, but the tournament README / audit layer is only now being formalized)
+**Status**: Rebuild in progress ⚠️
 **Dates**: Oct 23-25, 2011
 **Location**: Paris, France
 **Format**: Group Stage + 4-team single-elimination playoff
@@ -13,13 +13,21 @@
 **Sources**:
 - Liquipedia: <https://liquipedia.net/dota2/Electronic_Sports_World_Cup/2011>
 - Structured Liquipedia stage-1 inventory: `pipeline/liquipedia_pre2014_stage1/data/liquipedia_pre2014_stage1.json`
+- Cached Liquipedia page content:
+  `pipeline/liquipedia_pre2014_stage1/cache/http/ae4f0e23264e789e1549fd5a48d04031b2b8c7dc.json`
 - Local DB: `dota_archive.db`
+- Related reconstruction notes in this directory:
+  - `eswc-2011-rebuild-checklist.md`
+  - `eswc-2011-rosters.md`
+  - `eswc-2011-audit-notes.md`
+  - `eswc-2011-account-proven-lobbies.md`
+  - `league-65000-staging.md`
 
 **Important note**:
-ESWC 2011 is already represented in the local database, but not yet with the
-same tournament-specific README / audit pass that now exists for **Dota 2 Star
-Championship** and **The Defense Season 1**. So this file should be treated as a
-first formalization pass over an already-imported tournament dataset.
+ESWC 2011 should no longer be treated as a tournament that is already cleanly
+recovered in the main DB. The repo does contain an older imported block under
+`tournament_id=999`, but current audit work suggests that block is a **noisy,
+non-canonical working dump**, not a finished tournament reconstruction.
 
 ---
 
@@ -58,9 +66,10 @@ Two tournament rows exist in `dota_archive.db`:
 
 Current practical reading:
 
-- **`tournament_id=999`** is the meaningful recovered dataset row
-- **`tournament_id=1000`** is currently empty and should not be treated as the
-  canonical row
+- **`tournament_id=999`** contains a large recovered/imported block and should be
+  treated as a **non-canonical source of clues**, not as the finished ESWC row
+- **`tournament_id=1000`** is currently empty and should not yet be treated as a
+  canonical row either
 
 Current DB snapshot for `tournament_id=999`:
 
@@ -69,9 +78,20 @@ Current DB snapshot for `tournament_id=999`:
   - `2011-10-24`
   - `2011-10-25`
 
-This suggests the DB already contains a large imported ESWC block, but it still
-needs a proper tournament-level audit to distinguish clean tournament matches
-from any low-quality / over-broad imports.
+However, the current audit state shows that this 306-match block does **not**
+resemble a clean ESWC-only tournament dataset:
+
+- most rows do not have normalized team names
+- many player rows contain `Unknown`
+- hero data is missing in the local DB layer
+- only a minority of direct Liquipedia ESWC IDs are currently present
+
+So the working approach has changed:
+
+- keep `tournament_id=999` as a clue source
+- rebuild ESWC 2011 from **verified match IDs + roster/account evidence**
+- use a separate staging layer for `league_id=65000` rather than treating the
+  old imported block as canonical
 
 ---
 
@@ -138,22 +158,71 @@ Liquipedia also embeds direct match IDs for the group-stage matches.
 
 ---
 
-## ⚠️ Current audit status / cautions
+## ✅ What is currently confirmed
 
-At the moment, ESWC 2011 is in a different state from The Defense Season 1:
+### Direct Liquipedia skeleton
+The tournament has a clean **25-match skeleton** from cached Liquipedia data:
+- **20** group-stage matches
+- **5** playoff matches
 
-- for **The Defense**, the repo now has a DB-first reconstruction narrative
-- for **ESWC 2011**, the repo already has a **large imported DB block**, but it
-  still needs a tournament-specific cleanup / validation pass
+### `league_id=65000` staging layer
+A dedicated staging table now exists in `dota_archive.db`:
+- **`league_match_staging`**
 
-In practical terms, the next useful ESWC tasks are:
+Current ESWC 2011 staging status:
+- **25** ESWC 2011 Liquipedia match IDs staged
+- **4** of those are currently present in the local `matches` table
+- **21** are still missing from the local `matches` table
 
-1. verify that `tournament_id=999` rows correspond cleanly to the Liquipedia
-   match list above
-2. inspect whether any `900xx` rows are over-imported / noisy / placeholder-like
-3. create a proper playoff + groups report in the same style as `d2sc` and
-   `the-defense-s1`
+### Account-proven Na`Vi path
+Using user-provided secondary account IDs for:
+- **Puppey** — `87277951`
+- **LighTofHeaveN** — `85716771`
+
+we now have account-history confirmation for these ESWC 2011 Na`Vi matches:
+- `88913` — BX3 eSports Club vs Natus Vincere
+- `89136` — Natus Vincere vs GamersLeague
+- `89314` — NEXT.kz vs Natus Vincere
+- `89603` — Natus Vincere vs Orange eSports
+- `91026` — monkeybusiness vs Natus Vincere
+- `91112` — Natus Vincere vs EHOME
+- `91151` — Natus Vincere vs EHOME
+
+### Account-proven EHOME grand-final maps
+Using user-provided EHOME account IDs, the grand-final maps are directly
+validated at the account layer:
+- `91112`
+- `91151`
+
+---
+
+## ⚠️ Current cautions
+
+### The old recovered row is not canonical
+The repo still has `tournament_id=999`, but current evidence suggests it should
+be treated as a **noisy recovered dump**, not a finished tournament row.
+
+### Missing local matches still matter
+Even though some ESWC IDs are now account-confirmed through OpenDota history,
+that does **not** mean they are already stored in the local `matches` table.
+For example, some Na`Vi group-stage matches are account-confirmed but still
+missing locally.
+
+### Shared-ticket / shared-league problem
+There is strong reason to believe `league_id=65000` (“The Internal”) is a
+**shared early ticket bucket**, not an ESWC-only container. That means ESWC 2011
+should be reconstructed by classification and evidence, not by blindly trusting
+all matches associated with that league.
+
+---
+
+## 🔭 Next useful tasks
+
+1. recover account-confirmed but still-missing ESWC match IDs into the local DB
+2. continue tagging `league_id=65000` rows through tournament classification
+3. keep adding roster / account anchors for ESWC teams
 4. attach VOD/archive links where available
+5. only after that, build a clean canonical ESWC tournament row
 
 ---
 
@@ -161,11 +230,10 @@ In practical terms, the next useful ESWC tasks are:
 
 This README is intentionally conservative.
 
-It does **not** yet claim that all 306 rows in `tournament_id=999` are already
-clean, final, or presentation-ready. It only establishes:
+At this point it establishes:
 
-- the tournament exists in the local DB
-- the recovered tournament row is `999`
-- Liquipedia provides direct match IDs for all group-stage matches and the full
-  playoff bracket
-- ESWC 2011 is now ready for a proper tournament-specific cleanup pass
+- ESWC 2011 has a reliable Liquipedia match skeleton
+- the old `tournament_id=999` block is **not** clean enough to trust as canon
+- ESWC 2011 now has a dedicated `league_id=65000` staging layer in the DB
+- multiple ESWC matches are strengthened by direct player-account evidence
+- the correct path forward is a clean rebuild, not in-place trust of the old import
