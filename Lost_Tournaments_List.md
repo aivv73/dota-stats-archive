@@ -35,10 +35,21 @@ Since API data is often missing or corrupted for early tournaments (2011-2012), 
 - **Liquipedia**: [Link](https://liquipedia.net/dota2/The_Defense/Season_1)
 
 #### 3. Electronic Sports World Cup 2011 (ESWC)
-- **Date**: Oct 21-25, 2011
+- **Date**: Oct 23-25, 2011
 - **Location**: Paris, France
-- **Status**: 🟢 **Recoverable**. Match IDs found in Liquipedia wikicode (e.g. `91112`).
-- **Ticket**: Uses "The Internal" (65000) or test tickets.
+- **Status**: 🟡 **Rebuild in Progress**.
+- **Current state**:
+  - full **25-match Liquipedia skeleton** is now extracted and staged
+  - `league_id=65000` staging layer exists in `dota_archive.db`
+  - old `tournament_id=999` row is preserved as a **noisy clue source**, not canonical tournament data
+  - direct account-history evidence now confirms multiple Na`Vi-path matches (`88913`, `89136`, `89314`, `89603`, `91026`, `91112`, `91151`)
+- **Ticket / league context**: likely part of the shared early **"The Internal" (`65000`)** bucket, so match classification matters
+- **Working files**:
+  - `tournaments/eswc-2011/README.md`
+  - `tournaments/eswc-2011/eswc-2011-rebuild-checklist.md`
+  - `tournaments/eswc-2011/eswc-2011-rosters.md`
+  - `tournaments/eswc-2011/eswc-2011-audit-notes.md`
+  - `tournaments/eswc-2011/eswc-2011-account-proven-lobbies.md`
 - **Liquipedia**: [Link](https://liquipedia.net/dota2/Electronic_Sports_World_Cup_2011)
 
 #### 4. DreamHack Winter 2011
