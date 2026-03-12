@@ -188,6 +188,16 @@ These are the most useful roster anchors for validating noisy DB matches.
 - BX3 and GamersLeague both have 6 listed names on Liquipedia; this may reflect
   substitutes / alternates rather than a single exact 5-player match roster.
 
+### Known account notes to preserve
+
+These notes are useful for early-2011/2012 Na`Vi reconstruction and should be
+considered when matching account IDs or secondary handles:
+
+- **Puppey** — secondary account noted by user: `87277951`
+  - Dotabuff: <https://www.dotabuff.com/players/87277951>
+- **LighTofHeaveN** — secondary account noted by user: `85716771`
+  - Dotabuff: <https://www.dotabuff.com/players/85716771>
+
 ---
 
 ## Match skeleton from the same Liquipedia source
