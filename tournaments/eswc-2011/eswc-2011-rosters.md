@@ -74,6 +74,18 @@ ESWC 2011 can be rebuilt against expected teams and players instead of the noisy
 - LuCKy
 - RONIN
 
+**Known account notes:**
+- **eQual** — `88792641`
+  - Dotabuff: <https://www.dotabuff.com/players/88792641>
+- **Mantis** — `69325073`
+  - Dotabuff: <https://www.dotabuff.com/players/69325073>
+- **LuCKy** — `88704095`
+  - Dotabuff: <https://www.dotabuff.com/players/88704095>
+- **RONIN** — `89309501`
+  - Dotabuff: <https://www.dotabuff.com/players/89309501>
+- **BeaR** — `58017868`
+  - Dotabuff: <https://www.dotabuff.com/players/58017868>
+
 ### Moscow Five
 - God
 - Vigoss
