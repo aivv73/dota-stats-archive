@@ -118,6 +118,10 @@ ESWC 2011 can be rebuilt against expected teams and players instead of the noisy
 - ANdre
 - BABARRR
 
+**Known account note:**
+- **ANdre** — `90211028`
+  - Dotabuff: <https://www.dotabuff.com/players/90211028>
+
 ### Lias Gaming
 - Liquipedia roster hidden / unavailable on overview page
 - Liquipedia note says the team **did not attend**

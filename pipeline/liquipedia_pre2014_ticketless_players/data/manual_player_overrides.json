@@ -115,5 +115,8 @@
     },
     "tournaments": ["Electronic Sports World Cup 2011", "The International 2011"],
     "primary_target_tournaments": ["Electronic Sports World Cup 2011"]
+  },
+  "ANdre": {
+    "account_ids": ["90211028"]
   }
 }

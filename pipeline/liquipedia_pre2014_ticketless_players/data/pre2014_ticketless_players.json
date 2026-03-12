@@ -13,7 +13,7 @@
       "Dota2 Star Championship"
     ]
   },
-  "generated_at": "2026-03-12T11:37:06.042Z",
+  "generated_at": "2026-03-12T11:44:54.301Z",
   "scope": {
     "candidate_tournament_count": 20,
     "rule": "The player scope is inherited from the integrated pre-2014 likely-ticketless tournament list. This stage does not re-decide ticket status, and it excludes players who appear only in supplemental tournaments.",
@@ -44,7 +44,7 @@
       "TeamCard.pXid"
     ],
     "manual_overrides_file": "pipeline/liquipedia_pre2014_ticketless_players/data/manual_player_overrides.json",
-    "manual_overrides_applied": 35,
+    "manual_overrides_applied": 36,
     "user_agent": "dota-stats-archive-liquipedia-ticketless-players/1.0 (local workspace; contact: local)",
     "wiki": "Liquipedia Dota 2"
   },
@@ -56,22 +56,22 @@
   "summary": {
     "cleanup_group_merges": 2,
     "players_after_cleanup_before_scope_filter": 358,
-    "players_with_account_ids": 167,
-    "players_with_any_numeric_id": 167,
-    "players_with_derived_steam_ids": 167,
-    "players_with_explicit_account_ids": 167,
+    "players_with_account_ids": 168,
+    "players_with_any_numeric_id": 168,
+    "players_with_derived_steam_ids": 168,
+    "players_with_explicit_account_ids": 168,
     "players_with_explicit_steam_ids": 0,
     "players_with_liquipedia_player_page": 121,
-    "players_with_steam_ids": 167,
+    "players_with_steam_ids": 168,
     "players_excluded_as_supplemental_only": 81,
-    "players_with_manual_override_account_ids": 35,
-    "players_without_numeric_id": 110,
+    "players_with_manual_override_account_ids": 36,
+    "players_without_numeric_id": 109,
     "roster_observations": 695,
     "tournaments_loaded_from_stage1_cache": 20,
     "tournaments_missing_from_stage1_cache": 0,
     "tournaments_fetched_live": 0,
     "unique_players": 277,
-    "unresolved_name_only_players": 110
+    "unresolved_name_only_players": 109
   },
   "players": [
     {
@@ -837,7 +837,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.ANdre"
+          ],
+          "value": "90211028"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [],
@@ -913,15 +921,24 @@
         "DreamHack Winter 2011",
         "The Premier League Season 1"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_only",
       "supplemental_source_appearances": 0,
       "supplemental_source_tournaments": [],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198050476756"
+        }
+      ],
       "tournaments": [
         "Electronic Sports World Cup 2011",
         "The Defense Season 1",
