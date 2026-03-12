@@ -11,7 +11,7 @@ To reconstruct the history of tournaments like **Dota 2 Star Championship**, **E
 | Tournament | Year | Status | Matches Recovered | Notes |
 |---|---|---|---|---|
 | **[Dota 2 Star Championship](tournaments/d2sc/)** | 2011 | 🟢 **Recovered** | 46 | Playoffs + all Liquipedia-listed group stage matches recovered. |
-| **[ESWC 2011](tournaments/eswc-2011/)** | 2011 | 🟢 **Recovered** | 300+ | Large recovered dataset preserved in DB; tournament README is now being formalized from Liquipedia + local DB. |
+| **[ESWC 2011](tournaments/eswc-2011/)** | 2011 | 🟡 **Rebuild in Progress** | 25 known match IDs / 4 locally present | Full Liquipedia match skeleton is now staged; old `tournament_id=999` block is preserved as a noisy clue source, not canonical tournament data. |
 | **[The Defense Season 1](tournaments/the-defense-s1/)** | 2011 | 🟡 **In Progress** | Playoffs mapped + GS shortlist | DB-first playoff reconstruction is largely mapped, and Group Stage #1/#2 shortlist work is now documented in the tournament README. |
 
 See **[Lost Tournaments List](Lost_Tournaments_List.md)** for the full roadmap and recovery queue.
@@ -60,6 +60,13 @@ mapping notes to build a local SQLite database of strict Dotabuff
 main working path for extending 2011-2012 match recovery, and the committed DB
 artifacts are actively used to drive the tournament-specific README and match
 identification work.
+
+Latest committed stage-3 snapshot:
+- `accounts_total`: **186**
+- `distinct_accounts_collected`: **160**
+- `distinct_match_ids_collected`: **29,798**
+- `practice_match_rows_collected`: **79,282**
+- `dataset_status`: **dotabuff_derived**
 
 ### Key Tables
 
