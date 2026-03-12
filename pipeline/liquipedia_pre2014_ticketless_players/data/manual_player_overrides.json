@@ -100,5 +100,20 @@
     },
     "tournaments": ["The Defense Season 1"],
     "primary_target_tournaments": ["The Defense Season 1"]
+  },
+  "Puppey": {
+    "account_ids": ["87277951"]
+  },
+  "LighTofHeaveN": {
+    "account_ids": ["85716771"]
+  },
+  "ARS": {
+    "create_if_missing": true,
+    "account_ids": ["89425982"],
+    "aliases": {
+      "observed_names": ["ARS"]
+    },
+    "tournaments": ["Electronic Sports World Cup 2011", "The International 2011"],
+    "primary_target_tournaments": ["Electronic Sports World Cup 2011"]
   }
 }

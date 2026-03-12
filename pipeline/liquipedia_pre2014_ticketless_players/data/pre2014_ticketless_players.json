@@ -13,7 +13,7 @@
       "Dota2 Star Championship"
     ]
   },
-  "generated_at": "2026-03-11T08:27:02.994Z",
+  "generated_at": "2026-03-12T11:37:06.042Z",
   "scope": {
     "candidate_tournament_count": 20,
     "rule": "The player scope is inherited from the integrated pre-2014 likely-ticketless tournament list. This stage does not re-decide ticket status, and it excludes players who appear only in supplemental tournaments.",
@@ -44,7 +44,7 @@
       "TeamCard.pXid"
     ],
     "manual_overrides_file": "pipeline/liquipedia_pre2014_ticketless_players/data/manual_player_overrides.json",
-    "manual_overrides_applied": 32,
+    "manual_overrides_applied": 35,
     "user_agent": "dota-stats-archive-liquipedia-ticketless-players/1.0 (local workspace; contact: local)",
     "wiki": "Liquipedia Dota 2"
   },
@@ -56,22 +56,22 @@
   "summary": {
     "cleanup_group_merges": 2,
     "players_after_cleanup_before_scope_filter": 358,
-    "players_with_account_ids": 166,
-    "players_with_any_numeric_id": 166,
-    "players_with_derived_steam_ids": 166,
-    "players_with_explicit_account_ids": 166,
+    "players_with_account_ids": 167,
+    "players_with_any_numeric_id": 167,
+    "players_with_derived_steam_ids": 167,
+    "players_with_explicit_account_ids": 167,
     "players_with_explicit_steam_ids": 0,
     "players_with_liquipedia_player_page": 121,
-    "players_with_steam_ids": 166,
+    "players_with_steam_ids": 167,
     "players_excluded_as_supplemental_only": 81,
-    "players_with_manual_override_account_ids": 32,
-    "players_without_numeric_id": 111,
+    "players_with_manual_override_account_ids": 35,
+    "players_without_numeric_id": 110,
     "roster_observations": 695,
     "tournaments_loaded_from_stage1_cache": 20,
     "tournaments_missing_from_stage1_cache": 0,
     "tournaments_fetched_live": 0,
     "unique_players": 277,
-    "unresolved_name_only_players": 111
+    "unresolved_name_only_players": 110
   },
   "players": [
     {
@@ -1070,7 +1070,15 @@
       ]
     },
     {
-      "account_ids": [],
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.ARS"
+          ],
+          "value": "89425982"
+        }
+      ],
       "aliases": {
         "legal_names": [],
         "linked_page_hints": [],
@@ -1117,15 +1125,24 @@
         "Electronic Sports World Cup 2011",
         "WCG Asian Championship 2011"
       ],
-      "resolution_confidence": "low",
+      "resolution_confidence": "medium",
       "resolution_evidence": [
-        "observed_name_only"
+        "observed_name_only",
+        "manual_override_account_id"
       ],
-      "resolution_status": "unresolved_name_only",
+      "resolution_status": "resolved_with_teamcard_account_id_only",
       "scope_role": "primary_only",
       "supplemental_source_appearances": 0,
       "supplemental_source_tournaments": [],
-      "steam_ids": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198049691710"
+        }
+      ],
       "tournaments": [
         "Electronic Sports World Cup 2011",
         "WCG Asian Championship 2011"
@@ -9687,6 +9704,13 @@
         {
           "confidence": "explicit",
           "sources": [
+            "manual_override.LighTofHeaveN"
+          ],
+          "value": "85716771"
+        },
+        {
+          "confidence": "explicit",
+          "sources": [
             "liquipedia_player_infobox.playerid"
           ],
           "value": "89326318"
@@ -9805,7 +9829,8 @@
       "resolution_confidence": "high",
       "resolution_evidence": [
         "player_page_infobox",
-        "player_page_account_id"
+        "player_page_account_id",
+        "manual_override_account_id"
       ],
       "resolution_status": "resolved_with_player_page_and_ids",
       "scope_role": "primary_with_supplemental",
@@ -9815,6 +9840,13 @@
         "Dota2 Star Championship"
       ],
       "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198045982499"
+        },
         {
           "confidence": "derived",
           "sources": [
@@ -14948,6 +14980,13 @@
         {
           "confidence": "explicit",
           "sources": [
+            "manual_override.Puppey"
+          ],
+          "value": "87277951"
+        },
+        {
+          "confidence": "explicit",
+          "sources": [
             "liquipedia_player_infobox.playerid"
           ],
           "value": "87278757"
@@ -15063,7 +15102,8 @@
       "resolution_confidence": "high",
       "resolution_evidence": [
         "player_page_infobox",
-        "player_page_account_id"
+        "player_page_account_id",
+        "manual_override_account_id"
       ],
       "resolution_status": "resolved_with_player_page_and_ids",
       "scope_role": "primary_with_supplemental",
@@ -15073,6 +15113,13 @@
         "Dota2 Star Championship"
       ],
       "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198047543679"
+        },
         {
           "confidence": "derived",
           "sources": [
