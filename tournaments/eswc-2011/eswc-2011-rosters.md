@@ -198,6 +198,21 @@ considered when matching account IDs or secondary handles:
 - **LighTofHeaveN** — secondary account noted by user: `85716771`
   - Dotabuff: <https://www.dotabuff.com/players/85716771>
 
+### Known EHOME account notes to preserve
+
+These account IDs were noted by user for the ESWC 2011-era EHOME lineup:
+
+- **QQQ** — `89399750`
+  - Dotabuff: <https://www.dotabuff.com/players/89399750>
+- **ARS** — `89425982`
+  - Dotabuff: <https://www.dotabuff.com/players/89425982>
+- **NUZ** / **LaNm** — `89423756`
+  - Dotabuff: <https://www.dotabuff.com/players/89423756>
+- **PCT** — `89427480`
+  - Dotabuff: <https://www.dotabuff.com/players/89427480>
+- **X!!** / **MMY** — `89407113`
+  - Dotabuff: <https://www.dotabuff.com/players/89407113>
+
 ---
 
 ## Match skeleton from the same Liquipedia source
