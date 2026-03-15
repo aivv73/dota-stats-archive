@@ -10,6 +10,7 @@
     "stage2:ticketless-players:refresh": "node pipeline/liquipedia_pre2014_ticketless_players/src/collect.js --refresh-cache",
     "stage3:practice-match-history": "node pipeline/practice_match_history_stage3/src/collect.js",
     "report:eswc-2011": "node tournaments/eswc-2011/eswc-2011-db-report.mjs",
+    "import:eswc-2011:opendota": "node tournaments/eswc-2011/import-opendota-exact-ids.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

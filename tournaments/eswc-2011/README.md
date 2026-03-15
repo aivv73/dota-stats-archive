@@ -238,6 +238,43 @@ This reads only the local `dota_archive.db` plus the checked-in
 `eswc-2011-account-proven-lobbies.md` note and prints the current staged/present
 split together with the priority recovery queue.
 
+### OpenDota exact-ID importer
+
+To probe the staged ESWC 2011 Liquipedia IDs against OpenDota without writing:
+
+```bash
+npm run import:eswc-2011:opendota
+```
+
+This reads only staged rows for `league_id=65000` +
+`source_tournament='Electronic Sports World Cup 2011'`, fetches those exact
+`/matches/{id}` payloads from OpenDota, and reports which missing IDs are
+fetchable and would be imported into the local `matches` / `players` tables.
+
+To write the missing rows into the local DB and mark staging rows as present:
+
+```bash
+npm run import:eswc-2011:opendota -- --apply
+```
+
+Useful narrow-scope options:
+
+```bash
+npm run import:eswc-2011:opendota -- --match-id 90992 --apply
+npm run import:eswc-2011:opendota -- --match-id 88913,89136
+npm run import:eswc-2011:opendota -- --match-id 91026,91105,91112,91151 --replace-existing --apply
+```
+
+Notes:
+- dry-run is the default; writes require `--apply`
+- new imports default to `tournament_id=1000` (`ESWC 2011`)
+- by default the script skips already-present matches and will sync
+  `league_match_staging.present_in_matches=1` when appropriate during apply mode
+- `--replace-existing` forces an exact-ID refetch from OpenDota, refreshes the
+  stored `matches` / `players` rows, and can reassign an already-present match
+  into the canonical ESWC tournament row (useful for exact-ID playoff anchors
+  that still live under the old noisy `tournament_id=999`)
+
 ---
 
 ## 📝 Notes
