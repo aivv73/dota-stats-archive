@@ -275,6 +275,34 @@ Notes:
   into the canonical ESWC tournament row (useful for exact-ID playoff anchors
   that still live under the old noisy `tournament_id=999`)
 
+### Identity normalization
+
+After exact-ID import, ESWC 2011 player labels in OpenDota can still be noisy:
+alt handles, empty names, and stylistic aliases like `©`, `Dondoxic`,
+`brick by brick`, `66`, `奶德`, or `Mantis / refresher`.
+
+To refresh the canonical ESWC row from exact OpenDota payloads and normalize the
+high-confidence account-backed player identities together with
+`winner_team` / `winner_side` labels:
+
+```bash
+npm run normalize:eswc-2011
+npm run normalize:eswc-2011 -- --apply
+```
+
+Useful narrow-scope examples:
+
+```bash
+npm run normalize:eswc-2011 -- --match-id 91026,91112
+npm run normalize:eswc-2011 -- --match-id 88786,88792,90992 --apply
+```
+
+Current normalization policy:
+- only apply high-confidence account-backed mappings
+- keep unresolved stand-in / alt aliases as-is rather than forcing guesses
+- leave `players.team` as `Radiant` / `Dire`; canonical team identity is tracked
+  via exact match side mapping plus `matches.winner_team` / `matches.winner_side`
+
 ---
 
 ## 📝 Notes
