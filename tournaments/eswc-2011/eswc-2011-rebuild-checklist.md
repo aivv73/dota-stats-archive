@@ -115,25 +115,66 @@ Legend:
 - Treat the 25 matches above as the authoritative ESWC 2011 rebuild target.
 - Do **not** expand from the 306-match recovered block.
 
-### Priority 2 — Resolve the playoff layer first
-- playoff anchors are the strongest structural evidence
-- especially investigate:
-  - `90992` (missing semifinal)
-  - `91026`
-  - `91105`
-  - `91112`
-  - `91151`
+### Priority 2 — Recover the account-confirmed missing Na`Vi path first
+These four Group 2 matches are still absent from `matches`, but they already
+have direct account-history confirmation recorded in
+`eswc-2011-account-proven-lobbies.md`:
 
-### Priority 3 — Recover or re-import group-stage matches by exact ID
-- all 20 listed group-stage IDs are currently missing from the local DB snapshot checked during this audit
-- these should be recovered by exact match ID, not inferred from time windows alone
+- `88913` — BX3 eSports Club vs Natus Vincere
+- `89136` — Natus Vincere vs GamersLeague
+- `89314` — NEXT.kz vs Natus Vincere
+- `89603` — Natus Vincere vs Orange eSports
 
-### Priority 4 — Add roster / alias notes
+This is currently the highest-value missing block because it is both:
+- exact-ID scoped from Liquipedia
+- strengthened by local account-evidence notes
+
+### Priority 3 — Recover the missing playoff anchor
+- `90992` — GamersLeague vs EHOME (semifinal)
+
+This is still the only staged playoff match absent from `matches`, so it
+remains the most important non-Na`Vi recovery target.
+
+### Priority 4 — Keep the recovered playoff matches as structural anchors
+- `91026`
+- `91105`
+- `91112`
+- `91151`
+
+These are already present locally and should continue to be used as
+cross-check anchors while the missing matches are recovered.
+
+### Priority 5 — Recover or re-import the remaining group-stage matches by exact ID
+- after the four account-confirmed Na`Vi group-stage IDs are recovered, the
+  remaining Group 1 / Group 2 staged rows should still be recovered by exact ID
+- do not infer them from time windows alone
+
+### Priority 6 — Add roster / alias notes
 Create a companion reconstruction note for:
 - canonical team names
 - known aliases / stand-ins
 - player-name variants
 - confidence notes per team
+
+---
+
+## Local validation command
+
+Use the committed local report to re-check DB state before changing priorities:
+
+```bash
+npm run report:eswc-2011
+```
+
+That report reads only:
+- `dota_archive.db`
+- `tournaments/eswc-2011/eswc-2011-account-proven-lobbies.md`
+
+and prints:
+- tournament-row coverage for `999` / `1000`
+- staged vs present vs missing ESWC rows
+- the current priority recovery queue, with `account-confirmed` matches surfaced
+  first
 
 ---
 

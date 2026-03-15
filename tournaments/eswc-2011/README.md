@@ -21,6 +21,7 @@
   - `eswc-2011-rosters.md`
   - `eswc-2011-audit-notes.md`
   - `eswc-2011-account-proven-lobbies.md`
+  - `eswc-2011-db-report.mjs`
   - `league-65000-staging.md`
 
 **Important note**:
@@ -218,11 +219,24 @@ all matches associated with that league.
 
 ## 🔭 Next useful tasks
 
-1. recover account-confirmed but still-missing ESWC match IDs into the local DB
-2. continue tagging `league_id=65000` rows through tournament classification
-3. keep adding roster / account anchors for ESWC teams
-4. attach VOD/archive links where available
-5. only after that, build a clean canonical ESWC tournament row
+1. recover the four account-confirmed but still-missing Na`Vi Group 2 IDs: `88913`, `89136`, `89314`, `89603`
+2. recover the missing semifinal `90992` (GamersLeague vs EHOME)
+3. continue tagging `league_id=65000` rows through tournament classification
+4. keep adding roster / account anchors for ESWC teams
+5. attach VOD/archive links where available
+6. only after that, build a clean canonical ESWC tournament row
+
+### Local DB report
+
+To re-check the live local ESWC 2011 state against the staging layer, run:
+
+```bash
+npm run report:eswc-2011
+```
+
+This reads only the local `dota_archive.db` plus the checked-in
+`eswc-2011-account-proven-lobbies.md` note and prints the current staged/present
+split together with the priority recovery queue.
 
 ---
 
