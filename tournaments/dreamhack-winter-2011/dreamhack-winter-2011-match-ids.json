@@ -1,0 +1,33 @@
+{
+  "tournament": "DreamHack Winter 2011",
+  "liquipediaPage": "https://liquipedia.net/dota2/DreamHack/2011/Winter",
+  "status": "skeleton-only",
+  "notes": [
+    "Liquipedia provides 21 exact match IDs via DatDota/Dotabuff links.",
+    "All 21 IDs currently return 404 from OpenDota /api/matches/{match_id}.",
+    "Local dota_archive.db currently contains 0/21 of these exact IDs in matches."
+  ],
+  "matchIds": [
+    512699,
+    513009,
+    514622,
+    514632,
+    515558,
+    516155,
+    518885,
+    519943,
+    521619,
+    521675,
+    523128,
+    523510,
+    528996,
+    531170,
+    534692,
+    537014,
+    557463,
+    559502,
+    569246,
+    571777,
+    573993
+  ]
+}
