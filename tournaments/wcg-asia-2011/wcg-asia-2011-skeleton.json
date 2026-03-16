@@ -1,0 +1,172 @@
+{
+  "source": "dota2.fandom MediaWiki API",
+  "page": "WCG Asian Championships 2011",
+  "groups": {
+    "Group A": {
+      "teams": [
+        "Mski.PColor",
+        "VelocyHyper",
+        "Eternal Souls"
+      ],
+      "matches": [
+        {
+          "team1": "Mski.PColor",
+          "scoreSymbol": ">",
+          "team2": "VelocyHyper",
+          "winner": "Mski.PColor"
+        },
+        {
+          "team1": "GDGS",
+          "scoreSymbol": ">",
+          "team2": "Eternal Souls",
+          "winner": "GDGS"
+        },
+        {
+          "team1": "Eternal Souls",
+          "scoreSymbol": "<",
+          "team2": "Mski.PColor",
+          "winner": "Mski.PColor"
+        }
+      ]
+    },
+    "Group B": {
+      "teams": [
+        "Neolution",
+        "Virtousity",
+        "Team India"
+      ],
+      "matches": [
+        {
+          "team1": "Virtousity",
+          "scoreSymbol": "<",
+          "team2": "Neolution",
+          "winner": "Neolution"
+        },
+        {
+          "team1": "Neolution",
+          "scoreSymbol": ">",
+          "team2": "Team India",
+          "winner": "Neolution"
+        },
+        {
+          "team1": "Virtousity",
+          "scoreSymbol": ">",
+          "team2": "Team India",
+          "winner": "Virtousity"
+        }
+      ]
+    },
+    "Group C": {
+      "teams": [
+        "MUFC",
+        "SkyNet",
+        "LOF"
+      ],
+      "matches": [
+        {
+          "team1": "LOF",
+          "scoreSymbol": "<",
+          "team2": "MUFC",
+          "winner": "MUFC"
+        },
+        {
+          "team1": "MUFC",
+          "scoreSymbol": ">",
+          "team2": "SkyNet",
+          "winner": "MUFC"
+        },
+        {
+          "team1": "SkyNet",
+          "scoreSymbol": ">",
+          "team2": "LOF",
+          "winner": "SkyNet"
+        }
+      ]
+    },
+    "Group D": {
+      "teams": [
+        "EHOME",
+        "Aeon",
+        "BBJ"
+      ],
+      "matches": [
+        {
+          "team1": "EHOME",
+          "scoreSymbol": ">",
+          "team2": "Aeon",
+          "winner": "EHOME"
+        },
+        {
+          "team1": "Aeon",
+          "scoreSymbol": ">",
+          "team2": "BBJ",
+          "winner": "Aeon"
+        },
+        {
+          "team1": "BBJ",
+          "scoreSymbol": "<",
+          "team2": "EHOME",
+          "winner": "EHOME"
+        }
+      ]
+    }
+  },
+  "playoffs": [
+    {
+      "round": "Quarter-Finals",
+      "team1": "Mski.PColor",
+      "scoreSymbol": ">",
+      "team2": "Aeon",
+      "winner": "Mski.PColor"
+    },
+    {
+      "round": "Quarter-Finals",
+      "team1": "Neolution",
+      "scoreSymbol": ">",
+      "team2": "SkyNet",
+      "winner": "Neolution"
+    },
+    {
+      "round": "Quarter-Finals",
+      "team1": "MUFC",
+      "scoreSymbol": ">",
+      "team2": "Virtousity",
+      "winner": "MUFC"
+    },
+    {
+      "round": "Quarter-Finals",
+      "team1": "EHOME",
+      "scoreSymbol": ">",
+      "team2": "GDGS",
+      "winner": "EHOME"
+    },
+    {
+      "round": "Semi-Finals",
+      "team1": "Mski.PColor",
+      "scoreSymbol": ">",
+      "team2": "Neolution",
+      "winner": "Mski.PColor"
+    },
+    {
+      "round": "Semi-Finals",
+      "team1": "MUFC",
+      "scoreSymbol": ">",
+      "team2": "EHOME",
+      "winner": "MUFC"
+    },
+    {
+      "round": "Third Place",
+      "team1": "Neolution",
+      "scoreSymbol": "<",
+      "team2": "EHOME",
+      "winner": "EHOME"
+    },
+    {
+      "round": "Final",
+      "team1": "Mski.PColor",
+      "scoreSymbol": "<",
+      "team2": "MUFC",
+      "winner": "MUFC"
+    }
+  ]
+}

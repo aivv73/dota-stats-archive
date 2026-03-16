@@ -55,22 +55,22 @@
   },
   "summary": {
     "cleanup_group_merges": 2,
-    "players_after_cleanup_before_scope_filter": 358,
-    "players_with_account_ids": 172,
-    "players_with_any_numeric_id": 172,
-    "players_with_derived_steam_ids": 172,
-    "players_with_explicit_account_ids": 172,
+    "players_after_cleanup_before_scope_filter": 359,
+    "players_with_account_ids": 173,
+    "players_with_any_numeric_id": 173,
+    "players_with_derived_steam_ids": 173,
+    "players_with_explicit_account_ids": 173,
     "players_with_explicit_steam_ids": 0,
     "players_with_liquipedia_player_page": 121,
-    "players_with_steam_ids": 172,
+    "players_with_steam_ids": 173,
     "players_excluded_as_supplemental_only": 81,
-    "players_with_manual_override_account_ids": 41,
+    "players_with_manual_override_account_ids": 42,
     "players_without_numeric_id": 105,
-    "roster_observations": 695,
+    "roster_observations": 696,
     "tournaments_loaded_from_stage1_cache": 20,
     "tournaments_missing_from_stage1_cache": 0,
     "tournaments_fetched_live": 0,
-    "unique_players": 277,
+    "unique_players": 278,
     "unresolved_name_only_players": 105
   },
   "players": [
@@ -7268,6 +7268,70 @@
       "steam_ids": [],
       "tournaments": [
         "DreamHack Winter 2011"
+      ]
+    },
+    {
+      "account_ids": [
+        {
+          "confidence": "explicit",
+          "sources": [
+            "manual_override.Hoonji"
+          ],
+          "value": "86740201"
+        }
+      ],
+      "aliases": {
+        "legal_names": [],
+        "linked_page_hints": [],
+        "liquipedia_handles": [],
+        "observed_names": [
+          "Hoonji"
+        ],
+        "romanized_names": []
+      },
+      "appearances": [
+        {
+          "linked_player_page": null,
+          "lookup_source": "observed_name_exact_title",
+          "observed_account_ids": [],
+          "observed_name": "Hoonji",
+          "slot": 3,
+          "source_page_title": "World Cyber Games/Asia/2011",
+          "team_name": "BBJ",
+          "tournament_page_title": "World Cyber Games/Asia/2011",
+          "tournament_start_date": "2011-11-09",
+          "tournament_title": "WCG Asian Championship 2011",
+          "tournament_url": "https://liquipedia.net/dota2/World_Cyber_Games/Asia/2011"
+        }
+      ],
+      "canonical_handle": "Hoonji",
+      "canonical_handle_source": "tournament_teamcard.observed_name",
+      "liquipedia_page_title": null,
+      "liquipedia_url": null,
+      "primary_target_appearances": 1,
+      "primary_target_tournaments": [
+        "WCG Asian Championship 2011"
+      ],
+      "resolution_confidence": "medium",
+      "resolution_evidence": [
+        "observed_name_only",
+        "manual_override_account_id"
+      ],
+      "resolution_status": "resolved_with_teamcard_account_id_only",
+      "scope_role": "primary_only",
+      "supplemental_source_appearances": 0,
+      "supplemental_source_tournaments": [],
+      "steam_ids": [
+        {
+          "confidence": "derived",
+          "sources": [
+            "derived_from_account_id"
+          ],
+          "value": "76561198046905929"
+        }
+      ],
+      "tournaments": [
+        "WCG Asian Championship 2011"
       ]
     },
     {
