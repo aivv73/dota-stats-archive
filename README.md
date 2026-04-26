@@ -83,6 +83,3 @@ Latest committed stage-3 snapshot:
 - `winner`: "Radiant" / "Dire" or Team Name
 - `lobby_type`: Usually `1` (Practice) for 2011 era
 
-## 🤖 Credits
-
-Maintained by **Danila** with assistance from **OpenClaw AI**.
