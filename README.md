@@ -1,3 +1,4 @@
+Pipeline for collecting, deduplicating and structuring historical Dota 2 tournament data via browser automation and parsing.
 # 📜 Dota 2 Historical Stats Archive
 
 A project dedicated to recovering, preserving, and archiving lost match data from the dawn of Dota 2 esports (2011-2012). Many early tournaments were played in "Practice" lobbies or had ticket data corrupted, making them inaccessible on modern stats sites like Dotabuff or Stratz without manual intervention.
